@@ -1,0 +1,31 @@
+#accounttransfer #account_bank,
+#accounttransfer #account_bank_2,
+#accounttransfer #by-card-wrapper,
+#accounttransfer #paypal,
+#accounttransfer #security,
+#accounttransfer #westernUnion {
+    display: block
+}
+
+.separateur {
+    position: relative
+}
+
+.separateur:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -moz-transform: translate(-50%);
+    -o-transform: translate(-50%);
+    transform: translate(-50%);
+    bottom: 0;
+    width: 95%;
+    height: 1px;
+    background: #c1c1c1
+}
+
+.separateur:last-child:after {
+    display: none
+}

@@ -1,0 +1,130 @@
+<div class="basket-popin-wrapper" [ngClass]="[isOpened ? 'show' : '']">
+    <div class="basket-popin-container">
+        <div class="basket-popin-title">
+            <h3>{{ 'basket.update_item' | translate }}</h3>
+        </div>
+        <div class="popin-body">
+            <div *ngIf="!product" class="popin-content" style="justify-content: center">
+                <div class="box_content">
+                    <noo-loader></noo-loader>
+                </div>
+            </div>
+            <div *ngIf="product" class="popin-content">
+                <h3 class="bt-product-title">
+                    {{product?.translations[translate.currentLang]?.name?? '---'}}
+                </h3>
+                <div class="bt-wrapper-price-product">
+                    <ng-container *ngIf="inventotyPrice?.promotional_pricing; else noPromotional">
+                        <h4 class="bt-price">{{
+                            inventotyPrice?.promotional_pricing}}
+                            <span>{{inventotyPrice?.promotional_pricing_currency}}</span>
+                        </h4>
+                        <span>
+                            <span class="bt-discount">{{inventotyPrice?.default_price}}
+                                {{inventotyPrice?.default_price_currency}}
+                            </span>
+                            <span class="bt-taux">
+                                (-{{(((inventotyPrice?.default_price -
+                                inventotyPrice?.promotional_pricing) *
+                                100) / inventotyPrice?.default_price) | number:'1.2-2' }}%)
+                            </span>
+                        </span>
+                    </ng-container>
+                    <ng-template #noPromotional>
+                        <h4 class="bt-price">
+                            {{inventotyPrice?.default_price}} {{inventotyPrice?.default_price_currency}}
+                        </h4>
+                    </ng-template>
+                </div>
+                <div class="bt-product-attrs">
+                    <div class="bt-product-attrs-select" *ngFor="let key of productAttrsKeys">
+                        <ng-container *ngIf="productAttrs[key].length > 1">
+                            <span class="bt-attr-label bold">{{key}}</span>
+                            <mat-form-field style="width:100%">
+                                <mat-select (selectionChange)="attrChange($event.value,key)"
+                                    placeholder="{{'product.select_option' | translate}}" [value]="selectedAttrs[key]">
+                                    <mat-option [value]="attr?.id" *ngFor="let attr of productAttrs[key]">
+                                        {{attr?.value}} {{attr?.unit}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </ng-container>
+                    </div>
+                    <div class="bt-product-attrs" *ngIf="unexistingComb || inventotyPrice?.stock == 0">
+                        <div class="out-of-stock-msg">
+                            {{"product.out_of_stock_msg" | translate}}
+                        </div>
+                    </div>
+
+
+
+                    <div class="bt-product-attrs-select customisation" *ngIf="product.customizable">
+                        <span class="bt-attr-label bold">
+                            {{'product.add_customization' | translate}}
+                            <span class="tag secondary" *ngIf="product.customization.is_facultative;else obligatoire">
+                                {{'product.optional' | translate}} </span>
+
+                            <ng-template #obligatoire>
+                                <span style="color:#ff4081">*</span>
+                                <span class="tag warning"> {{'product.mandatory' | translate}} </span>
+                            </ng-template>
+                        </span>
+
+                        <div style="font-family: HelveticaNeue;font-weight: 400; font-size: 0.94rem;color: #777;margin-top: 10px;"
+                            *ngFor="let line of product.customization?.translations[translate.currentLang]?.instructions?.split('\n') ??[]">
+                            {{line}}
+                        </div>
+                        <div *ngFor="let customisation of basketItem.customization_content;let index = index"
+                            class="customisation-content">
+                            <div style="width:60%">
+                                <span class="bt-attr-label bold">{{'basket.customisation' | translate}} </span>
+                                <mat-form-field style="width:100%">
+                                    <input type="text" matInput [(ngModel)]="customisation.customization">
+                                </mat-form-field>
+                            </div>
+                            <div style="width:30%;">
+                                <span class="bt-attr-label bold">{{'basket.quantity' | translate}} </span>
+                                <mat-form-field style="width:100%;padding-left: 15px;">
+                                    <input required min="0" type="number" matInput [(ngModel)]="customisation.quantity">
+                                </mat-form-field>
+                            </div>
+                            <div class="delete-customisation">
+                                <i class="fal fa-trash-alt" (click)="deleteCustomisation(index)"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bt-product-attrs" *ngIf="errors">
+                        <div class="out-of-stock-msg">
+                            <span *ngIf="errors.customization_content">
+                                {{ errors.customization_content[0]}}
+                            </span>
+                            <span *ngIf="errors.quantity">
+                                {{ errors.quantity[0]}}
+                            </span>
+                            <span *ngIf="errors.items?.length">
+                                {{ errors.items[0]?.Customization[0] }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <button *ngIf="product.customizable" style="margin-top: 10px;font-size: 15px; padding-right: 16px;"
+                        type="button" class="linkMore blue add" (click)="addCustomisation()">{{'basket.customisation' |
+                        translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="field padt30">
+                <button type="button" class="linkMore gris" (click)="closeModal()">
+                    {{"basket.btn_cancel" | translate}}
+                </button>
+                <button type="button" class="linkMore green"
+                    (click)="!(unexistingComb || inventotyPrice?.stock == 0) &&updateBasket()">
+                    {{"basket.update_btn" | translate}}
+                </button>
+            </div>
+        </div>
+        <div class="close" (click)="closeModal()"><i class="fal fa-times-circle"></i></div>
+    </div>
+
+</div>
+<div class="overley" [ngClass]="isOpened ? 'show' : ''"></div>

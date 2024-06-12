@@ -1,0 +1,22 @@
+<div class="loader-listFields" *ngIf="listFields.length==0">
+    <app-loader-indicator [bg]="'bg-white'"></app-loader-indicator>
+</div>
+
+<div class="wrapperBox" *ngIf="listFields.length>0">
+    <div class="box">
+        <app-adress-billing [profile]="profile" [addressesFields]="listFields"
+            [countriesList]="listCountries"></app-adress-billing>
+    </div>
+
+    <div class="address-delevery box">
+        <app-adress-delevery [profile]="profile" [addressesFields]="listFields"
+            [countriesList]="listCountries"></app-adress-delevery>
+    </div>
+</div>
+
+<div class="wrapperBox">
+    <div class="box">
+        <app-adress-other [profile]="profile" [addressesFields]="listFields"
+            [countriesList]="listCountries"></app-adress-other>
+    </div>
+</div>

@@ -1,0 +1,310 @@
+<section class="section-product">
+    <div *ngIf="!!backData?.backUrl" class="container return-search-btn-container">
+        <button type="button" (click)="returnToProducts()">
+            <i class="fal fa-arrow-left"></i>
+            {{"product.return_to_products_serach" | translate}}
+        </button>
+    </div>
+    <div *ngIf="!product" class="container product-sheet-container" style="justify-content: center">
+        <div class="box_content">
+            <noo-loader></noo-loader>
+        </div>
+    </div>
+    <ng-container *ngIf="product">
+        <div class="container product-sheet-container">
+            <div class="product-sheet-left">
+                <div class="product-sheet-imgs-slider">
+                    <div class="gallery-thumbs">
+                        <div class="gallery-thumbs-container">
+                            <div class="thumbs-slide" [class.active]="activeSlideIndex == index"
+                                *ngFor="let img of product?.images??[];let index = index">
+                                <img [src]="img?.image || 'assets/img/no-image.png'" alt="thumb"
+                                    (click)="setGalleryImg('pg_img_' + img.id)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-sheet-gallery-container">
+                        <div class="product-sheet-gallery-slides">
+                            <owl-carousel-o [options]="customOptions" (changed)="slideChanged($event.startPosition)"
+                                #galleryImgs>
+                                <ng-template *ngFor="let img of product?.images??[]" carouselSlide
+                                    [id]="'pg_img_' + img.id">
+                                    <div class="product-sheet-slide-contanier">
+                                        <img [src]="img?.image || 'assets/img/no-image.png'" alt="image">
+                                    </div>
+                                </ng-template>
+                            </owl-carousel-o>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngTemplateOutlet="productRelatedObjects;context: {class: 'desktop-related-objects'}"></div>
+            </div>
+            <div class="product-sheet-right">
+                <div class="sp-name-shop mgb20">
+                    <h3 class="sp-name-shop">{{product?.shop_name}}</h3>
+                    <span class="sp-flag">
+                        <span *ngIf="product && product.inspiration_country?.length > 0"
+                            class="iti__flag iti__{{product.inspiration_country[0].toLowerCase()}}"></span>
+                        <span *ngIf="product && product.inspiration_country?.length > 1"
+                            class="iti__flag iti__{{product.inspiration_country[1].toLowerCase()}}"></span>
+                    </span>
+                </div>
+                <h3 class="sp-product-title mgb10">
+                    {{product?.translations[translate.currentLang]?.name?? '---'}}
+                </h3>
+
+                <h2 class="sp-product-description mgb10">
+                    {{product?.translations[translate.currentLang]?.description?? '---'}}
+                </h2>
+                <div class="sp-wrapper-price-product mgb20">
+                    <ng-container *ngIf="inventotyPrice?.promotional_pricing; else noPromotional">
+                        <h4 class="sp-price mgb20">{{
+                            inventotyPrice?.promotional_pricing}}
+                            <span>{{inventotyPrice?.promotional_pricing_currency}}</span>
+                        </h4>
+                        <span>
+                            <span class="sp-discount">{{inventotyPrice?.default_price}}
+                                {{inventotyPrice?.default_price_currency}}
+                            </span>
+                            <span class="sp-taux">
+                                (-{{(((inventotyPrice?.default_price -
+                                inventotyPrice?.promotional_pricing) *
+                                100) / inventotyPrice?.default_price) | number:'1.2-2' }}%)
+                            </span>
+                        </span>
+                    </ng-container>
+                    <ng-template #noPromotional>
+                        <h4 class="sp-price mgb20">
+                            {{inventotyPrice?.default_price}} {{inventotyPrice?.default_price_currency}}
+                        </h4>
+                    </ng-template>
+                    <div *ngIf="product?.free_shipping" class="sp-delevery">{{'delivery.free_delivery' | translate}}
+                    </div>
+                </div>
+                <div class="sp-product-attrs">
+                    <div class="sp-product-attrs-select" *ngFor="let key of productAttrsKeys">
+                        <ng-container *ngIf="productAttrs[key].length > 1">
+                            <span class="sp-attr-label bold">{{key}}</span>
+                            <mat-form-field style="width:100%">
+                                <mat-select (selectionChange)="attrChange($event.value,key)"
+                                    placeholder="{{'product.select_option' | translate}}"
+                                    [value]="defaultAttrsVals[key]">
+                                    <mat-option [value]="attr?.id" *ngFor="let attr of productAttrs[key]">
+                                        {{attr?.value}} {{attr?.unit}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </ng-container>
+                    </div>
+
+                    <div class="sp-product-attrs-select" *ngIf="product.customizable">
+                        <span class="sp-attr-label bold">{{'product.add_customization' | translate}}
+                            <span class="tag secondary" *ngIf="product.customization.is_facultative;else obligatoire">
+                                {{'product.optional' | translate}} </span>
+
+                            <ng-template #obligatoire>
+                                <span style="color:#ff4081">*</span>
+                                <span class="tag warning"> {{'product.mandatory' | translate}} </span>
+                            </ng-template>
+                        </span>
+
+                        <div style="font-family: HelveticaNeue;font-weight: 400; font-size: 0.94rem;color: #777;margin-top: 10px;"
+                            *ngFor="let line of product.customization?.translations[translate.currentLang]?.instructions?.split('\n') ??[]">
+                            {{line}}
+                        </div>
+                        <mat-form-field style="width:100%">
+                            <input type="text" matInput [(ngModel)]="customisation">
+                        </mat-form-field>
+                        <span style="color: red; display: block; margin-top: 5px;font-size: 13px;"
+                            *ngIf="errors?.customization_content?.length">
+                            <span *ngFor="let err of errors.customization_content">
+                                {{err}}
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="sp-product-attrs-select">
+                        <ng-container>
+                            <span class="sp-attr-label bold"> {{'product.quantity' | translate}} </span>
+                            <mat-form-field style="width:100%">
+                                <input required min="0" type="number" matInput [(ngModel)]="quantity">
+                            </mat-form-field>
+
+                            <span style="color: red; display: block; margin-top: 5px;font-size: 13px;"
+                                *ngIf="quantity > inventotyPrice?.stock">
+                                {{'product.max_stock_msg' | translate}}
+                            </span>
+                            <span style="color: red; display: block; margin-top: 5px;font-size: 13px;"
+                                *ngIf="errors?.quantity?.length">
+                                <span *ngFor="let err of errors.quantity">
+                                    {{err}}
+                                </span>
+                            </span>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="sp-product-attrs" *ngIf="unexistingComb || inventotyPrice?.stock == 0">
+                    <div class="out-of-stock-msg">
+                        {{"product.out_of_stock_msg" | translate}}
+                    </div>
+                </div>
+                <a class="add-now-btn mgb60" (click)="!unexistingComb && addToBasket()">
+                    {{"product.add_to_cart" | translate}}
+                </a>
+
+                <div class="mgb30" appAccordian>
+                    <div appAccordianTitle [open]="false">
+                        <span> {{"product.Details" | translate}} </span>
+                    </div>
+                    <div>
+                        <div *ngFor="let attr of commonProductAttrs">
+                            <span class="bold" style="font-size: 0.85em;">
+                                {{ attr[0].attribute_name }}
+                            </span> : {{attr[0].value}} {{attr[0]?.unit}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngTemplateOutlet="productRelatedObjects;context: {class: 'mobile-related-objects'}"></div>
+    </ng-container>
+</section>
+
+<ng-template #productRelatedObjects let-class="class">
+    <div class="container" [ngClass]="class">
+        <div class="product-sheet-related-objects">
+            <div class="mgb30" appAccordian>
+                <div appAccordianTitle [open]="false">
+                    <span>{{"delivery.title" | translate}}</span>
+                </div>
+                <div>
+                    <div class="related-object-section" *ngFor="let profile of product?.shipping_profiles">
+                        <h3>
+                            {{ profile?.name}}
+                        </h3>
+                        <div class="related-object-container" *ngIf="shippingFields?.length">
+                            <table class="table-delevery">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <ng-container *ngFor="let entry of shippingFields">
+                                            <th
+                                                *ngIf="entry.key == 'delay' || entry.key == 'alone' || entry.key== 'with_another_items' || entry.key== 'minimum_order_amount'">
+                                                <span>{{entry.value.label}}</span>
+                                                <small class="small">{{entry.value.help_text}}</small>
+                                            </th>
+                                        </ng-container>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngIf="profile?.zones">
+                                        <tr *ngFor="let zone of profile.zones; let index = index;">
+                                            <ng-container *ngFor="let f of shippingFields">
+                                                <td *ngIf="f.key == 'country' && zone.country">
+                                                    <span> {{ getcountryName(countries,zone.country)}}</span>
+                                                </td>
+                                                <td *ngIf="f.key == 'region' && zone.region">
+                                                    <span> {{zone.region}}</span>
+                                                </td>
+                                                <td *ngIf="f.key == 'inter' && zone.inter">
+                                                    <span> {{zone.inter}}</span>
+                                                </td>
+                                                <td *ngIf="f.key == 'delay'" class="field-jour">
+                                                    <div>
+                                                        <span> {{zone.delay}} </span>
+                                                        <span class="day">{{"delivery.day" | translate}}</span>
+                                                    </div>
+                                                </td>
+                                                <td *ngIf="f.key == 'alone'">
+                                                    <div>
+                                                        <span> {{zone.alone}}</span>
+                                                        <span>{{zone.alone_currency}}</span>
+                                                    </div>
+                                                </td>
+                                                <td *ngIf="f.key == 'with_another_items'">
+                                                    <div>
+                                                        <span> {{zone.with_another_items}}</span>
+                                                        <span>{{zone.with_another_items_currency}}</span>
+                                                    </div>
+                                                </td>
+                                                <td *ngIf="f.key == 'minimum_order_amount'">
+                                                    <div>
+                                                        <span> {{zone.minimum_order_amount}}</span>
+                                                        <span>{{zone.minimum_order_amount_currency}}</span>
+                                                    </div>
+                                                </td>
+                                            </ng-container>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="mgb30" appAccordian>
+                <div appAccordianTitle [open]="false">
+                    <span>{{"boutique.terms" | translate}}</span>
+                </div>
+                <div>
+                    <div class="related-object-section" *ngIf="product?.terms">
+                        <h3>
+                            {{ product.terms.translations[translate.currentLang]?.own_terms }}
+                        </h3>
+                        <div class="related-object-container terms-et-conditions">
+                            <div class="condition-item-container">
+                                <h3 class="condition">
+                                    {{"boutique.free_return" | translate}}
+                                </h3>
+                                <span class="tag" *ngIf="product.terms?.free_return; else notFreeReurn">
+                                    {{"product.yes" | translate}}
+                                    <i class="fal fa-check"></i>
+                                </span>
+
+                                <ng-template #notFreeReurn>
+                                    <span class="tag danger">
+                                        {{"product.no" | translate}}
+                                        <i class="fal fa-times-circle"></i>
+                                    </span>
+                                </ng-template>
+                            </div>
+                            <div class="condition-item-container">
+                                <h3 class="condition" *ngIf="product.terms?.exchangeable; else notExchangeable">
+                                    {{"boutique.exchangeable_text" | translate}} {{product.terms.exchangeable_days}}
+                                    {{"boutique.days" | translate}}
+                                </h3>
+                                <ng-template #notExchangeable>
+                                    <h3 class="condition">
+                                        {{"boutique.not_exchangeable_text" | translate}}
+                                    </h3>
+                                </ng-template>
+                                <span class="tag" *ngIf="product.terms?.exchangeable_personalized">
+                                    {{"boutique.exchangeable_custom_product_text" | translate}}
+                                    <i class="fal fa-check"></i>
+                                </span>
+                            </div>
+                            <div class="condition-item-container">
+                                <h3 class="condition" *ngIf="product.terms?.refundable; else notRefundable">
+                                    {{"boutique.refundable_text" | translate}} {{product.terms.refundable_days}}
+                                    {{"boutique.days" | translate}}
+                                </h3>
+                                <ng-template #notRefundable>
+                                    <h3 class="condition">
+                                        {{"boutique.not_refundable_text" | translate}}
+                                    </h3>
+                                </ng-template>
+                                <span class="tag" *ngIf="product.terms?.refundable_personalized">
+                                    {{"boutique.refundable_custom_product_text" | translate}}
+                                    <i class="fal fa-check"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

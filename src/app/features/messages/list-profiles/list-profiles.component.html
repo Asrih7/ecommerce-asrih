@@ -1,0 +1,75 @@
+<h3 class="subTitle">{{"messages.title" | translate}}</h3>
+<app-search-profile [mixtProfiles]="mixtProfiles" (handlerSearchProfiles)="handlerSearchProfiles($event)">
+</app-search-profile>
+<ng-container *ngIf="listSearchProfiles.length > 0 ; else emptySearch">
+    <div class="wrapperTabsMessages">
+        <ul class="tabs">
+            <li class="contact" *ngFor="let profile of listSearchProfiles"
+                [ngClass]="id === profile.recipient ? 'current' : '' " (click)='currentConversation(profile)'>
+                <div class="user">
+                    <ng-container *ngIf="!profile.sender_profil">{{ profile?.recipient_name | firstletter}}
+                    </ng-container>
+                    <ng-container *ngIf="profile.sender_profil">{{ profile?.sender_name | firstletter}}</ng-container>
+                </div>
+                <div class="detailContact">
+                    <ng-container *ngIf="!profile.sender_profil">
+                        <ng-container *ngFor="let nbr of newArrNotReadByPRofile;">
+                            <span class="wrapperNbr"
+                                *ngIf="nbr.recipient === profile.recipient">{{nbr.nbrNotRead}}</span>
+                        </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="profile.sender_profil">
+                        <ng-container *ngFor="let nbr of newArrNotReadByPRofileSender;">
+                            <span class="wrapperNbr" *ngIf="nbr.sender === profile.sender">{{nbr.nbrNotRead}}</span>
+                        </ng-container>
+                    </ng-container>
+                    <div class="fullName">
+                        <ng-container *ngIf="!profile.sender_profil">{{profile.recipient_name}}</ng-container>
+                        <ng-container *ngIf="profile.sender_profil">{{profile.sender_name}}</ng-container>
+                    </div>
+                    <div class="partConversation" *ngIf="profile.body !== 'null'">{{profile?.body}}</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</ng-container>
+<ng-template #emptySearch>
+    <div class="wrapperTabsMessages">
+        <ul class="tabs" *ngIf="mixtProfiles.length>0">
+            <ng-container *ngFor="let profile of mixtProfiles">
+                <li class="contact" *ngIf="!profile.sender_profil"
+                    [ngClass]="id === profile.recipient ? 'current' : '' " (click)='currentConversation(profile)'>
+                    <div class="user">
+                        {{ profile?.recipient_name | firstletter}}
+                    </div>
+                    <div class="detailContact">
+                        <ng-container *ngFor="let nbr of newArrNotReadByPRofile;">
+                            <span class="wrapperNbr"
+                                *ngIf="nbr.recipient === profile.recipient">{{nbr.nbrNotRead}}</span>
+                        </ng-container>
+                        <div class="fullName">
+                            {{profile?.recipient_name}}
+                        </div>
+                        <div class="partConversation" *ngIf="profile.body !== 'null'">{{profile?.body}}</div>
+                    </div>
+                </li>
+                <li class="contact" *ngIf="profile.sender_profil" [ngClass]="id === profile.sender? 'current' : '' "
+                    (click)='currentConversation(profile)'>
+                    <div class="user">
+                        {{ profile?.sender_name | firstletter}}
+                    </div>
+                    <div class="detailContact">
+                        <ng-container *ngFor="let nbr of newArrNotReadByPRofileSender;">
+                            <span class="wrapperNbr" *ngIf="nbr.sender === profile.sender">{{nbr.nbrNotRead}}</span>
+                        </ng-container>
+                        <div class="fullName">
+                            {{profile?.sender_name}}
+                        </div>
+                        <div class="partConversation" *ngIf="profile.body !== 'null'">{{profile?.body}}</div>
+                    </div>
+                </li>
+            </ng-container>
+
+        </ul>
+    </div>
+</ng-template>

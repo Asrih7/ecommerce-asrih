@@ -1,0 +1,18 @@
+<div class="box">
+    <div class="box_title">{{"wallet.transfer.title_transfer_amount" | translate}}</div>
+    <div class="box_content padt30" [formGroup]="formGroup">
+        <div class="info montant mgb10">
+            <span class="bold devisePrice">{{wallet?.balance_currency}}</span>
+            <label [for]="transferAmount?.key" class="regular"
+                [ngClass]="transferAmount?.value?.required ? 'required':''">{{transferAmount?.value?.label}}</label>
+            <input type="text" [id]="transferAmount?.key" (keyup)="getAmount($event)" (keyup)="replaceDot($event)"
+                [formControlName]="transferAmount?.key">
+            <div class="error" *ngFor="let err of errorsTransferAmount">
+                <span>
+                    {{err.value}}
+                </span>
+            </div>
+            <p *ngIf="transferAmount?.value?.help_text">{{transferAmount?.value?.help_text}}</p>
+        </div>
+    </div>
+</div>

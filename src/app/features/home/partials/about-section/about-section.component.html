@@ -1,0 +1,26 @@
+<section class="section about">
+    <div class="container">
+        <div class="center">
+            <h2 class="title">{{"home.about.title" | translate}}</h2>
+            <a class="subTitleAbout" [routerLink]="['history']">{{"home.about.histoire" | translate}}</a>
+        </div>
+        <div class="about_wrapper">
+            <div class="about_wrapper--item">
+                <h4 class="about-title">{{"home.about.tourdumonde" | translate}}</h4>
+                <p class="description">{{"home.about.tourdumondedesc" | translate}}</p>
+            </div>
+            <div class="about_wrapper--item">
+                <h4 class="about-title">{{"home.about.meaning" | translate}}</h4>
+                <p class="description">{{"home.about.meaning_desc" | translate}}</p>
+            </div>
+            <div class="about_wrapper--item">
+                <h4 class="about-title">{{"home.about.culture" | translate}}</h4>
+                <p class="description">{{"home.about.culture_desc" | translate}}</p>
+            </div>
+        </div>
+        <div class="about_question">
+            <h2 class="about_question--title">{{"home.about.question" | translate}}</h2>
+            <a [routerLink]="['faq', 'buyer']" class="linkMore">{{"home.about.question_button" | translate}}</a>
+        </div>
+    </div>
+</section>

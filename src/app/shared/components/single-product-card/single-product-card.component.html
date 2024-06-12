@@ -1,0 +1,68 @@
+<div class="product-container">
+    <a class="single-product" (click)="parent != 'shop' && onViewProduct($event)">
+        <div class="sp-visuel">
+            <img [src]="product?.images[0]?.image || 'assets/img/no-image.png'" alt="">
+        </div>
+        <div class="sp-content">
+            <h3 class="sp-product-title" [matTooltip]="product?.translations[currentLang]?.name">
+                {{product?.translations[currentLang]?.name?? '---'}}
+            </h3>
+            <div class="sp-wrapper-name-shop">
+                <h3 class="sp-name-shop">{{product?.shop_name}}</h3>
+                <span class="sp-flag">
+                    <span *ngIf="product && product.inspiration_country?.length > 0"
+                        class="iti__flag iti__{{product.inspiration_country[0].toLowerCase()}}"></span>
+                    <span *ngIf="product && product.inspiration_country?.length > 1"
+                        class="iti__flag iti__{{product.inspiration_country[1].toLowerCase()}}"></span>
+                </span>
+            </div>
+            <div class="sp-wrapper-price-product">
+                <ng-container *ngIf="product?.inventory[0]?.promotional_pricing; else noPromotional">
+                    <h4 class="sp-price">{{
+                        product?.inventory[0]?.promotional_pricing}}
+                        <span>{{product?.inventory[0]?.promotional_pricing_currency}}</span>
+                    </h4>
+                    <span style="line-height:16px">
+                        <span class="sp-discount">{{product?.inventory[0]?.default_price}}
+                            {{product?.inventory[0]?.default_price_currency}}
+                        </span>
+                        <span class="sp-taux">
+                            (-{{(((product?.inventory[0]?.default_price -
+                            product?.inventory[0]?.promotional_pricing) *
+                            100) / product?.inventory[0]?.default_price) | number:'1.2-2' }}%)
+                        </span>
+                    </span>
+                </ng-container>
+                <ng-template #noPromotional>
+                    <h4 class="sp-price">
+                        {{product?.inventory[0]?.default_price}} {{product?.inventory[0]?.default_price_currency}}
+                    </h4>
+                </ng-template>
+            </div>
+
+            <div class="sp-wrapper-price-product" *ngIf="parent != 'shop'" style="justify-content: space-between;">
+                <div *ngIf=" product.free_shipping" class="sp-tag sp-delevery">
+                    {{'delivery.free_delivery' |
+                    translate}}
+                </div>
+                <div *ngIf="product.customizable" class="sp-tag sp-customizable">
+                    {{'product.customizable' |
+                    translate}}</div>
+            </div>
+        </div>
+
+        <div *ngIf="parent == 'shop'" class="sp-wrapper-actions">
+            <i (click)="onEditProduct()" matTooltip="Modifier" class="fal fa-edit"></i>
+            <i (click)="onDeleteProduct()" matTooltip="Supprimer" class="fal fa-trash-alt"></i>
+        </div>
+    </a>
+
+    <div *ngIf="parent == 'products'" class="sp-favorite sp-add-favorite" [class.selected]="product?.is_in_wishlist"
+        (click)="onToggleFavorite()">
+        <i class="fal fa-heart"></i>
+    </div>
+
+    <div *ngIf="parent == 'wishlist'" class="sp-favorite sp-delete-favorite" (click)="onToggleFavorite()">
+        <i class="fal fa-trash-alt"></i>
+    </div>
+</div>

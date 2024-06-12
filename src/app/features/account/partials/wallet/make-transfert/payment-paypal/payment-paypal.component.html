@@ -1,0 +1,28 @@
+<div class="box" id="paypal">
+    <div class="box_title">Paypal</div>
+    <div class="flex align-items mgt30 mgb30 wrap" *ngIf="paypalAccountCurrent.length > 0">
+        <div *ngFor="let account of paypalAccountCurrent" class="accountSugger mgb10 mgl20"
+            (click)="accountSelected(account)" [ngClass]="account.id === id ? 'selected':''">
+            <div *ngFor="let field of fieldsPaypalAccount" class="flex column">
+                <span class="bold text-size-12">{{field.value.label}}</span>
+                <span>{{account.email_paypal}}</span>
+            </div>
+        </div>
+        <i class="fal fa-plus-circle addNewAccount" (click)='newAccount()' [attr.disabled]='hideAddNewAccount'></i>
+    </div>
+    <form class="box_content" [formGroup]="submitGroup"
+        [attr.style]="paypalAccountCurrent.length > 0 ? 'padding-top:0px':''"
+        *ngIf="hideAddNewAccount || paypalAccountCurrent.length === 0">
+        <div class="info row mgb20" *ngFor="let field of fieldsPaypalAccount">
+            <label [for]="field?.key" class="bold"
+                [ngClass]="field?.value?.required ? 'required' : ''">{{field.value.label}}</label>
+            <input type="text" [id]="field?.key" [formControlName]="field?.key" maxlength="100" minlength="1">
+            <span class="helpInfo" *ngIf="field?.value?.help_text">{{field.value.help_text}}</span>
+            <div class="error" *ngFor="let err of errorsPaypal">
+                <span *ngIf="err.key == field.key">
+                    {{err.value}}
+                </span>
+            </div>
+        </div>
+    </form>
+</div>

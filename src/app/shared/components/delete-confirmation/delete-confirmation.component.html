@@ -1,0 +1,16 @@
+<div class="confirmaion-dialog-container">
+    <div class="confirmaion-icon">
+        <i class="fal fa-exclamation-circle"></i>
+    </div>
+    <h2 class="confirmaion-title">
+        {{data.title}}
+    </h2>
+    <div class="confirmaion-content">
+        {{data.content}}
+    </div>
+
+    <div class="confirmaion-actions">
+        <button class="cancel-btn" (click)="cancel()"> {{data.cancelBtnText}} </button>
+        <button class="confirm-btn" (click)="confirm()"> {{data.confirmBtnText}} </button>
+    </div>
+</div>

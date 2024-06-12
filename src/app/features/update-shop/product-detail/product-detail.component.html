@@ -1,0 +1,574 @@
+<section class="section small-container">
+    <h1 class="mainTitle icon icon-add">
+        {{"product.title" | translate}}
+    </h1>
+
+    <form [formGroup]="form.group">
+        <div class="box mgb30">
+            <div class="box_title">
+                <h2>{{"product.title_image" | translate}}</h2>
+            </div>
+            <div class="box_content">
+                <div *ngIf="loadingProduct; else listImgs">
+                    <div class="box_content">
+                        <noo-loader></noo-loader>
+                    </div>
+                </div>
+                <ng-template #listImgs>
+                    <p class="small pdb20">{{"product.description_image" | translate}}</p>
+                    <div class="nd-rows wrap">
+                        <div class="col-sur-5">
+                            <div class="product addPicture">
+                                <div class="visuel" (click)="addProductImage()">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sur-5" *ngFor="let img of images; let i = index" (dragstart)="onDragStart(i)"
+                            (dragover)="onDragOver($event, i)" (drop)="onDrop(i)">
+                            <div class="product">
+                                <img [src]="img">
+                                <div class="wrapperEdit">
+                                    <i class="fal fa-edit" title="Modifier" (click)="editPicture(i)"></i>
+                                    <i class="fal fa-trash-alt" title="Supprimer" (click)="deletePicture(i)"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sur-5" *ngFor="let box of boxImage">
+                            <div class="product no-image">
+                                <div class="visuel"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let err of errors">
+                        <span class="bold red" *ngIf="err.key == 'images'">
+                            {{err.value}}
+                        </span>
+                    </div>
+                    <div class="btnVendeur" id="images">
+                        <span class="bold red">{{"product.info_image" | translate}}</span>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="box mgb30 position-relative">
+            <div class="box_title">
+                <h2>{{"product.detail" | translate}}</h2>
+            </div>
+            <div class="box_content">
+                <div *ngIf="lodingProductFields || loadingProduct; else productDeails">
+                    <div class="box_content">
+                        <noo-loader></noo-loader>
+                    </div>
+                </div>
+                <ng-template #productDeails>
+                    <div *ngIf="isVisibleField" class="box-toggle" [id]="isVisibleField.key">
+                        <mat-slide-toggle [formControlName]="isVisibleField.key"
+                            (change)="toggleCheckedChange($event,isVisibleField.key)" color="primary"
+                            [checked]="isVisibleField.value.default">
+                            {{isVisibleField.value.label}}
+                        </mat-slide-toggle>
+
+                    </div>
+                    <ng-container *ngFor="let field of productSheetFields">
+                        <div class="wrapperBox" *ngIf="field.key=='name'" [id]="field.key">
+                            <div class="info row mgb10">
+                                <label [for]="'pdf_' + field.key" [ngClass]="field.value.required ? 'required':''">
+                                    <span class="bold">{{field.value.label}}</span>
+                                    <span> (
+                                        <ng-container *ngIf="languageProfile === 'fr'">{{"language.french" |
+                                            translate}}</ng-container>
+                                        <ng-container *ngIf="languageProfile === 'en'">{{"language.english" |
+                                            translate}}</ng-container>
+                                        )</span>
+                                </label>
+                                <input [id]="'pdf_' + field.key" type="text" [formControlName]="field.key">
+                                <p class="small">{{field.value.help_text}}</p>
+                                <div class="error p-0" *ngFor="let err of errors">
+                                    <span *ngIf="err.key == 'translations' && err?.value?.en?.name">
+                                        {{err.value.en.name}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapperBox padt30" *ngIf="field.key=='description'" [id]="field.key">
+                            <div class="info row mgb20">
+                                <label [for]="'pdf_' + field.key" [ngClass]="field.value.required ? 'required':''">
+                                    <span class="bold">{{field.value.label}}</span>
+                                    <span> (
+                                        <ng-container *ngIf="languageProfile === 'fr'">{{"language.french" |
+                                            translate}}</ng-container>
+                                        <ng-container *ngIf="languageProfile === 'en'">{{"language.english" |
+                                            translate}}</ng-container>
+                                        )</span>
+                                </label>
+                                <textarea [id]="'pdf_' + field.key" class="textarea" [formControlName]="field.key"
+                                    rows="4"></textarea>
+                                <p class="small">{{field.value.help_text}}</p>
+                                <div class="error" *ngFor="let err of errors">
+                                    <span *ngIf="err.key == field.key">
+                                        {{err.value}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="wrapperBox padt30" [id]="field.key"
+                            *ngIf="field.key=='category' && categoriesOriginList.length">
+                            <div class="info row mgb20 search-product">
+                                <label [for]="'pdf_' + field.key" [ngClass]="field.value.required ? 'required':''">
+                                    <span class="bold">{{field.value.label}}</span>
+                                </label>
+                                <mat-form-field class="example-full-width">
+                                    <input [id]="'pdf_' + field.key" type="text" matInput [formControlName]="field.key"
+                                        [matAutocomplete]="autoCategory" (input)="searchCategory($event)">
+
+                                    <mat-autocomplete #autoCategory="matAutocomplete"
+                                        (optionSelected)="getCategoryCode($event)">
+                                        <mat-option *ngFor="let category of searchedCategory"
+                                            [value]="category.display_name">
+                                            {{category.display_name}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <p class="small">{{field.value.help_text}}</p>
+                                <div class="error" *ngFor="let err of errors">
+                                    <span *ngIf="err.key == field.key">
+                                        {{err.value}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngIf="product_attributes && product_attributes.controls.length"
+                        formArrayName="product_attributes">
+                        <div *ngFor="let product of product_attributes.controls; let index = index;">
+                            <ng-container formGroupName="{{index}}">
+                                <div class="info inline" id="choices">
+                                    <label *ngIf="attributesChoices[index]">
+                                        <span class="bold">{{attributesChoices[index].name}}</span>
+                                    </label>
+                                    <div class="checklist-group" *ngIf="attributesChoices[index]">
+                                        <div class="wrapper">
+                                            <div class="item mgb10"
+                                                *ngFor="let choice of attributesChoices[index].choices">
+                                                <input type="checkbox"
+                                                    id="choice-{{choice.id}}-{{attributesChoices[index].id}}"
+                                                    [checked]="choice.checked"
+                                                    (change)="setChoicesData($event,attributesChoices[index],choice.id,choice.value)">
+                                                <label for="choice-{{choice.id}}-{{attributesChoices[index].id}}"
+                                                    class="txtCheck">
+                                                    {{choice.value}}
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <div class="wrapperBox" *ngFor="let product of product_attributes.controls; let index = index;">
+                            <ng-container *ngFor="let f of listFieldAttribute" formGroupName="{{index}}" class="mgb20">
+                                <div class="wrapperBox padt30" *ngIf="f.key=='units'" [id]="f.key">
+                                    <div class="d-flex align-items-end" *ngIf="attributesUnits[index]">
+                                        <div class="info w-300">
+                                            <label class="mb-4 font-medium" *ngIf="attributesUnits[index].type!='22'">
+                                                <span class="bold">{{attributesUnits[index].name}}</span>
+                                            </label>
+                                            <input *ngIf="attributesUnits[index].type=='3'"
+                                                (keydown)="onKeyDown($event)" type="number"
+                                                formControlName="decimal_value">
+                                            <div *ngIf="hasError(index,'decimal_value','min') && submitted[index] && attributesUnits[index].type=='3'"
+                                                class="text-danger">
+                                                {{ "product.error_number_decimal" | translate }}
+                                            </div>
+                                            <input *ngIf="attributesUnits[index].type=='1'"
+                                                (keydown)="onKeyDown($event)" type="number"
+                                                formControlName="numeric_value">
+                                            <div *ngIf="hasError(index,'numeric_value','min') && submitted[index] && attributesUnits[index].type=='1' || hasError(index,'numeric_value','pattern') && submitted[index] && attributesUnits[index].type=='1'"
+                                                class="text-danger">
+                                                {{ "product.error_number_integer" | translate }}
+                                            </div>
+                                            <div *ngIf="hasError(index,'string_value','required') && submitted[index] && attributesUnits[index].type=='22'"
+                                                class="text-danger">{{ "product.required" | translate }}</div>
+                                        </div>
+
+                                        <div class="info inline" *ngIf="attributesUnits[index].type!='22'">
+                                            <div class="ml-2 w-150">
+                                                <label>
+                                                    <span class="bold">{{"product.units" | translate}}</span>
+                                                </label>
+                                                <mat-form-field class="w-100">
+                                                    <mat-select [formControlName]="f.key">
+                                                        <mat-option *ngFor="let unit of attributesUnits[index].units"
+                                                            [value]="unit.unit">
+                                                            {{unit.unit}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div *ngIf="hasError(index,'units','required') && submitted[index]"
+                                                    class="text-danger">{{ "product.required_units" | translate }}</div>
+                                            </div>
+
+                                            <button class="btn-send"
+                                                (click)="addAttribute(index,attributesUnits[index].id,attributesUnits[index].name,attributesUnits[index].type)">Ajouter</button>
+
+                                        </div>
+                                    </div>
+                                    <div class="wrapperkeywords  left mgt10 mgb10"
+                                        *ngIf="product_attributes.controls[index].value['dataArray']!=null && product_attributes.controls[index].value['dataArray'].length > 0 && attributesUnits[index].type!='22'">
+                                        <span
+                                            *ngFor="let data of product_attributes.controls[index].value['dataArray']; index as i">
+                                            {{data}}
+                                            <i class="fal fa-times" (click)="deleteAttribute(i,data,index)"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="wrapperBox padt30" *ngIf="f.key=='scales'" [id]="f.key">
+                                    <div class="d-flex align-items-end" *ngIf="attributesUnits[index]">
+                                        <div class="info w-300">
+                                            <label class="font-medium" *ngIf="attributesUnits[index].type=='22'">
+                                                <span class="bold">{{attributesUnits[index].name}}</span>
+                                            </label>
+                                            <mat-form-field class="w-100" *ngIf="attributesUnits[index].type=='22'">
+                                                <mat-select formControlName="string_value"
+                                                    (selectionChange)="setScalesValue($event.value,index)">
+                                                    <mat-option *ngFor="let scale of listLabelScales"
+                                                        [value]="scale.key">
+                                                        {{scale.label}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="info inline" *ngIf="attributesUnits[index].type=='22'">
+                                            <div class="ml-2 w-auto">
+                                                <mat-form-field class="w-100">
+                                                    <mat-select formControlName="attribute_size_scale" multiple
+                                                        (selectionChange)="setScalesAttributeId($event.value,index,attributesUnits[index])">
+                                                        <mat-option *ngFor="let scale of activeScale" [value]="scale">
+                                                            {{scale[0]}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                                <div class="error ml-2" *ngIf="isNotValidScales">
+                                                    <span>{{ "product.required" | translate }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="wrapperkeywords  left mgt10 mgb10"
+                                        *ngIf="product_attributes.controls[index].value['dataArray']!=null && product_attributes.controls[index].value['dataArray'].length > 0 && attributesUnits[index].type=='22'">
+                                        <span
+                                            *ngFor="let data of product_attributes.controls[index].value['dataArray']; index as i">
+                                            {{data[0]}}
+                                            <!-- <i class="fal fa-times" (click)="deleteAttribute(i,data,index)"></i> -->
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                        <ng-container *ngFor="let attr of attributesBool"
+                            formGroupName="{{product_attributes.controls.length-1}}">
+                            <div id="boolean_value" *ngIf="attr">
+                                <label class="mt-2">
+                                    <span class="bold"> {{ attr?.name}}</span>
+                                </label>
+                                <mat-form-field class="w-150 mb-5">
+                                    <mat-select (selectionChange)="toggleBool($event.value,attr.id,attr.name)"
+                                        formControlName="boolean_value">
+                                        <mat-option value=""></mat-option>
+                                        <mat-option value="true">
+                                            {{"product.yes" | translate}}
+                                        </mat-option>
+                                        <mat-option value="false">
+                                            {{"product.no" | translate}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+
+                    <div class="d-flex">
+                        <ng-container *ngFor="let field of selectBoxsFields">
+                            <div class="wrapperBox padt30" *ngIf="field.key=='inspiration_country'" [id]="field.key">
+                                <div class="info row mgb20">
+                                    <label [ngClass]="field.value.required ? 'required':''">
+                                        <span class="bold">{{field.value.label}}</span>
+                                    </label>
+                                    <mat-form-field class="w-100" *ngIf="countriesList">
+                                        <mat-select [formControlName]="field.key" multiple>
+                                            <mat-option *ngFor="let country of countriesList"
+                                                [value]="country.display_name">
+                                                {{country.display_name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <p class="small">{{field.value.help_text}}</p>
+                                    <div class="error" *ngFor="let err of errors">
+                                        <span *ngIf="err.key == field.key">
+                                            {{err.value}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wrapperBox padt30 d-flex" *ngIf="field.key=='shipping_profiles'"
+                                [id]="field.key">
+                                <div class="info row mgb20">
+                                    <label [ngClass]="field.value.required ? 'required':''">
+                                        <span class="bold">{{field.value.label}}</span>
+                                    </label>
+                                    <mat-form-field class="w-100" *ngIf="shippingProfiles">
+                                        <mat-select [formControlName]="field.key" multiple>
+                                            <mat-option *ngFor="let shipping of shippingProfiles"
+                                                [value]="shipping.display_name">
+                                                {{shipping.display_name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <p class="small">{{field.value.help_text}}</p>
+                                    <p class="small" *ngIf="shippingProfiles.length===0">{{"product.info_shipping" |
+                                        translate}}</p>
+                                    <div class="error" *ngFor="let err of errors">
+                                        <span *ngIf="err.key == field.key">
+                                            {{err.value}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <button class="btn-send" *ngIf="shippingProfiles.length===0"
+                                    (click)="isShippingModalOpen = true">Ajouter</button>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div class="wrapperBox padt30" *ngIf="keywordsField" [id]="keywordsField.key">
+                        <div class="info inline mgb20">
+                            <label [for]="'pdf_' + keywordsField.key"
+                                [ngClass]="keywordsField.value.required ? 'required':''">
+                                <span class="bold">{{keywordsField.value.label}}</span>
+                            </label>
+                            <input [id]="'pdf_' + keywordsField.key" type="text" #keywords
+                                [formControlName]="keywordsField.key">
+
+                            <button class="btn-send" (click)="prepareKeyWords($event)">Ajouter</button>
+                        </div>
+                        <div class="wrapperkeywords mgt10 mgb10" *ngIf="keyWordsItems.length > 0">
+                            <span *ngFor="let keyword of keyWordsItems; index as i">
+                                {{keyword}}
+                                <i class="fal fa-times" (click)="deleteKeyword(i)"></i>
+                            </span>
+                        </div>
+                        <p class="small">{{keywordsField.value.help_text}}</p>
+                        <div class="error" *ngFor="let err of errors">
+                            <span *ngIf="err.key == keywordsField.key">
+                                {{err.value}}
+                            </span>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="box mgb30" *ngIf="combination && combination.length">
+            <div class="box_title">
+                <h2>{{"product.stock" | translate}}</h2>
+            </div>
+            <div class="box_content">
+                <table class="price-table" id="inventory">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <ng-container *ngFor="let combin of combination[0]">
+                                <th>{{combin.attribute_name}}</th>
+                            </ng-container>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="inventory" formArrayName="inventory">
+                            <!-- <ng-container *ngFor="let combinList of combination"> -->
+                            <ng-container *ngFor="let group of inventory.controls; let index = index;"
+                                formGroupName="{{index}}">
+                                <tr class="current"
+                                    [ngClass]="inventory.controls[index].value['deleted'] ? 'disabled' : ''"
+                                    *ngIf="combination[index]!=null">
+                                    <td></td>
+                                    <td *ngFor="let combin of combination[index]">
+                                        <span *ngIf="combin.attribute_choice_name=='true'">{{"product.yes" |
+                                            translate}}</span>
+                                        <span *ngIf="combin.attribute_choice_name=='false'">{{"product.no" |
+                                            translate}}</span>
+                                        <span
+                                            *ngIf="combin.attribute_choice_name!='true' && combin.attribute_choice_name!='false'">{{combin.attribute_choice_name}}</span>
+                                    </td>
+                                    <td *ngIf="inventoryFields[0].key=='default_price'" [id]="inventoryFields[0].key">
+                                        <div class="inp-line">
+                                            <input type="text" [formControlName]="inventoryFields[0].key"
+                                                (input)="enabledInventory(index)">
+                                            <span>{{userCurrency}}</span>
+                                        </div>
+                                        <div class="" *ngFor="let err of errors">
+                                            <span class="red"
+                                                *ngIf="err.key=='inventory' && err?.value[index]?.default_price && err?.value[index]?.default_price[0]">
+                                                {{err.value[index].default_price[0]}}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td *ngIf="inventoryFields[1].key=='stock'" [id]="inventoryFields[1].key">
+                                        <input type="text" [formControlName]="inventoryFields[1].key"
+                                            (input)="enabledInventory(index)">
+                                        <div class="" *ngFor="let err of errors">
+                                            <span class="red"
+                                                *ngIf="err.key=='inventory' && err?.value[index]?.stock && err?.value[index]?.stock[0]">
+                                                {{err.value[index].stock[0]}}
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                    <td class="delete-price"
+                                        *ngIf="inventoryFields[2].key=='deleted' && combination[index].length>=1"
+                                        (click)="toggleDelted(index)">
+                                        <i *ngIf="!inventory.controls[index].value['deleted']" class="fal fa-eye"></i>
+                                        <i *ngIf="inventory.controls[index].value['deleted']"
+                                            class="fal fa-eye-slash"></i>
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </ng-container>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="box mgb30"
+            *ngIf="(combination && combination.length==0) || (isSelectedCat && combination.length==0) || (isSelectedCat && attributesChoice.length==0 && isDerty)">
+            <div class="box_title">
+                <h2>{{"product.stock" | translate}}</h2>
+            </div>
+            <div class="box_content">
+                <table class="price-table" id="inventory">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngIf="inventory" formArrayName="inventory">
+                            <!-- <ng-container *ngFor="let combinList of combination"> -->
+                            <tr class="current" *ngFor="let group of inventory.controls; let index = index;"
+                                formGroupName="{{index}}">
+                                <td></td>
+                                <td [id]="inventoryFields[0].key">
+                                    <div class="inp-line">
+                                        <input type="text" [formControlName]="inventoryFields[0].key">
+                                        <span>{{userCurrency}}</span>
+                                    </div>
+                                    <div class="" *ngFor="let err of errors">
+                                        <span class="red"
+                                            *ngIf="err.key=='inventory' && err?.value[index]?.default_price && err?.value[index]?.default_price[0]">
+                                            {{err.value[index].default_price[0]}}
+                                        </span>
+                                    </div>
+                                </td>
+                                <td *ngIf="inventoryFields[1].key=='stock'" [id]="inventoryFields[1].key">
+                                    <input type="text" [formControlName]="inventoryFields[1].key">
+                                    <div class="" *ngFor="let err of errors">
+                                        <span class="red"
+                                            *ngIf="err.key=='inventory' && err?.value[index]?.stock && err?.value[index]?.stock[0]">
+                                            {{err.value[index].stock[0]}}
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="box mgb30" *ngIf="customizableField" [id]="customizableField.key">
+            <div class="box_title" style="padding: 15px 10px;">
+                <h2>{{"product.personalization" | translate}}</h2>
+                <div class="wrapper-check-customise">
+                    <mat-slide-toggle [formControlName]="customizableField.key"
+                        (change)="toggleCheckedChange($event,customizableField.key)" color="primary">
+                        {{customizableField.value.label}}
+                    </mat-slide-toggle>
+                </div>
+            </div>
+            <div class="box_content" *ngIf="isCustomizable">
+                <div formGroupName="customization" id="customization">
+                    <div class="customization" [ngClass]="{'wrapper-customiz' : !isCustomizable}">
+                        <ng-container *ngFor="let field of customizationFields">
+                            <div class="info mgb20">
+                                <div class="relative" *ngIf="field.key=='instructions'" [id]="field.key">
+                                    <label class="bold">{{field.value.label}} <span> (
+                                            <ng-container *ngIf="languageProfile === 'fr'">{{"language.french" |
+                                                translate}}</ng-container>
+                                            <ng-container *ngIf="languageProfile === 'en'">{{"language.english"
+                                                |
+                                                translate}}</ng-container>
+                                            )</span></label>
+                                    <textarea [formControlName]="field.key" rows="5" class="textarea"></textarea>
+                                    <p class="small">{{field.value.help_text}}</p>
+                                    <div class="error" *ngFor="let err of errors">
+                                        <span *ngIf="err.key == 'customization'">
+                                            {{err.value[field.key]}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="item relative" *ngIf="field.key=='is_facultative'" [id]="field.key">
+                                    <input type="checkbox" id="{{field.key}}-1" [formControlName]="field.key">
+                                    <label for="{{field.key}}-1" class="txtCheck">{{field.value.label}}</label>
+                                    <p class="small">{{field.value.help_text}}</p>
+                                    <div class="error" *ngFor="let err of errors">
+                                        <span *ngIf="err.key == 'customization'">
+                                            {{err.value[field.key]}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div *ngIf="field.key=='limit_char'" [id]="field.key">
+                                    <label class="bold" style="display: block;">{{field.value.label}}</label>
+                                    <input [formControlName]="field.key" class="input" />
+                                    <p class="small">{{field.value.help_text}}</p>
+                                    <div class="error" *ngFor="let err of errors">
+                                        <span *ngIf="err.key == 'customization'">
+                                            {{err.value[field.key]}}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="" *ngFor="let err of errors">
+            <span class="red"
+                *ngIf="err.key!='images' && err.key!='category' && err.key!='inspiration_country' && err.key!='translations' && err.key!='inventory' && err.key != 'customization' && err.key!='shipping_profiles' &&  err.key!='name' &&  err.key!='zones'">
+
+                {{err.value}}
+            </span>
+            <span class="red" *ngIf="err.key=='inventory' && err.value.length==1">
+
+                {{err.value}}
+            </span>
+        </div>
+        <div class="btnVendeur">
+            <button class="linkMore blue" (click)="addOrUpdateProduct()">{{"product.save" | translate}}</button>
+        </div>
+    </form>
+</section>
+
+<app-popin *ngIf="!shippingProfiles.length" id="delivery" [isOpen]="isShippingModalOpen" [fields]="shippingField"
+    [shop]="currentShop" [errors]="errors" (closeModalEvent)="isShippingModalOpen = $event"
+    (values)="handlerPostDelivery($event)" [title]="'delivery.btn_delivery' | translate">
+</app-popin>

@@ -1,0 +1,341 @@
+#account,
+#wishlist,
+.section {
+    padding-bottom: 9.375rem !important;
+    padding-top: 1.875rem !important;
+}
+
+#account .tabs-command,
+#account .tabs-command-detail,
+#account .tabs-wallet,
+#account ul.tabs,
+.section .tabs-command,
+.section .tabs-command-detail,
+.section .tabs-wallet,
+.section ul.tabs {
+    list-style: none;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+#account .tabs-command-detail li,
+#account .tabs-command li,
+#account .tabs-wallet li,
+#account ul.tabs li,
+.section .tabs-command-detail li,
+.section .tabs-command li,
+.section .tabs-wallet li,
+.section ul.tabs li {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: none;
+    color: #777;
+    padding: .625rem;
+    cursor: pointer;
+    font-family: HelveticaNeueLight;
+    font-weight: 300;
+    position: relative;
+    font-size: 1rem;
+    -webkit-flex-basis: 13.75rem;
+    -ms-flex-preferred-size: 13.75rem;
+    flex-basis: 13.75rem;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -moz-border-radius: .625rem .625rem 0 0;
+    border-radius: .625rem .625rem 0 0;
+    border: .0625rem solid #c1c1c1;
+    border-bottom: none
+}
+
+@media screen and (max-width:640px) {
+
+    #account .tabs-command-detail li,
+    #account .tabs-command li,
+    #account .tabs-wallet li,
+    #account ul.tabs li,
+    .section .tabs-command-detail li,
+    .section .tabs-command li,
+    .section .tabs-wallet li,
+    .section ul.tabs li {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: .625rem 2.5rem .625rem .625rem;
+        font-size: .875rem
+    }
+}
+
+#account .tabs-command-detail li .number,
+#account .tabs-command li .number,
+#account .tabs-wallet li .number,
+#account ul.tabs li .number,
+#wishlist .tabs-command-detail li .number,
+#wishlist .tabs-command li .number,
+#wishlist .tabs-wallet li .number,
+#wishlist ul.tabs li .number,
+.section .tabs-command-detail li .number,
+.section .tabs-command li .number,
+.section .tabs-wallet li .number,
+.section ul.tabs li .number {
+    display: inline-block;
+    width: 1.5625rem;
+    height: 1.5625rem;
+    -moz-border-radius: 3.125rem;
+    border-radius: 3.125rem;
+    font-family: HelveticaNeueMedium;
+    font-weight: 500;
+    background: #f8c43d;
+    color: #fff;
+    text-align: center;
+    line-height: 25px;
+    font-size: .75rem
+}
+
+#account .tabs-command-detail li.current,
+#account .tabs-command li.current,
+#account .tabs-wallet li.current,
+#account ul.tabs li.current,
+#wishlist .tabs-command-detail li.current,
+#wishlist .tabs-command li.current,
+#wishlist .tabs-wallet li.current,
+#wishlist ul.tabs li.current,
+.section .tabs-command-detail li.current,
+.section .tabs-command li.current,
+.section .tabs-wallet li.current,
+.section ul.tabs li.current {
+    background: #efefef
+}
+
+#account .tab-command-content,
+#account .tab-command-detail-content,
+#account .tab-content,
+.section .tab-command-content,
+.section .tab-command-detail-content,
+.section .tab-content {
+    display: none;
+    padding: 1.25rem;
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    min-height: 50vh;
+    position: relative;
+    z-index: 0
+}
+
+#account .tab-command-content:before,
+#account .tab-command-detail-content:before,
+#account .tab-content:before,
+#wishlist .tab-command-content:before,
+#wishlist .tab-command-detail-content:before,
+#wishlist .tab-content:before,
+.section .tab-command-content:before,
+.section .tab-command-detail-content:before,
+.section .tab-content:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: -100%;
+    height: 100%;
+    width: 500%;
+    z-index: -1;
+    top: 0;
+    border-top: .0625rem solid #c1c1c1
+}
+
+.section .full-width-tabs .tab-content:before {
+    border-top: unset ! important;
+}
+
+.full-width-tabs .tab-content {
+    border: 1px solid #c1c1c1;
+    min-height: unset !important;
+    padding: 10px !important;
+}
+
+#account .tab-command-content.articles:after,
+#account .tab-command-detail-content.articles:after,
+#account .tab-content.articles:after,
+#wishlist .tab-command-content.articles:after,
+#wishlist .tab-command-detail-content.articles:after,
+#wishlist .tab-content.articles:after,
+.section .tab-command-content.articles:after,
+.section .tab-command-detail-content.articles:after,
+.section .tab-content.articles:after {
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100%;
+    background-size: 100%
+}
+
+#account .tab-command-content.boutiques:after,
+#account .tab-command-detail-content.boutiques:after,
+#account .tab-content.boutiques:after,
+#wishlist .tab-command-content.boutiques:after,
+#wishlist .tab-command-detail-content.boutiques:after,
+#wishlist .tab-content.boutiques:after,
+.section .tab-command-content.boutiques:after,
+.section .tab-command-detail-content.boutiques:after,
+.section .tab-content.boutiques:after {
+    background: url(../../assets/img/boutiques.svg);
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100%;
+    background-size: 100%
+}
+
+#account .tab-command-content.articles,
+#account .tab-command-content.boutiques,
+#account .tab-command-detail-content.articles,
+#account .tab-command-detail-content.boutiques,
+#account .tab-content.articles,
+#account .tab-content.boutiques,
+#wishlist .tab-command-content.articles,
+#wishlist .tab-command-content.boutiques,
+#wishlist .tab-command-detail-content.articles,
+#wishlist .tab-command-detail-content.boutiques,
+#wishlist .tab-content.articles,
+#wishlist .tab-content.boutiques,
+.section .tab-command-content.articles,
+.section .tab-command-content.boutiques,
+.section .tab-command-detail-content.articles,
+.section .tab-command-detail-content.boutiques,
+.section .tab-content.articles,
+.section .tab-content.boutiques {
+    padding-top: 18.75rem;
+    text-align: center;
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: .875rem;
+    color: #777
+}
+
+#account .tab-command-content.articles i,
+#account .tab-command-content.boutiques i,
+#account .tab-command-detail-content.articles i,
+#account .tab-command-detail-content.boutiques i,
+#account .tab-content.articles i,
+#account .tab-content.boutiques i,
+#wishlist .tab-command-content.boutiques i,
+#wishlist .tab-command-detail-content.boutiques i,
+#wishlist .tab-content.boutiques i,
+.section .tab-command-content.articles i,
+.section .tab-command-content.boutiques i,
+.section .tab-command-detail-content.articles i,
+.section .tab-command-detail-content.boutiques i,
+.section .tab-content.articles i,
+.section .tab-content.boutiques i {
+    display: inline-block;
+    color: #1125ba;
+    font-size: 1.875rem
+}
+
+@media screen and (max-width:640px) {
+
+    #account .tab-command-content,
+    #account .tab-command-detail-content,
+    #account .tab-content,
+    #wishlist .tab-command-content,
+    #wishlist .tab-command-detail-content,
+    #wishlist .tab-content,
+    .section .tab-command-content,
+    .section .tab-command-detail-content,
+    .section .tab-content {
+        padding: 10px 0
+    }
+}
+
+#account .tab-command-content.current,
+#account .tab-command-detail-content.current,
+#account .tab-content.current,
+#wishlist .tab-command-content.current,
+#wishlist .tab-command-detail-content.current,
+#wishlist .tab-content.current,
+.section .tab-command-content.current,
+.section .tab-command-detail-content.current,
+.section .tab-content.current {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+#account .tabs-command-detail li,
+#wishlist .tabs-command-detail li,
+.section .tabs-command-detail li {
+    border: none
+}
+
+#account .tabs-command-detail li:after,
+#wishlist .tabs-command-detail li:after,
+.section .tabs-command-detail li:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: #1125ba;
+    margin: 0 auto
+}
+
+#account .tabs-command-detail li.current,
+#wishlist .tabs-command-detail li.current,
+.section .tabs-command-detail li.current {
+    background: transparent
+}
+
+#account .tabs-command-detail li.current:after,
+#wishlist .tabs-command-detail li.current:after,
+.section .tabs-command-detail li.current:after {
+    width: 100%
+}
+
+#account .tab-command-content,
+#wishlist .tab-command-content,
+.section .tab-command-content {
+    padding-top: 40px
+}
+
+#account .tab-command-detail-content,
+#wishlist .tab-command-detail-content,
+.section .tab-command-detail-content {
+    padding-top: 40px;
+    border: 1px solid #c1c1c1
+}
+
+#account .tab-command-detail-content:before,
+#wishlist .tab-command-detail-content:before,
+.section .tab-command-detail-content:before {
+    display: none
+}
+
+#account {
+    margin-top: 2.5rem
+}

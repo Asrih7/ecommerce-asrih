@@ -1,0 +1,13 @@
+<div class="box_title  ">
+    <h2>{{"boutique.address_shop" | translate}}</h2>
+</div>
+<app-address-block *ngIf="addressfileds?.length else loaderIndicator" [addressfileds]="addressfileds"
+    [countryList]="countryList" [submitFormCheck]="submitFormCheck"
+    (formAddressShopShared)="handlerFormAddressShopShared($event)" [errors]="errors" [form]="form"
+    [shopCurrent]="shopCurrent"></app-address-block>
+
+<ng-template #loaderIndicator>
+    <div class="box_content">
+        <noo-loader></noo-loader>
+    </div>
+</ng-template>

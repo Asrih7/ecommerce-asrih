@@ -1,0 +1,22 @@
+<!-- /loader -->
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="large" color="#1661b1" type="ball-spin" [fullScreen]="true">
+  <p style="color: white">...</p>
+  <p style="color: white">{{ "loader" | translate }}...</p>
+</ngx-spinner>
+<!-- /loader -->
+<div class="global" (window:resize)="onResize($event)">
+  <app-header [lang]="settings?.language" (showSettingsModal)="toggleSettings($event)"></app-header>
+  <div id="cloned-margin">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer [settings]="settings" [listFields]="listFields" (contactClicked)="openConatcModal($event)"
+    (showSettingsModal)="toggleSettings($event)"></app-footer>
+
+  <app-contact-admin [recepientId]="recepientId" [showContactModal]="showContactModal"
+    (toggleContactModal)="openConatcModal($event)" id="app-contact-admin"></app-contact-admin>
+</div>
+
+<app-modal-settings *ngIf="showSettingsModal" [modal]="showSettingsModal" [settings]="settings"
+  [listFields]="listFields" [errors]="errors" (settingsChanged)="updateSettings($event)">
+</app-modal-settings>
+<div class="overley" [ngClass]="showSettingsModal ? 'show' : ''" (click)="toggleSettings(false)"></div>

@@ -1,0 +1,267 @@
+<ul class="tabs-command-detail">
+    <li [ngClass]="{current:activeTab=='acheteur'}" class="tab-link " (click)="activeTab='acheteur'">
+        {{"commandes.commandes_acheteur" | translate}}</li>
+    <li [ngClass]="{current:activeTab=='vendeur'}" class="tab-link" (click)="activeTab='vendeur'">
+        {{"commandes.commandes_vendeur" | translate}}</li>
+</ul>
+<div [ngClass]="{current:activeTab=='acheteur'}" class="tab-command-detail-content">
+    <ng-container *ngIf="ordersOfBuyer.length > 0 else loaderIndicator ">
+        <table class="main-table commande-table" style="margin-top: 30px;">
+            <thead>
+                <tr>
+                    <th *ngFor="let field of listFieldBuyerfiltred">{{field.value.label}}</th>
+                    <th>{{'commandes.ACTIONS' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let order of ordersOfBuyer | paginate: { itemsPerPage: 5, currentPage: p2, id: 'commandesBuyersID' }">
+                    <td><span (click)="gotoDetailBuyer(order)" class="linkOrder">{{order.reference_number}}</span></td>
+                    <td>{{order.created_on | date: formatDate}}</td>
+                    <td>{{order.shop}}</td>
+                    <ng-container *ngFor="let item of StatusListBuyer">
+                        <td *ngIf="item.value === order.status">
+                            {{item.display_name}}
+                        </td>
+                    </ng-container>
+                    <td>{{order.taxful_total_price_buyer}}<span>{{order.taxful_total_price_buyer_currency}}</span></td>
+                    <td>
+                       <div class="row">
+                        <span [matTooltip]="statusTooltipMessage" [matTooltipDisabled]="order.status_editable"> 
+                          <span class="icon-update" (click)="order.status_editable && showModal(order)" [style.cursor]="!order.status_editable? 'not-allowed' : 'pointer'">
+                            <i class="fal fa-edit fa-1x" [ngClass]="{'disabled': !order.status_editable  }">
+                              <span>{{ 'commandes.label_edit' | translate }}</span>   
+                            </i>
+                          </span>
+                          
+                      </span>
+                       
+                      <span [matTooltip]="evalBuyerTooltipMessage" [matTooltipDisabled]="order.review_editable"> 
+                        <span class="icon-update" (click)="order.review_editable && showModalEvalBuyer(order)" [style.cursor]="!order.review_editable? 'not-allowed' : 'pointer'">
+                          <i class="fal fa-star fa-1x" [ngClass]="{'disabled': !order.review_editable}">
+                            <span>{{ 'commandes.label_rating' | translate }}</span></i>
+                        </span>
+                      </span>
+                          </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-container *ngIf="ordersOfBuyer.length > 6">
+            <pagination-controls class="my-pagination" [previousLabel]="''" [nextLabel]="''" (pageChange)="p2 = $event"
+                id="commandesBuyersID"></pagination-controls>
+        </ng-container>
+    </ng-container>
+    <ng-template #loaderIndicator>
+        <noo-loader></noo-loader>
+    </ng-template>
+    <ng-container *ngIf="(!loadingOrdersOfBuyer && ordersOfBuyer.length ===0)">
+        <p class="bold center mgb30 mgt30">{{'commandes.empty_buyer' | translate}}</p>
+    </ng-container>
+</div>
+<div [ngClass]="{current:activeTab=='vendeur'}" class="tab-command-detail-content">
+    <ng-container *ngIf="ordersOfSeller.length > 0 else loaderIndicator ">
+        <table class="main-table commande-table" style="margin-top: 30px;">
+            <thead>
+                <tr>
+                    <th *ngFor="let field of listFieldSellerfiltred">{{field.value.label}}</th>
+                    <th style=" padding-left: 2rem !important;
+                    overflow-wrap: break-word !important;">{{'commandes.ACTIONS' | translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let order of ordersOfSeller  | paginate: { itemsPerPage: 6, currentPage: p3, id: 'commandesSellersID' }">
+                    <td><span (click)="gotoDetailSeller(order)" class="linkOrder">{{order.reference_number}}</span>
+                    </td>
+                    <td>{{order.created_on | date: formatDate}}</td>
+                    <td>{{order.shop}}</td>
+                    <ng-container *ngFor="let item of StatusListSeller">
+                        <td *ngIf="item.value === order.status">
+                            {{item.display_name}}
+                        </td>
+                    </ng-container>
+
+                    <td>{{order.taxless_total_price_seller}}<span>{{order.taxless_total_price_seller_currency}}</span>
+                    </td>
+                    <td>
+                      <div class="row">
+                        <span [matTooltip]="statusTooltipMessage" [matTooltipDisabled]="order.status_editable"> 
+                          <span class="icon-update" (click)="order.status_editable && showModal(order)" [style.cursor]="!order.status_editable? 'not-allowed' : 'pointer'">
+                            <i class="fal fa-edit fa-1x" [ngClass]="{'disabled': !order.status_editable  }">
+                              <span>{{ 'commandes.label_edit' | translate }}</span>   
+                            </i>
+                          </span>
+                          
+                      </span>
+                       
+                      <span [matTooltip]="evalSellerTooltipMessage" [matTooltipDisabled]="order.review_editable"> 
+                        <span class="icon-update" (click)="order.review_editable && showModalEvalSeller(order)" [style.cursor]="!order.review_editable? 'not-allowed' : 'pointer'">
+                          <i class="fal fa-comment fa-1x" [ngClass]="{'disabled': !order.review_editable}">
+                            <span>{{ 'commandes.label_rating' | translate }}</span></i>
+                        </span>
+                    </span>
+                          </div>
+                      </td>
+                </tr>
+            </tbody>
+        </table>
+        <ng-container *ngIf="ordersOfSeller.length > 6">
+            <pagination-controls class="my-pagination" [previousLabel]="''" [nextLabel]="''" (pageChange)="p3 = $event"
+                id="commandesSellersID"></pagination-controls>
+        </ng-container>
+    </ng-container>
+    <ng-template #loaderIndicator>
+        <noo-loader></noo-loader>
+    </ng-template>
+    <ng-container *ngIf="(!loadingOrdersOfSeller && ordersOfSeller.length === 0) ">
+        <p class="bold center mgb30 mgt30">{{'commandes.empty_seller' | translate}}</p>
+    </ng-container>
+</div>
+
+<div class="modal2 show" id="modal-setting">
+  <ng-container [ngSwitch]="modalType">
+ 
+    <ng-container *ngSwitchCase="'edit'">
+      <h3 class="titleModal">{{ 'commandes.Edit_Command' | translate }}</h3>
+    
+      <div class="info row mgb-small-20">
+        <div class="status-container ">
+          <label for="fieldLabelStatus" class="bold" [ngClass]="infoPut?.status?.required ? 'required' : ''" style="margin-bottom: 7px;">
+            {{ infoPut?.status?.label }}
+          </label>
+          <mat-select *ngIf="orderModified.taxful_total_price_buyer"
+                      (selectionChange)="onchangestatus($event)"
+                      [(ngModel)]="orderModified.status"
+                      class="info row selectBox selectBox-dropdown-language">
+            <mat-option *ngFor="let item of StatusListBuyerById" [value]="item.value">
+              {{ item.display_name }}
+            </mat-option>
+          </mat-select>
+          <mat-select *ngIf="orderModified.taxful_total_price_seller"
+                      (selectionChange)="onchangestatus($event)"
+                      [(ngModel)]="orderModified.status"
+                      class="info row selectBox selectBox-dropdown-language">
+            <mat-option *ngFor="let item of StatusListSellerById" [value]="item.value">
+              {{ item.display_name }}
+            </mat-option>
+          </mat-select>
+          <div class="info error mgb10" *ngFor="let err of errors">
+            <div *ngIf="err.key == 'status' && orderModified.status != '22'">
+              <div class="error">
+                <span>{{ err.value }}</span>
+              </div>
+            </div>
+            <div *ngIf="orderModified.status == '22'  || orderModified.status == '21'|| err.key == 'status'">
+              <div class="row error mgb5">
+                <span>{{ err.value }}</span>
+              </div>
+            </div>
+          </div> 
+        </div>
+      </div>
+    
+      <div class="status-container padt30" *ngIf="enableInputs && infoPut?.refusal_reason?.read_only === false ">
+        <div class="info row mgb30 padt30 mgb-small-20" *ngIf="orderModified.taxful_total_price_seller">
+          <label for="refusal_reason" class="bold" [ngClass]="infoPut?.refusal_reason?.required ? 'required' : ''" style="margin-bottom: 7px;">
+            {{ infoPut?.refusal_reason?.label }} 
+          </label>
+          <input type="text" id="refusal_reason" [(ngModel)]="orderModified.refusal_reason"  [readOnly]="infoPut?.refusal_reason?.read_only ?? false"/>
+          <span class="helpInfo">{{ infoPut?.refusal_reason?.help_text }}</span>
+          <div class="error" *ngFor="let err of errors">
+            <div class="info error mgb10" *ngIf="err.key == 'refusal_reason'">
+              <span>{{ err.value }}</span>
+            </div>        
+           </div>
+        </div>
+      </div>
+    
+      <div class="status-container padt30" *ngIf="enableInputs && infoPut?.tracking_url?.read_only === false ">
+        <div class="info row mgb30 mgb-small-20" *ngIf="orderModified.taxful_total_price_seller">
+          <label for="tracking_url" class="bold" [ngClass]="infoPut?.tracking_url?.required ? 'required' : ''" style="margin-bottom: 7px;">
+            {{ infoPut?.tracking_url?.label }}
+          </label>
+          <input type="text" id="tracking_url" [(ngModel)]="orderModified.tracking_url" />
+          <span class="helpInfo">{{ infoPut?.tracking_url?.help_text }}</span>
+        </div>
+      </div>
+    
+      <div class="field padt30">
+        <button type="button" class="linkMore gris" (click)="hideModal()">
+          {{ 'button.cancel' | translate }}
+        </button>
+        <button type="button" class="linkMore green" (click)="patchOrder(orderModified)">
+          {{ 'button.validate' | translate }}
+        </button>
+      </div>
+    </ng-container>
+    
+  
+
+    <ng-container *ngSwitchCase="'evalBuyer'" class="select-container" >
+      <h3 class="titleModal">{{'commandes.Avis_commande' | translate}}</h3>
+      <div class="gridCommande padt30" >
+        <h3 class="subTitleCommande">{{infoPut?.customer_note?.label}}</h3>
+        <div class="rating-box">
+          <div class="stars" [ngClass]="{'disabled': infoPut?.customer_note?.read_only}">
+            <i class="fal fa-star" *ngFor="let star of stars; let i = index" [class.active]="star" (click)="rateStar(i)">
+            </i>
+          </div>
+        </div>
+      </div>
+      <div class="gridCommande padt30">
+        <h3 class="subTitleCommande">{{infoPut?.customer_comment?.label}}</h3>
+        <form class="sendMessaage">
+          <textarea rows="5" placeholder="Saisissez un commentaire" [(ngModel)]="orderModified.customer_comment" name="buyerComment" [disabled]="infoPut?.customer_comment?.read_only"></textarea>
+          <div class="status-container helpInfo" *ngFor="let error of errors">
+            <div class="info error ">
+              <span>{{ error.value }}</span>
+            </div>         
+          </div>
+        </form>
+        <span class="status-container helpInfo padt30">{{infoPut?.customer_comment?.help_text}}</span>
+      </div>
+      <div class="field padt30">
+        <button type="button" class="linkMore gris" (click)="hideModal()">
+          {{'button.cancel' | translate}}
+        </button>
+        <button type="button" class="linkMore green" (click)="sendComment(orderModified)">
+          {{'button.validate' | translate}}
+        </button>
+      </div>
+    </ng-container>
+    
+    <ng-container *ngSwitchCase="'evalSeller'" class="select-container" >
+      <h3 class="titleModal">{{'commandes.Avis_commande' | translate}}</h3>
+      <div class="gridCommande padt30 status-container" >
+        <h3 class="subTitleCommande">{{infoPut?.merchant_comment?.label}}</h3>
+        <form  class="sendMessaage">
+          <textarea rows="5" placeholder="Saisissez un commentaire" [(ngModel)]="orderModified.merchant_comment" name="sellerComment" [disabled]="infoPut?.merchant_comment?.read_only"></textarea>
+          <div class="status-container helpInfo" *ngFor="let error of errors">
+            <div class="info error ">
+              <span>{{ error.value }}</span>
+            </div>         
+          </div>
+        </form>
+        <span class="status-container helpInfo padt30">{{infoPut?.merchant_comment?.help_text}}</span>
+       
+      </div>
+      <div class="field padt30">
+        <button type="button" class="linkMore gris" (click)="hideModal()">
+          {{'button.cancel' | translate}}
+        </button>
+        <button type="button" class="linkMore green" (click)="sendComment(orderModified)">
+          {{'button.validate' | translate}}
+        </button>
+      </div>
+    </ng-container>
+    
+    </ng-container>
+    
+    <div class="close" (click)="hideModal()">
+      <i class="fal fa-times-circle"></i>
+    </div>
+  </div>
+  <div class="overlay" [ngClass]="modalType ? 'show' : ''"></div>
+  

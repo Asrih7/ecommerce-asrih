@@ -1,0 +1,37 @@
+<section class="section creation_account">
+    <div class="container">
+        <div class="steps">
+            <ul class="steps_list">
+                <li [ngClass]="{current : currentStep == 1}" class="pointer" data-steps-tab="tab-steps-1"
+                    (click)="setStep(1)">
+                    {{'boutique.personal_informations' | translate}}</li>
+
+                <li [ngClass]="{current : currentStep == 2, pointer: validStep1}" data-steps-tab="tab-steps-2"
+                    class="redirectStep2" (click)="validStep1 && setStep(2)">
+                    {{'boutique.boutique' | translate}}</li>
+
+                <li [ngClass]="{current : currentStep == 3, pointer: validStep2}" data-steps-tab="tab-steps-3"
+                    class="redirectStep3" (click)="validStep2 && setStep(3)">{{'boutique.charte_vendeurs' | translate}}
+                </li>
+            </ul>
+        </div>
+
+        <div id="tab-steps-1" class="tab-steps-content" [ngClass]="{current : currentStep == 1}">
+            <app-first-step (accessFirstStep)="handlerAccessFirstStep($event)"
+                (languageStore)="handlerLanguageStore($event)">
+            </app-first-step>
+        </div>
+
+        <div id="tab-steps-2" class="tab-steps-content" [ngClass]="{current : currentStep == 2}">
+            <h1 class="mainTitle" style="margin-left: 0;"> {{"boutique.setting_store" | translate}} </h1>
+            <app-second-step (SecondStepFormShared)="SecondStepFormShared($event)"
+                (CurrencyShared)="handlerCurrecyShared($event)" (accessSecondStep)="handlerAccessSecondStep($event)"
+                [languageProfile]="languageProfile" (previous)="setStep(1)"></app-second-step>
+        </div>
+
+        <div id="tab-steps-3" class="tab-steps-content" [ngClass]="{current : currentStep == 3}">
+            <app-third-step [infosShop]="infosShop" [currency]="currency"
+                (accessThirdStep)="handlerAccessThirdStep($event)" (previous)="setStep(2)"></app-third-step>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,9 @@
+<h1 class="icon icon-account mainTitle">{{"header.setting_account" | translate}}</h1>
+<noo-tabs [mode]="'horizontal'">
+    <noo-tab mode="horizontal" id="compte" tab [active]="true" [title]="'information_account.account' | translate">
+        <app-compte></app-compte>
+    </noo-tab>
+    <noo-tab mode="horizontal" id="adresse" tab [title]="'information_account.address' | translate">
+        <app-adresse></app-adresse>
+    </noo-tab>
+</noo-tabs>

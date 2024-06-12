@@ -1,0 +1,9 @@
+<h1 class="icon icon-command mainTitle">{{"header.commande_avis" | translate}}</h1>
+<noo-tabs [mode]="'horizontal'">
+    <noo-tab mode="horizontal" id="commandes" tab [active]="true" [title]="'commandes.title' | translate">
+        <app-detail-command></app-detail-command>
+    </noo-tab>
+    <noo-tab mode="horizontal" id="litiges" tab [title]="'litiges.title' | translate">
+        <app-litiges></app-litiges>
+    </noo-tab>
+</noo-tabs>

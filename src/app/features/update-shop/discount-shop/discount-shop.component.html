@@ -1,0 +1,50 @@
+<h1 class="icon icon-coupon mainTitle">{{"discount_coupon.title" | translate}}</h1>
+<div class="box">
+    <div class="box_title">
+        <h2>{{"discount_coupon.title" | translate}}</h2>
+        <button type="button" class="linkMore blue add show-modal" data-modal="modal-coupon"
+            (click)="openModal()">{{"discount_coupon.btn_discount" | translate}}</button>
+    </div>
+    <div class="box_content">
+        <div class="discount heading">
+            <div class="line">
+                <span *ngFor="let field of fieldInTable">{{field.value.label}}</span>
+                <span>{{'promotion.action' | translate}}</span>
+            </div>
+
+        </div>
+        <div class="discount rows-line" *ngIf="listDiscount?.length">
+            <div class="line" *ngFor="let discount of listDiscount">
+                <span>{{discount?.coupon_code}}</span>
+                <span>
+                    @if(discount?.discount_amount!= null) {
+                    {{discount?.discount_amount | number: '1.0-0'}}{{userCurrency}} }
+                    @else { -- }
+                </span>
+
+                <span>
+                    @if(discount?.discount_percentage != null){
+                    {{discount?.discount_percentage | number: '1.0-0'}}%
+                    } @else { -- }
+                </span>
+                <span>
+                    @if(discount?.active ){ <i class="fal fa-check-circle checked"></i>}
+                    @else { <i class="fal fa-times-circle cross"></i> }
+                </span>
+                <span>{{discount?.start_date | date: lang=='en'?'yyyy-MM-dd':'dd-MM-yyyy'}}</span>
+                <span>{{discount?.end_date | date:lang=='en'?'yyyy-MM-dd':'dd-MM-yyyy'}}</span>
+                <span>
+                    <span class="btn-update" (click)="editDiscount(discount)"><i class="fal fa-edit"
+                            title="Modifier"></i></span>
+                    <span class="btn-delete" (click)="deleteConfirmation(discount?.id)"><i class="fal fa-trash-alt"
+                            title="Supprimer"></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<app-popin [id]="'discount_coupon'" [shop]="shop" [isOpen]=isOpen [fields]="listField"
+    (closeModalEvent)="handlercloseModal($event)" [errors]="errors" [discountItem]="currentDiscount"
+    [editMode]="editMode" (values)="handlerPostDiscount($event)" (updateValues)="handlerUpdateDiscount($event)"
+    [title]="'discount_coupon.btn_discount' | translate">
+</app-popin>

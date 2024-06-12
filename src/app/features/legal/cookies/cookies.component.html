@@ -1,0 +1,6 @@
+<section class="section" *ngIf="$language | async as lang">
+  <app-cookies-fr *ngIf="lang==='fr';else en"></app-cookies-fr>
+  <ng-template #en>
+      <app-cookies-en></app-cookies-en>
+  </ng-template>
+</section>

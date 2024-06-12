@@ -1,0 +1,128 @@
+.writeMessage {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    padding-left: 1.25rem;
+    border-top: .125rem solid #1125ba;
+    position: relative;
+    background: #fff;
+    min-height: 10rem
+}
+
+.writeMessage .error {
+    bottom: 2.5rem
+}
+
+.writeMessage #msg,
+.info #msg {
+    display: block;
+    border: none;
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.375rem;
+    color: #4e4e4e;
+    width: 82%;
+    resize: none;
+    height: 3.75rem;
+    position: relative;
+    top: -1.25rem
+}
+
+@media screen and (max-width:48em) {
+    .writeMessage #msg {
+        width: 75%
+    }
+}
+
+@media screen and (max-width:640px) {
+    .writeMessage #msg {
+        width: 68%
+    }
+}
+
+.writeMessage label {
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: .875rem;
+    line-height: 1.375rem;
+    color: #4e4e4e;
+    position: absolute;
+    top: 25px;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease
+}
+
+.writeMessage:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 500%;
+    bottom: -500%;
+    background: #fff
+}
+
+.writeMessage:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    bottom: 0;
+    right: -100%;
+    width: 200%;
+    z-index: -1;
+    border-top: .125rem solid #1125ba
+}
+
+.imgConversation {
+    max-width: 12.5rem;
+    width: 100%;
+    position: relative;
+    top: -.9375rem
+}
+
+.imgConversation i {
+    position: absolute;
+    top: .625rem;
+    right: .625rem;
+    color: #1125ba;
+    cursor: pointer;
+    background: #fff;
+    -webkit-box-shadow: 0 .125rem .625rem rgba(0, 0, 0, .6);
+    -moz-box-shadow: 0 .125rem .625rem rgba(0, 0, 0, .6);
+    box-shadow: 0 .125rem .625rem rgba(0, 0, 0, .6);
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 1.5625rem;
+    height: 1.5625rem;
+    line-height: 1.5625rem;
+    text-align: center;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease
+}
+
+.imgConversation i:hover {
+    color: #f8c43d
+}
+
+.imgConversation.withFile {
+    max-width: 50%
+}
+
+.imgConversation.withFile span {
+    position: relative;
+    font-family: HelveticaNeueBold;
+    font-weight: 700;
+    color: #0620c0
+}
+
+.imgConversation.withFile span i {
+    position: absolute;
+    top: 0;
+    right: -2.5rem;
+    color: #1125ba;
+    cursor: pointer
+}

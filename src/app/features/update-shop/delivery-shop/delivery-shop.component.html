@@ -1,0 +1,38 @@
+<h1 class="icon icon-delevery mainTitle">{{"delivery.title" | translate}}</h1>
+<div class="box">
+    <div class="box_title">
+        <h2>{{"delivery.title" | translate}}</h2>
+        <button type="button" class="linkMore blue add show-modal" data-modal="modal-delevery"
+            (click)="openModal()">{{"delivery.btn_delivery" | translate}}</button>
+    </div>
+    <div class="box_content">
+        <div class="delivery heading">
+            <div class="line">
+                <span *ngFor="let field of tableField">{{field.value.label}}</span>
+                <span class="text-right">{{'delivery.action' | translate}}</span>
+            </div>
+        </div>
+        <div class="delivery rows-line" *ngIf="shippingList?.length">
+            <div class="line" *ngFor="let shipping of shippingList">
+                <span>{{shipping.name}}</span>
+                <span>
+                    <small *ngFor="let zone of shipping.zones;let last = last;">
+                        {{zone.country}}{{zone.region}}{{zone.inter}} <b *ngIf="!last">-</b>
+                    </small>
+
+                </span>
+                <span class="text-right">
+                    <span class="btn-update" (click)="editModal(shipping)"><i class="fal fa-edit"
+                            title="Modifier"></i></span>
+                    <span class="btn-delete" (click)="deleteConfirmation(shipping.id)"><i class="fal fa-trash-alt"
+                            title="Supprimer"></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<app-popin *ngIf="isOpen" id="delivery" [isOpen]="isOpen" [fields]="listField" [shop]="shop"
+    [shipItem]="currentShipping" [editMode]="editMode" [errors]="errors" (closeModalEvent)="handlercloseModal($event)"
+    (values)="handlerPostDelivery($event)" (updateValues)="handlerUpdateDelivery($event)"
+    [title]="'delivery.btn_delivery' | translate">
+</app-popin>

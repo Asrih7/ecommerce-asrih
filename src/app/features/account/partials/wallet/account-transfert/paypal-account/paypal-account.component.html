@@ -1,0 +1,25 @@
+<div class="box" id="account_bank" style="margin-bottom: 10px;">
+    <div class="box_title">Paypal</div>
+    <div class="loader--container" *ngIf="showLoader==true">
+        <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+
+    </div>
+    <ng-container *ngIf="!emptyAccount && showLoader==false">
+        <div class="box_content separateur" *ngFor="let item of paypalAccountCurrent">
+            <ng-container *ngFor="let field of fieldsPaypalAccount">
+                <span class="bold text-size-12">{{field.value.label}}</span>
+            </ng-container>
+            <div class="delete">
+                <i class="fal fa-times" (click)="deleteConfirmation(item.id,'Paypal')"></i>
+            </div>
+            <div class="lineInfo">
+                <span class="item">{{item.email_paypal}}</span>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="emptyAccount && showLoader==false">
+        <div class="box_content">
+            <p class="bold center">{{'wallet.transfer.msg_empty_paypal' | translate}}</p>
+        </div>
+    </ng-container>
+</div>

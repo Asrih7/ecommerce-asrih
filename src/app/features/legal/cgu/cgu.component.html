@@ -1,0 +1,6 @@
+<section class="section" *ngIf="$language | async as lang">
+    <app-cgu-fr *ngIf="lang==='fr';else en"></app-cgu-fr>
+    <ng-template #en>
+        <app-cgu-en></app-cgu-en>
+    </ng-template>
+</section>

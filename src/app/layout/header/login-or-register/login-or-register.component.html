@@ -1,0 +1,173 @@
+<div>
+  <div class="loader-container" *ngIf="fieldsState">
+    <div>
+      <app-loader-indicator bg="bg-light"></app-loader-indicator>
+    </div>
+  </div>
+  <div class="modal-header no-border-header text-center">
+    <h3 class="modal-title">{{ "login.title" | translate }}</h3>
+  </div>
+
+  <div class="modal-body">
+    <form class="auth-form box_content" [formGroup]="form.group">
+      <ng-container *ngIf="withError">
+        <div class="wrapperBox mgb20 bl-error" *ngFor="let err of errors">
+          <span *ngIf="err.key == 'detail'">{{ err.value }}</span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="isRegister; else isLogin">
+        <div class="wrapperBox mgb30" *ngFor="let field of registerFields">
+          <div class="info row">
+            <div *ngIf="field.key == 'code'" class="code-info">
+              <span>
+                {{ "login.code.sent_code" | translate }} {{ emailEntred }}
+              </span>
+              <button type="button" (click)="goToLogin()">
+                {{ "button.edit" | translate }}
+              </button>
+            </div>
+            <label [for]="'lf_' + field.key" class="bold" [ngClass]="field.value.required ? 'required' : ''">
+              {{ field.value.label }}
+            </label>
+            <input type="text" [id]="'lf_' + field.key" [formControlName]="field.key"
+              *ngIf="field.key !== 'password'" />
+            <div *ngIf="field.key == 'code'" class="code-block">
+              <span>
+                {{ "login.code.resend_code" | translate }}
+                {{
+                counterInfo > 0
+                ? ("login.code.in" | translate) + " " + counterInfo + "s"
+                : ""
+                }}
+              </span>
+              <button type="button" *ngIf="counterInfo == 0" (click)="checkUser()">
+                <svg aria-hidden="false" focusable="false" viewBox="0 0 24 24" role="img" width="20px" height="20px"
+                  fill="none" id="Repeat-m-icon">
+                  <path fill="currentColor" fill-rule="evenodd"
+                    d="M23.395 11.841l-1.061-1.061-1.338 1.338c0-.039.005-.078.005-.118 0-4.962-4.038-9-9-9C8.734 3 5.877 4.756 4.3 7.367L5.392 8.46A7.506 7.506 0 0112 4.5c4.136 0 7.5 3.364 7.5 7.5 0 .06-.011.117-.013.177l-1.396-1.397-1.061 1.061 2.185 2.184-.001.001.998.997.373-.373 2.809-2.809zM12 19.5c-4.136 0-7.5-3.364-7.5-7.5 0-.06.011-.117.013-.177L5.91 13.22l1.061-1.06-2.185-2.184.001-.001-.998-.998-.373.373v.001L.606 12.16l1.061 1.061 1.338-1.338c0 .04-.005.078-.005.118 0 4.963 4.038 9 9 9 3.267 0 6.124-1.756 7.701-4.367L18.61 15.54A7.506 7.506 0 0112 19.5z"
+                    clip-rule="evenodd"></path>
+                  <title>Repeat-Medium (Default Size)-icon</title>
+                </svg>
+              </button>
+            </div>
+
+            <input type="password" [id]="'lf_' + field.key" [formControlName]="field.key"
+              *ngIf="field.key == 'password'" />
+            <span class="helpInfo" *ngIf="field.value.help_text">
+              {{ field.value?.help_text }}
+            </span>
+            <div class="error left" *ngFor="let err of errors" style="position: static">
+              <div *ngIf="err.key == field.key">
+                <ng-container *ngFor="let er of err.value">
+                  <span style="display: block">{{ er }}</span>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #isLogin>
+        <ng-container *ngFor="let field of loginFields">
+          <div [ngClass]="{ 'wrapperBox mgb30': (field.key == 'password' && isMailExist) || field.key != 'password' }">
+            <div class="info row">
+              <ng-container *ngIf="field.key == 'email'; else passwordControl">
+                <label [for]="'lf_' + field.key" class="bold" [ngClass]="field.value.required ? 'required' : ''">
+                  {{ field.value.label }}
+                </label>
+
+                <input type="text" [id]="'lf_' + field.key" [formControlName]="field.key"
+                  (input)="checkEmailValidation($event)" />
+
+                <button *ngIf="isValidEmail && !showLoader && !isMailExist" class="btn-check-mail"
+                  (click)="checkUser()">
+
+                  <svg fill="#1125ba" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg"
+                    :xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px"
+                    viewBox="0 0 100 100" style="enable-background: new 0 0 100 100" :xml:space="preserve">
+                    <g>
+                      <path
+                        d="M60.6,28.5c-1.2-1.2-2.9-1.5-4.3-0.9C54.8,28.2,54,29.5,54,31v10c0,1.1,0.9,2,2,2s2-0.9,2-2v-9.5l18.9,18L58.3,67.1   c-0.1,0-0.3-0.1-0.3-0.2V57c0-1.1-0.9-2-2-2s-2,0.9-2,2v10c0,1.6,1.1,3.1,2.7,3.7c0.6,0.2,1.1,0.3,1.7,0.3c1,0,1.9-0.4,2.6-1   l18.9-17.9c0.7-0.7,1.1-1.7,1.1-2.7c0-1-0.4-2-1.2-2.7L60.6,28.5z">
+                      </path>
+                      <path d="M58.4,49c0-1.1-0.9-2-2-2h-36c-1.1,0-2,0.9-2,2s0.9,2,2,2h36C57.5,51,58.4,50.1,58.4,49z">
+                      </path>
+                    </g>
+                  </svg>
+                </button>
+                <span *ngIf="field.key !== 'password' && showLoader == true" class="small-login-loader">
+                  <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+                </span>
+              </ng-container>
+
+              <ng-template #passwordControl>
+                <ng-container *ngIf="isMailExist">
+                  <label [for]="'lf_' + field.key" class="bold" [ngClass]="field.value.required ? 'required' : ''">
+                    {{ field.value.label }}
+                  </label>
+
+                  <input [formControlName]="field.key" type="password" [id]="'lf_' + field.key" />
+                </ng-container>
+              </ng-template>
+
+              <span class="helpInfo" *ngIf="field.value.help_text">
+                {{ field.value?.help_text }}
+              </span>
+
+              <div class="error left" *ngFor="let err of errors">
+                <span *ngIf="err.key == field.key">
+                  {{ err.value }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-template>
+      <div class="space-between mgb20 info right" *ngIf="!isRegister && isMailExist">
+        <span class="linkSecond" (click)="openForgotPassword()">
+          {{ "login.forgot" | translate }}
+        </span>
+      </div>
+      <div class="wrapperBox" *ngIf="isMailExist || isRegister">
+        <button name="commit" class="linkMore blue" (click)="submit()" style="width: 100%; height: 40px">
+          {{
+          isRegister
+          ? ("login.register.btn" | translate)
+          : ("login.btn_login" | translate)
+          }}
+        </button>
+      </div>
+      <!-- <p class="text-center">
+        <a class="forget-a">
+          {{ 'login.not_connected' | translate}}
+        </a>
+      </p> -->
+
+      <div class="divider">
+        <span class="ui-toolkit">{{ "login.or" | translate }}</span>
+      </div>
+
+      <div class="btn-google" id="googleBtnContainer">
+        <div id="buttonDiv"></div>
+        <span *ngIf="googleLoader == true">
+          <app-loader-indicator bg="bg-black"></app-loader-indicator>
+        </span>
+      </div>
+      <a class="facebook-btn" (click)="signInWithFB()">
+        <img class="icon-social" src="assets/icons/facebook.svg" />
+        {{ "login.facebook" | translate }}
+        <span *ngIf="facebookLoader == true">
+          <app-loader-indicator bg="bg-black"></app-loader-indicator>
+        </span>
+      </a>
+      <div class="form-group mt-3">
+        <p class="font-weight-lighter">
+          {{ "login.cgu.text" | translate }}
+          <a style="color: #1125ba" (click)="navigateCGU()">
+            {{ "login.cgu.href" | translate }}
+          </a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

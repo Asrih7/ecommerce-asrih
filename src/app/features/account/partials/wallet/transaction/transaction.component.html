@@ -1,0 +1,31 @@
+<div class="loader--container" *ngIf="showLoader==true">
+    <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+</div>
+<ng-container *ngIf='transactions.length > 0 && showLoader==false'>
+    <table class="main-table" style="margin-top: 30px;">
+        <thead>
+            <tr>
+                <th *ngFor="let field of listFields">{{field.value.label}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of transactions | paginate: { itemsPerPage: 7, currentPage: p2, id: 'transactionID' }">
+                <td>{{item.created_on | date: formatDate}}</td>
+                <td>{{item.description}}</td>
+                <td *ngIf="wallet">{{item.transaction_amount}} {{wallet.balance_currency}}</td>
+                <ng-container *ngFor='let status of listState'>
+                    <td *ngIf='status.value === item.status'>
+                        {{status.display_name}}
+                    </td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table>
+    <ng-container *ngIf="transactions.length > 7">
+        <pagination-controls class="my-pagination" [previousLabel]="''" [nextLabel]="''" (pageChange)="p2 = $event"
+            id="transactionID"></pagination-controls>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf='transactions.length == 0 && showLoader==false'>
+    <p class="bold center mgb30 mgt30">{{'wallet.transfer.msg_empty_transaction' | translate}}</p>
+</ng-container>

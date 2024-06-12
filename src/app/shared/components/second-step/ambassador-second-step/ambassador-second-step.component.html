@@ -1,0 +1,26 @@
+<div class="box mgb30">
+    <div class="box_title">
+        <h2>{{"boutique.ambassador" | translate}}</h2>
+    </div>
+    <form class="box_content" [formGroup]="form.group">
+
+        <ng-container *ngFor="let field of ambassadorFileds">
+            <div class="wrapperBox" style="width: 100%;">
+                <div class="info row mgb20">
+                    <label [for]="field.key" class="bold"
+                        [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                    <input [type]="field.value.type" [id]="field.key" [formControlName]="field.key"
+                        style="height: 30px;" />
+                    <span class="helpInfo mgb30" *ngIf="field.value.help_text">{{field.value.help_text}}</span>
+                    <ng-container *ngFor="let err of errors">
+                        <div class="error" *ngIf="err.key == field.key">
+                            <span>
+                                {{err.value}}
+                            </span>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </ng-container>
+    </form>
+</div>

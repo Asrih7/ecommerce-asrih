@@ -1,0 +1,20 @@
+<div class="box_title">
+    <span>{{"set_email.title" | translate}}</span>
+</div>
+<form class="box_content" [formGroup]="form.group">
+    <div class="wrapperBox" *ngFor="let field of listFields">
+        <div class="info row mgb30">
+            <label [for]="field.key" class="bold"
+                [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+            <input type="text" [id]="field.key" [formControlName]="field.key" />
+            <span class="helpInfo">{{field.value?.help_text}}</span>
+            <div class="error left" *ngFor="let err of errors">
+                <span *ngIf="err.key == field.key">
+                    {{err.value}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="linkMore blue" style="width: 150px;" (click)="editEmail()">{{'button.edit' |
+        translate}}</button>
+</form>

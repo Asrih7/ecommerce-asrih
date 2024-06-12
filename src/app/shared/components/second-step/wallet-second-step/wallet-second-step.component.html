@@ -1,0 +1,40 @@
+<div class="box mgb30 ui-wallet-second-step">
+    <div class="box_title">
+        <h2>{{"header.wallet" | translate}}</h2>
+    </div>
+    <form [formGroup]="form.group">
+        <div class="box_content">
+            <ng-container *ngFor="let field of currencies">
+                <div class="wrapperBox column" style="width: 100%;">
+                    <div class="info inline mgb10">
+                        <label class="bold mgr30" [ngClass]="field.value.required ? 'required':''"
+                            style="position: relative !important; min-width: auto;">
+                            {{field.value.label}}
+                        </label>
+                        <label class="bold" *ngIf="defaultCurrency"
+                            style="margin-left: 40px;">{{defaultCurrency}}</label>
+                        <mat-form-field class="selectBox selectBox-dropdown-language currenciesList" appearance="fill"
+                            *ngIf="!defaultCurrency">
+                            <input type="text" matInput [matAutocomplete]="autoCurrency"
+                                (input)="searchCurency($event)">
+                            <mat-autocomplete (optionSelected)="getCurrencyShop($event)" #autoCurrency="matAutocomplete"
+                                [displayWith]="displayCurrFn.bind(this)">
+                                <mat-option *ngFor="let option of searchedCurrency " [value]="option.value">
+                                    {{option.display_name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                        <ng-container *ngFor="let err of currencyErrors">
+                            <div class="error">
+                                <span>
+                                    {{err.currency}}
+                                </span>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <span class="helpInfo" *ngIf="field.value.help_text">{{field.value.help_text}}</span>
+                </div>
+            </ng-container>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,15 @@
+<div [ngClass]="{'tabs-wrapper' : mode == 'vertical'}" class="{{class}}">
+    <div [ngClass]="{'left-navigation' : mode == 'vertical'}">
+        <ul [ngClass]="{'tabs-navigation' : mode == 'vertical','tabs' : mode == 'horizontal'}">
+            <ng-content select="[navigation-header]"></ng-content>
+            <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.current]="tab.active"
+                class="icon {{tab.icon}}">
+                {{tab.title}}
+            </li>
+        </ul>
+    </div>
+
+    <div [ngClass]="{'right-content' : mode == 'vertical'}">
+        <ng-content select="[tab]"></ng-content>
+    </div>
+</div>

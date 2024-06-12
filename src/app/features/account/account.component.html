@@ -1,0 +1,20 @@
+<section class="section" id="account">
+    <div class="container">
+        <noo-tabs class="top-padding" (tabClick)="navTabClick($event)">
+            <noo-tab id="settings" tab icon="icon-account" [active]="fragment == 'settings'"
+                [title]="'header.setting_account' | translate">
+                <app-setting></app-setting>
+            </noo-tab>
+            <noo-tab id="commandes" tab icon="icon-command" [title]="'header.commande_avis' | translate"
+                [active]="fragment == 'commandes'">
+                <app-commande></app-commande>
+            </noo-tab>
+            <noo-tab id="wallet" tab icon="icon-wallet" [title]="('header.wallet' | translate) + walletBalance"
+                [active]="fragment == 'wallet'">
+                <app-wallet [wallet]='wallet'></app-wallet>
+            </noo-tab>
+            <noo-tab id="logout" tab icon="icon-signout" [title]="'header.logout' | translate">
+            </noo-tab>
+        </noo-tabs>
+    </div>
+</section>

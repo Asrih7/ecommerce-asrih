@@ -1,0 +1,69 @@
+<div class="box" id="account_bank" style="margin-bottom: 10px;">
+    <div class="box_title">{{'wallet.transfer.account_international' | translate}}</div>
+    <div class="loader--container" *ngIf="showLoader==true">
+        <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+
+    </div>
+    <ng-container *ngIf="!emptyAccount && showLoader==false">
+        <div class="box_content separateur" *ngFor="let item of internationalAccountCurrent">
+            <div class="delete">
+                <i class="fal fa-times" (click)="deleteConfirmation(item.id,null)"></i>
+            </div>
+            <div class="lineInfo">
+                <div class="flex item column">
+                    <span class="bold text-size-12">{{accountOwner}}</span>
+                    <span class="item">{{item.account_owner}}</span>
+                </div>
+                <div class="flex item column">
+                    <span class="bold text-size-12">{{birthDate}}</span>
+                    <span class="item">{{item.birth_date}}</span>
+                </div>
+                <div class="flex item column">
+                    <span class="bold text-size-12">{{accountNumber}}</span>
+                    <span class="item">{{item.account_number}}</span>
+                </div>
+            </div>
+            <div class="lineInfo">
+                <div class="flex item column">
+                    <span class="bold text-size-12">{{triNumber}}</span>
+                    <span class="item">{{item.tri_number}}</span>
+                </div>
+                <div class="flex item column">
+                    <span class="bold text-size-12">{{iban}}</span>
+                    <span class="item">{{item.iban}}</span>
+                </div>
+                <div class="flex item column">
+                    <span class="bold text-size-12">{{bic}}</span>
+                    <span class="item">{{item.bic}}</span>
+                </div>
+            </div>
+            <div class="lineInfo">
+                <div class="flex column item">
+                    <span class="bold text-size-12">{{bankName}}</span>
+                    <span class="item">{{item.bank_name}}</span>
+                </div>
+                <div class="flex column item">
+                    <span class="bold text-size-12">{{bankCity}}</span>
+                    <span class="item">{{item.bank_city}}</span>
+                </div>
+                <div class="flex column item">
+                    <span class="bold text-size-12">{{bankCountry}}</span>
+                    <ng-container *ngFor='let country of listCountries'>
+                        <span class="item" *ngIf='country.value === item.bank_country'>{{country.display_name}}</span>
+                    </ng-container>
+                </div>
+                <div class="flex column item">
+                    <span class="bold text-size-12">{{accountAddress}}</span>
+                    <span class="item">{{item.account_address}}</span>
+                </div>
+
+            </div>
+
+        </div>
+    </ng-container>
+    <ng-container *ngIf="emptyAccount && showLoader==false">
+        <div class="box_content">
+            <p class="bold center">{{'wallet.transfer.msg_empty_international' | translate}}</p>
+        </div>
+    </ng-container>
+</div>

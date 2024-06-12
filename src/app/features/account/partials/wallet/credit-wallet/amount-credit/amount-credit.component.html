@@ -1,0 +1,19 @@
+        <div class="info montant">
+            <label for="deposit_amount" [ngClass]="fieldConfig?.required ? 'required':''">{{fieldConfig?.label ?? 'Amount'}}</label>
+            <div class="mgb20">
+                <div class="bottom-border-field flex">
+                    <input 
+                    [type]="'number'" 
+                    id="deposit_amount"
+                    [(ngModel)]="value"
+                    [ngModelOptions]="{updateOn:'blur'}"
+                    [required]="fieldConfig?.required ?? false"
+                    [readOnly]="fieldConfig?.read_only ?? false"
+                    >
+                    <span class="bold text-black">{{currencyType}}</span>
+                </div>
+                <span class="error flex position-static" *ngIf="errors.length > 0"><span *ngFor="let err of errors">{{err}}</span></span>
+            </div>
+            <button  type="button"
+             class="linkMore green" (click)="sendAmount()" >{{'wallet.credit.confirm_amount' | translate}}</button>
+        </div>

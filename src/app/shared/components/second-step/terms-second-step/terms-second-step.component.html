@@ -1,0 +1,63 @@
+<div class="box_title">
+    <h2>{{"boutique.terms" | translate}}</h2>
+</div>
+<form class="wrapperBox" style="flex-direction: column;padding-bottom:0px" [formGroup]="form.group">
+    <div *ngIf="termsfileds?.length  else loaderIndicator" class="box_content" formGroupName="terms">
+        <div class="wrapperBox">
+            <div class="wrapperBox mgb30 " *ngFor="let childfield of termsfileds;index as i" style="width: 100%;">
+                <div class="info row">
+                    <label *ngIf="childfield.value.type !== 'boolean' && childfield.key !== 'own_terms'"
+                        [for]="childfield.key" class="bold" [ngClass]="childfield.value.required ? 'required':''"
+                        style="width: 100%;">
+                        {{childfield.value.label}}
+                    </label>
+                    <label *ngIf="childfield.value.type !== 'boolean' && childfield.key === 'own_terms'"
+                        [for]="childfield.key" class="bold" [ngClass]="childfield.value.required ? 'required':''"
+                        style="width: 100%;">
+                        {{childfield.value.label}} (
+                        <ng-container *ngIf="languageProfile === 'fr'">{{"language.french" | translate}}</ng-container>
+                        <ng-container *ngIf="languageProfile === 'en'">{{"language.english" | translate}}</ng-container>
+                        )
+                    </label>
+                    <input *ngIf="childfield.value.type !== 'boolean'" type="text" [id]="childfield.key"
+                        [formControlName]="childfield.key" style="height: 30px;" />
+                    <label
+                        *ngIf="childfield.value.type !== 'boolean' && childfield.key === 'own_terms' && checkTranslateTerms !== true"
+                        [for]="childfield.key" class="bold mgt30" [ngClass]="childfield.value.required ? 'required':''"
+                        style="width: 100%;">
+                        {{childfield.value.label}} (
+                        <ng-container *ngIf="languageProfile === 'fr'">{{"language.english" | translate}}</ng-container>
+                        <ng-container *ngIf="languageProfile === 'en'">{{"language.french" | translate}}</ng-container>
+                        )
+                    </label>
+                    <input
+                        *ngIf="childfield.value.type !== 'boolean' && childfield.key === 'own_terms' && checkTranslateTerms !== true"
+                        type="text" id="ownsTermsTranslate" #ownsTermsTranslate style="height: 30px;"
+                        [(ngModel)]="ownsTT" [ngModelOptions]="{standalone: true}" />
+                    <input *ngIf="childfield.value.type == 'boolean'" type="checkbox" [id]="childfield.key"
+                        [formControlName]="childfield.key" />
+                    <label *ngIf="childfield.value.type == 'boolean'" [for]="childfield.key"
+                        [ngClass]="childfield.value.required ? 'required':''" class="txtCheck"
+                        style="width: 100%;">{{childfield.value.label}}</label>
+                    <span class="helpInfo" style="padding-top: 5px;"
+                        *ngIf="childfield.value.help_text">{{childfield.value.help_text}}</span>
+                    <div class="error" *ngFor="let err of map; index as j">
+                        <div *ngIf="err && err?.length>0 && i == j">
+                            <div *ngFor="let er of err;">
+                                <span *ngIf="er.key == childfield.key">
+                                    {{er.value}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #loaderIndicator>
+        <div class="box_content">
+            <noo-loader></noo-loader>
+        </div>
+    </ng-template>
+</form>

@@ -1,0 +1,262 @@
+<section class="basket-container padt30 pdb30">
+    <div class="container">
+        <div class="space-between mgb30 align-items" *ngIf="this.currentBasket?.items?.length">
+            <span class="bold text-size-20">
+                {{ this.currentBasket?.items?.length }}
+                {{(this.currentBasket?.items?.length==1?'basket.item_in_basket':'basket.items_in_basket') | translate}}
+            </span>
+            <a [routerLink]="['/products']" class="secondary-link">{{ 'basket.continue_shopping' | translate }}</a>
+        </div>
+    </div>
+
+    <div *ngIf="loadingBasket;" class="basket-loader-container" style="margin-top: 20px;">
+        <div class="box_content">
+            <noo-loader></noo-loader>
+        </div>
+    </div>
+
+    <ng-container *ngIf="!loadingBasket">
+        <div class=" container in-row basket-wrapper" *ngIf="this.currentBasket?.items?.length; else emptyBasket">
+            <div class="nd-flex-2 column">
+                <div class="mgb30 trait1" *ngFor="let grp of basketItems | keyvalue">
+                    <div class="space-between mgb30 align-items">
+                        <div class="basket-shop">
+                            <a class="basket-shop-name">{{grp.key}}</a>
+
+                            <span class="basket-shop-flag">
+                                <span *ngIf="grp.value && grp.value[0].inspiration_country?.length > 0"
+                                    class="iti__flag iti__{{grp.value[0].inspiration_country[0].toLowerCase()}}">
+                                </span>
+                                <span *ngIf="grp.value && grp.value[0].inspiration_country?.length > 1"
+                                    class="iti__flag iti__{{grp.value[0].inspiration_country[1].toLowerCase()}}"></span>
+                            </span>
+                        </div>
+                        <div class="basket-shop-name">
+                            <span class="name-shop" (click)="openConactModal(grp)">
+                                {{'basket.conact_shop' | translate }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <ng-container *ngFor="let item of grp.value ?? []">
+                        <div *ngTemplateOutlet="basketItem; context: { item }"> </div>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="nd-flex-1 pdl40 basket-right-side column">
+                <div class="wrapper-paiment flex column radius10 shadow mgb40">
+                    <!-- <div class="bold mgb30"> {{'basket.payment_method' | translate }} </div>
+                    <ul class="mgb30">
+                        <li>
+                            <input type="radio" id="by-card" name="mode-payment" value="1">
+                            <label for="by-card" class="txtRadio">
+                                <img src="assets/img/pay-card.png" alt="">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" id="by-paypal" name="mode-payment" value="2">
+                            <label for="by-paypal" class="txtRadio">
+                                <img src="assets/img/pay-paypal.jpg" alt="">
+                            </label>
+                        </li>
+                    </ul> -->
+                    <ul class="trait1 pdb10 mgb10">
+                        <li class="space-between mgb20">
+                            <span>{{'basket.total_items' | translate }}</span>
+                            <span>{{totals?.totalUnitPrice | number: '1.2-2' }} {{currentBasket?.currency}}</span>
+                        </li>
+                        <li class="space-between mgb20"
+                            *ngIf="totals?.totalUnitPrice - totals?.totalPriceAfterPromotion">
+                            <span>{{'discount_coupon.title_reduction' | translate }}</span>
+                            <span>-{{totals?.totalUnitPrice - totals.totalPriceAfterPromotion | number: '1.2-2'}}
+                                {{currentBasket?.currency}}</span>
+                        </li>
+                        <!-- <li class="space-between mgb20" *ngIf="totals?.totalDiscountAmount">
+                            <span>
+                                {{'discount_coupon.title_reduction_promo_code' |
+                                translate}} ({{currentBasket?.discount}})</span>
+                            <span>{{totals?.totalDiscountAmount | number: '1.2-2'}}
+                                {{currentBasket?.currency}}</span>
+                        </li> -->
+                        <!-- <li class="mgb10 trait1 pdb20">
+                            <span class="linkSecond mgb20">{{'basket.apply_promo_code' | translate }}</span>
+                            <div class="wrapperBox pdb0">
+                                <div class="info inline" style="margin-right: 0px;">
+                                    <input type="text" id="title-product" placeholder="" [(ngModel)]="discount">
+                                    <button class="btn-send" (click)="applyDiscountCoupon()">
+                                        {{'basket.apply' | translate }}
+                                    </button>
+                                </div>
+                                <span style="color: red; display: block; margin-top: 5px;font-size: 13px;width:100%"
+                                    *ngIf="error">
+                                    {{error}}
+                                </span>
+                            </div>
+                        </li> -->
+                        <li class="space-between mgb20">
+                            <span class="bold">{{'basket.sub_total' | translate }}</span>
+                            <span>
+                                {{(totals?.totalPriceAfterPromotion??0) +
+                                (totals?.totalDiscountAmount??0) | number: '1.2-2' }}
+                                {{currentBasket?.currency}}
+                            </span>
+                        </li>
+                        <li class="flex column">
+                            <div class="space-between mgb10">
+                                <span>{{'basket.shipping_cost' | translate }}</span>
+                                <span>
+                                    <span *ngIf="totals?.totalShippingCost">
+                                        {{totals?.totalShippingCost | number: '1.2-2'}}
+                                    </span>
+                                    <span *ngIf="!totals?.totalShippingCost">
+                                        0,00
+                                    </span>
+                                    {{currentBasket?.currency}}
+                                </span>
+                            </div>
+                            <div class="text-size-14 txt-gris">
+                                ({{'basket.to' | translate }} <span class="name-shop show-modal"
+                                    data-modal="modal-delevery">
+                                    {{ totals?.to }}</span>)
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="space-between mgb20">
+                        <span class="bold">{{'basket.total' | translate }} ( {{ this.currentBasket?.items?.length }}
+                            {{'basket.item' | translate }}{{ (this.currentBasket?.items?.length ?? 0) > 1 ? 's':''}})
+                        </span>
+                        <span class="bold">
+                            {{(totals?.totalPriceAfterPromotion??0) +
+                            (totals?.totalDiscountAmount??0) +
+                            (totals?.totalShippingCost??0) | number: '1.2-2' }} {{currentBasket?.currency}}
+                        </span>
+                    </div>
+                    <a class="add-now-btn" (click)="checkout($event)">{{'basket.checkout' | translate }}</a>
+                    <div>
+                        <span class="promo-code-msg mgt20">
+                            {{'basket.add_promo_code_msg' | translate }}
+                        </span>
+                    </div>
+                </div>
+                <!-- commented until next version -->
+                <!-- <div class="wrapperBox">
+                    <div class="info row">
+                        <div class="item flex column">
+                            <input type="checkbox" id="traduction-product" name="traduction-product" value="1">
+                            <label for="traduction-product" class="txtCheck">
+                                {{'basket.order_is_gift' | translate }}
+                            </label>
+                            <span class="small block pdl30 basket-txtcheck-sub">
+                                {{'basket.prices_not_showing_in_delevery_note' | translate }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrapperBox">
+                    <textarea class="basket-textarea" placeholder="Ajouter un message (facultatif)"></textarea>
+                </div> -->
+            </div>
+        </div>
+    </ng-container>
+
+</section>
+
+<ng-template #emptyBasket>
+    <div class="empty-search-result">
+        <div class="empty-search-result-conent">
+            <img class="not-found-img" src="assets/img/basket.svg" alt="">
+            {{"basket.empty_basket_text" | translate}}
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #basketItem let-item="item">
+    <div class="flex mgb30 basket-item">
+        <div class="nd-flex-0">
+            <a class="basket-item-img" (click)="viewProduct(item,$event)">
+                <div class="visuel height-auto">
+                    <img [src]="item?.variant_image || 'assets/img/no-image.png'" alt="" class="radius">
+                </div>
+            </a>
+        </div>
+        <div class="nd-flex-2 pdl20 column">
+            <div class="space-between wrap">
+                <div class="nd-flex-2 basket-item-name">
+                    <a class="basket-item-title mgb10" (click)="viewProduct(item,$event)">
+                        {{ item?.variant_name }}
+                    </a>
+                    <ul>
+                        <li class="pdb5 basket-item-props" *ngFor="let attr of item?.combination | keyvalue">
+                            <span class="small">{{attr.key}}</span>:
+                            <span class="small">{{attr.value}}</span>
+                        </li>
+                        <li *ngIf="item?.customization_content?.length" class="customisation-title">
+                            {{'basket.customisations' | translate}} </li>
+                        <li class="pdb5 basket-item-props" *ngFor="let customization of item?.customization_content">
+                            <span class="small">{{customization.customization}}</span>: {{'basket.quantity' |
+                            translate}}
+                            <span class="small">({{customization.quantity}})</span>
+                        </li>
+                        <li class="modify-link">
+                            <a class="small" (click)="openUpdateBasketPopin(item)">
+                                <i class="fal fa-pencil"></i>
+                                {{ 'basket.modify_basket_item' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nd-flex-1-1 column basket-item-price-wrapper">
+                    <div class="space-between in-row mgb30">
+                        <div class="wrapperBox basket-item-qty">
+                            <mat-form-field style="width:7em;font-size:14px;">
+                                <input required min="0" type="number" matInput [(ngModel)]="item.quantity"
+                                    (change)="getBasketTotalAmount()"
+                                    [readonly]="!!item?.customization_content?.length">
+                            </mat-form-field>
+                            <span style="color: red; display: block; margin-top: 5px;font-size: 13px;"
+                                *ngIf="item.quantity > item.stock">
+                                {{'product.max_stock_msg' | translate}}
+                            </span>
+                        </div>
+                        <span class="basket-item-price">{{ item?.unit_price }} {{ item?.currency }}</span>
+                    </div>
+                    <div class="flex column basket-item-delevery medium">
+                        <label for="nationnality" class="bold regular">
+                            {{ 'delivery.title' | translate }}
+                        </label>
+                        <mat-form-field style="width:100%">
+                            <mat-select (selectionChange)="getBasketTotalAmount()" [(ngModel)]="item.shipping_zone">
+                                <mat-option [value]="zone.id" *ngFor="let zone of item?.shipping_zones_of_customer??[]">
+                                    {{'basket.from' | translate}} {{zone.from_country}} -
+                                    {{'basket.delay' | translate}} {{zone?.delay}}{{'delivery.day' | translate }} -
+                                    <span *ngIf="zone.shipping_amount;else free">
+                                        {{zone.shipping_amount}} {{zone.currency}}
+                                    </span>
+                                    <ng-template #free>
+                                        {{'delivery.free_delivery' | translate }}
+                                    </ng-template>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <span style="color: red; display: block; margin-top: 5px;font-size: 13px;width:100%"
+                            *ngIf="shippingZoneError && !item.shipping_zone">
+                            * {{ 'product.required' | translate }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 5px;">
+                <a class="secondary-link" style="margin-right:0.625rem !important;" (click)="setAsideBasketIem(item)">
+                    <i class="fal fa-heart"></i>
+                    {{ 'basket.put_aside_basket_item' | translate }}</a>
+                <a class="secondary-link" (click)="deleteBasketIem(item)">
+                    <i class="fal fa-trash-alt"></i>
+                    {{ 'basket.delete_basket_item' | translate }}</a>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<update-basket-popin *ngIf="basketPopinOpened" [isOpened]="basketPopinOpened" [basketItem]="editedBasketItem"
+    (close)="basketPopinOpened = false" (updateBasketItem)="updateBasketItem($event)" [errors]="editedBasketItemError">
+</update-basket-popin>

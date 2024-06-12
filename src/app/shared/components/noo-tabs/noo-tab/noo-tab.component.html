@@ -1,0 +1,4 @@
+<div [ngClass]="{'tab-navigation-content': mode =='vertical', 'tab-content' : mode =='horizontal'}"
+    [class.current]="active">
+    <ng-content></ng-content>
+</div>

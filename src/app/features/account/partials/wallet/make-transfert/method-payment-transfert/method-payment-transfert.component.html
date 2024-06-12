@@ -1,0 +1,48 @@
+<div class="box">
+    <div class="box_title">{{"wallet.transfer.title_type_transfer" | translate}}</div>
+    <div class="box_content">
+        <div class="line mgb20 padt30">
+            <input type="radio" id="payment1" name="payment" value="EB" (change)="getTypePayment($event)"
+                [checked]="resetPaymentChoose ? false : null">
+            <label for="payment1" class="txtRadio">
+                <strong>{{"wallet.transfer.account_europeen" | translate}} (IBAN)</strong>
+                <span>{{"wallet.transfer.account_european_description1" | translate}}
+                    <strong>{{"wallet.transfer.wednesday" |
+                        translate}}</strong>{{"wallet.transfer.account_european_description2" | translate}}</span>
+            </label>
+        </div>
+        <div class="line mgb20">
+            <input type="radio" id="payment2" name="payment" value="IB" (change)="getTypePayment($event)"
+                [checked]="resetPaymentChoose ? false : null">
+            <label for="payment2" class="txtRadio">
+                <strong>{{"wallet.transfer.account_international" | translate}}</strong>
+                <span>{{"wallet.transfer.account_international_description1" | translate}}
+                    <strong>{{"wallet.transfer.wednesday" |
+                        translate}}</strong>{{"wallet.transfer.account_international_description2" | translate}}</span>
+            </label>
+        </div>
+        <div class="line mgb20">
+            <input type="radio" id="payment3" name="payment" value="PP" (change)="getTypePayment($event)"
+                [checked]="resetPaymentChoose ? false : null">
+            <label for="payment3" class="txtRadio"><strong>Paypal</strong>
+                <span>{{"wallet.transfer.account_paypal_description1" | translate}}
+                    <strong>{{"wallet.transfer.wednesday" |
+                        translate}}</strong>{{"wallet.transfer.account_paypal_description2" | translate}}</span>
+
+            </label>
+        </div>
+        <div class="line mgb20">
+            <input type="radio" id="payment4" name="payment" value="WU" (change)="getTypePayment($event)"
+                [checked]="resetPaymentChoose ? false : null">
+            <label for="payment4" class="txtRadio"><strong>Western Union</strong>
+                <span>{{"wallet.transfer.account_western_description1" | translate}} <strong>{{"wallet.transfer.days" |
+                        translate}}</strong>{{"wallet.transfer.account_western_description2" | translate}}</span>
+            </label>
+        </div>
+        <div class="error" *ngFor="let err of errorsTransferType">
+            <span>
+                {{err.value}}
+            </span>
+        </div>
+    </div>
+</div>

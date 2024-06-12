@@ -1,0 +1,7 @@
+.tab-navigation-content {
+    display: none;
+
+    &.current {
+        display: block
+    }
+}

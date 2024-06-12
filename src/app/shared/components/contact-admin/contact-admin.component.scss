@@ -1,0 +1,29 @@
+.comment {
+    position: fixed;
+    right: -.8125rem;
+    bottom: 3.75rem;
+    background: #1125ba url(../../../../assets/img/comment.svg) no-repeat 50%;
+    width: 4.375rem;
+    height: 3.5625rem;
+    z-index: 10;
+    -moz-border-radius: .625rem 0 0 .625rem;
+    border-radius: .625rem 0 0 .625rem;
+    -webkit-background-size: 1.875rem 1.875rem;
+    -moz-background-size: 1.875rem;
+    background-size: 1.875rem;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+    cursor: pointer
+}
+
+.comment:hover {
+    right: 0
+}
+
+@media screen and (max-width:48em) {
+    .comment {
+        bottom: 7.5rem
+    }
+}

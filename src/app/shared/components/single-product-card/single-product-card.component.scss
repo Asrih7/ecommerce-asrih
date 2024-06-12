@@ -1,0 +1,289 @@
+.product-container {
+    width: 100%;
+    position: relative;
+
+    .single-product {
+        color: #4e4e4e;
+        display: block;
+        width: 100%;
+        border: 0.0625rem solid #c1c1c1;
+        background: #f2f2f2;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        border-radius: 0.3125rem;
+        overflow: hidden;
+
+        .sp-visuel {
+            height: auto;
+            opacity: 1;
+
+            img {
+                width: 100%;
+                display: block;
+                height: 240px;
+                object-fit: cover;
+            }
+        }
+
+        .sp-content {
+            text-align: left;
+            position: relative;
+            left: 0;
+            padding: 0.625rem;
+            padding-bottom: 0px;
+            background: #f2f2f2;
+            min-height: 180px;
+
+            .sp-product-title {
+                margin-top: 5px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                height: 25px;
+
+                font-family: HelveticaNeue;
+                font-weight: 600;
+                font-size: 1rem;
+                line-height: 1.5625rem;
+                color: #4e4e4e;
+            }
+
+            .sp-wrapper-name-shop {
+                margin-top: 8px;
+                padding-bottom: 0.5rem;
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                -moz-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                line-height: 16px !important;
+
+                .sp-name-shop {
+                    font-family: HelveticaNeue;
+                    font-weight: 400;
+                    font-size: 0.875rem;
+                    color: #777;
+                }
+
+                .sp-flag {
+                    margin-left: 10px;
+
+                    span {
+                        display: inline-block;
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+            .sp-wrapper-price-product {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-align: center;
+                -webkit-align-items: center;
+                -moz-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                flex-wrap: wrap;
+
+                .sp-price {
+                    color: #1125ba;
+                    padding-right: 0.625rem;
+                    font-size: 1.5rem;
+                    font-family: HelveticaNeueBold;
+                    font-weight: 700;
+                    padding-bottom: 0 !important;
+                    white-space: nowrap;
+                    line-height: 28.8px !important;
+
+                    span {
+                        font-size: 1.2rem;
+                    }
+                }
+
+                .sp-discount {
+                    font-size: 0.75rem;
+                    text-decoration: line-through;
+                    padding-right: 10px;
+                    line-height: 12px !important;
+                }
+
+                .sp-taux {
+                    font-family: HelveticaNeueLight;
+                    font-weight: 300;
+                    color: #42a084;
+                    font-size: 0.75rem;
+                    margin-right: 0.625rem;
+                    line-height: 12px !important;
+                }
+
+                .sp-tag {
+                    padding: 0.1875rem 0.625rem 0.3125rem;
+                    font-family: HelveticaNeue;
+                    font-weight: 600;
+                    font-size: 0.625rem;
+                    -moz-border-radius: 3.125rem;
+                    border-radius: 3.125rem;
+                    letter-spacing: 1px;
+                    margin-top: 7px;
+                    line-height: 10px !important;
+                    color: black;
+
+                }
+
+                .sp-delevery {
+                    border: 1px solid #42a084;
+                    background: rgba(66, 160, 132, 0.2);
+                }
+
+                .sp-customizable {
+                    border: 1px solid #1125ba;
+                    background: rgba(17, 37, 186, 0.2);
+                }
+            }
+        }
+
+        &:hover {
+            -webkit-box-shadow: 0 0 0.625rem rgba(17, 37, 186, .5);
+            -moz-box-shadow: 0 0 .625rem rgba(17, 37, 186, .5);
+            box-shadow: 0 0 0.625rem rgba(17, 37, 186, .5);
+        }
+    }
+
+    .sp-favorite {
+        opacity: 0;
+        position: absolute;
+        top: 0.625rem;
+        right: 0.625rem;
+        width: 1.875rem;
+        height: 1.875rem;
+        line-height: 1.875rem;
+        -moz-border-radius: 3.125rem;
+        border-radius: 3.125rem;
+        text-align: center;
+        background: #fff;
+        z-index: 1;
+        -webkit-box-shadow: 0 0 0.3125rem rgba(17, 37, 186, 0.5);
+        -moz-box-shadow: 0 0 0.3125rem rgba(17, 37, 186, 0.5);
+        box-shadow: 0 0 0.3125rem rgba(17, 37, 186, 0.5);
+        -webkit-transition: all 0.8s ease;
+        -o-transition: all 0.8s ease;
+        -moz-transition: all 0.8s ease;
+        transition: all 0.8s ease;
+        cursor: pointer;
+
+        &.sp-add-favorite {
+            i {
+                color: #1125ba;
+                font-size: 1rem;
+                font-weight: 700;
+            }
+
+            &.selected {
+                opacity: 1;
+
+                i {
+                    color: #cc1c1c;
+                }
+            }
+        }
+
+        &.sp-delete-favorite {
+            i {
+                color: #cc1c1c;
+                font-size: 1rem;
+                font-weight: 700;
+            }
+        }
+
+    }
+
+    .sp-wrapper-actions {
+        position: absolute;
+        top: -50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.5s ease;
+        z-index: 1;
+
+        i {
+            font-size: 16px;
+            margin: 0 5px;
+            background: #fff;
+            -webkit-box-shadow: 0 0 0.3125rem rgba(17, 37, 186, 0.5);
+            -moz-box-shadow: 0 0 0.3125rem rgba(17, 37, 186, 0.5);
+            box-shadow: 0 0 0.3125rem rgba(17, 37, 186, 0.5);
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            color: #1125ba;
+            border-radius: 50%;
+            z-index: 1;
+            cursor: pointer;
+            position: relative;
+        }
+    }
+
+    &:hover {
+        .sp-favorite {
+            opacity: 1;
+        }
+
+        .sp-wrapper-actions {
+            top: 30%;
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .product-container {
+        .single-product {
+            .sp-visuel {
+                img {
+                    width: 100%;
+                    display: block;
+                    height: 170px;
+                    object-fit: cover;
+                }
+            }
+
+            .sp-content {
+                .sp-wrapper-price-product {
+                    .sp-price {
+                        font-size: 1.2rem;
+                        line-height: 1.2 !important;
+
+                        span {
+                            font-size: 1rem;
+                        }
+                    }
+
+                    .sp-discount {
+                        font-size: 0.7rem;
+                        line-height: 0.7rem !important;
+                    }
+
+                    .sp-taux {
+                        font-size: 0.7rem;
+                        line-height: 0.7rem !important;
+                    }
+
+                    .sp-delevery {
+                        padding: 0.5rem 0.6rem;
+                        font-size: 0.6rem;
+                        line-height: 0.6rem !important;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,94 @@
+<ng-container *ngIf="mixtProfiles.length > 0 && profileSelected">
+    <div class="fullnameConversation" *ngIf="!profileSelected.sender_profil">
+        <span class="user">{{profileSelected?.recipient_name | firstletter}}</span>
+        <b>{{profileSelected?.recipient_name}}</b>
+    </div>
+    <div class="fullnameConversation" *ngIf="profileSelected.sender_profil">
+        <span class="user">{{profileSelected?.sender_name | firstletter}}</span>
+        <b>{{profileSelected?.sender_name}}</b>
+    </div>
+    <ng-container *ngFor="let profile of mixtProfiles;">
+        <div class="detailChat" *ngIf="!profileSelected.sender_profil"
+            [ngClass]="profile.recipient === profileSelected.recipient ? 'current':''">
+            <div class="topConversations">
+                <ng-container *ngFor='let message of messagesConversations'>
+                    <div class="lineMessage" [ngClass]="message.sender !== profileSelected.recipient ? 'darker':''">
+                        <div class="wrapperMessage">
+                            <ng-container *ngIf="today !== formatDateToday(message.sent_at); else todayMessages">
+                                <span style="width: 100%;"
+                                    [ngClass]="[message.sender !== profileSelected.recipient ? 'time-left' : 'time-right', message.read_at!== null ? 'read' : '']">
+                                    {{date}} {{message.sent_at | date: 'shortTime'}}
+                                </span>
+                            </ng-container>
+                            <ng-template #todayMessages>
+                                <span style="width: 100%;"
+                                    [ngClass]="[message.sender !== profileSelected.recipient ? 'time-left' : 'time-right', message.read_at!== null ? 'read' : '']">
+                                    {{message.sent_at | date: 'shortTime'}}
+                                </span>
+                            </ng-template>
+                            <p *ngIf="message.body!=='null'">{{message.body}}</p>
+                            <ng-container
+                                *ngIf="message.file && (message.file.includes('jpg') || message.file.includes('png') || message.file.includes('gif')); else otherFile">
+                                <img *ngIf="message.file" [src]="message?.file" alt="" (click)="showImage(message.file)"
+                                    style="cursor: pointer;">
+                            </ng-container>
+                            <ng-template #otherFile>
+                                <a [href]="message.file" target="_blank">{{message.file | getFileName}}</a>
+                            </ng-template>
+                            <span [ngClass]="message.read_at!== null ? 'read' : ''">
+                                <i class="fal fa-check-double"></i>
+                            </span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="detailChat" *ngIf="profileSelected.sender_profil"
+            [ngClass]="profile.sender === profileSelected.sender ? 'current':''">
+            <div class="topConversations">
+                <ng-container *ngFor='let message of messagesConversations'>
+                    <div class="lineMessage" [ngClass]="message.sender !== profileSelected.recipient  ? '':'darker'">
+                        <div class="wrapperMessage">
+                            <ng-container *ngIf="today !== formatDateToday(message.sent_at); else todayMessages">
+                                <span style="width: 100%;"
+                                    [ngClass]="[message.sender !== profileSelected.recipient ? 'time-left' : 'time-right', message.read_at!== null ? 'read' : '']">
+                                    {{date}} {{message.sent_at | date: 'shortTime'}}
+                                </span>
+                            </ng-container>
+                            <ng-template #todayMessages>
+                                <span style="width: 100%;"
+                                    [ngClass]="[message.sender !== profileSelected.recipient ? 'time-left' : 'time-right', message.read_at!== null ? 'read' : '']">
+                                    {{message.sent_at | date: 'shortTime'}}
+                                </span>
+                            </ng-template>
+                            <p *ngIf="message.body!=='null'">{{message.body}}</p>
+                            <ng-container
+                                *ngIf="message.file && (message.file.includes('jpg') || message.file.includes('png') || message.file.includes('gif')); else otherFile">
+                                <img *ngIf="message.file" [src]="message?.file" alt="" (click)="showImage(message.file)"
+                                    style="cursor: pointer;">
+                            </ng-container>
+                            <ng-template #otherFile>
+                                <a [href]="message.file" target="_blank">{{message.file | getFileName}}</a>
+                            </ng-template>
+                            <span [ngClass]="message.read_at!== null ? 'read' : ''">
+                                <i class="fal fa-check-double"></i>
+                            </span>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+<div class="detailChat" [ngClass]="profileSelected ? '':'current'">
+</div>
+<app-write-conversation [profileSelected]='profileSelected' (handlerEditConversation)="handlerEditConversation($event)">
+</app-write-conversation>
+<div class="slideImg" *ngIf="slideImg">
+    <div class="slideImg_content">
+        <i class="fal fa-times-circle" (click)="closeSlide()"></i>
+        <div class="slideImg_content--wrapper">
+            <img [src]="slideImg" alt="">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+.map-filter {
+    padding-bottom: 4rem !important;
+    padding-top: 1rem !important;
+
+    .map-filter-btns {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        .map-filter-btn {
+            padding: 0 1.5rem;
+
+            button {
+                background: #f0f0f0 url(../../../../../assets/img/compass.svg) no-repeat 0;
+                height: 2.6875rem;
+                background-size: 2.5625rem;
+                padding-left: 3.4375rem;
+                border-radius: 3.125rem;
+                border: .0625rem solid #f0f0f0;
+                color: #8e8e8e;
+                line-height: 2.5rem;
+                padding-right: .9375rem;
+                font-family: HelveticaNeueLight;
+                font-size: 1rem;
+                transition: all .5s ease;
+                margin-top: 5px;
+
+                &.active {
+                    background-color: #1125ba;
+                    color: #fff;
+                }
+
+                &:hover {
+                    border-color: #f8c43d;
+                    color: #8e8e8e;
+                    background-color: #fff
+                }
+            }
+        }
+    }
+
+    .box-map {
+        width: 100%;
+        margin-top: 40PX;
+
+        .map {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

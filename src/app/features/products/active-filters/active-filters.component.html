@@ -1,0 +1,6 @@
+<div class="active-filters-containers">
+    <span class="filters-chips" *ngFor="let filter of aciveFilters">
+        {{filter.value}}
+        <i class="fal fa-times" (click)="onRemoveFilter(filter.key)"></i>
+    </span>
+</div>

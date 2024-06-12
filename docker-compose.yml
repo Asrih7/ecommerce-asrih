@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+    frontend:
+       container_name: frontend
+       build: .
+       restart: always
+       ports:
+           - "443:443"
+           - "80:80"
+       volumes:
+         - /etc/letsencrypt/live/noodra.rfb.bmw.mybluehost.me/cert.pem:/var/ssl/cert.pem
+         - /etc/letsencrypt/live/noodra.rfb.bmw.mybluehost.me/privkey.pem:/var/ssl/key.pem
+         

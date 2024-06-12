@@ -1,0 +1,53 @@
+<div class="comment show-message" data-message="modal-message-1" (click)="toggleModal()"></div>
+<div class="modal-message" id="modal-message-1"
+    [ngClass]="[showContactModal ? 'show' : '', isLoggedIn ? 'modalUserConnected' : '']">
+    <div class="modal-message-title">
+        <h3>{{"commandes.new_message" | translate}}</h3>
+    </div>
+    <form [formGroup]='form.group' (submit)="sendMessage()">
+        <div class="info">
+            <div *ngIf="!recepientId" class="mgb30" style="color: #1125ba;font-size: 14px;font-weight: 600;">
+                <i class="fal fa-info-circle fa-lg" style="font-weight: 600;"></i>
+                {{this.description?.label}}
+            </div>
+            <div *ngFor="let field of listFields" style="position: relative;">
+                <label [for]="'caf_' + field.key" class="bold" *ngIf="field.key !== 'file' && field.key !== 'body'"
+                    [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                <label [for]="'caf_' + field.key" class="bold" *ngIf="field.key === 'body'"
+                    [ngClass]="field.value.required ? 'required':''"
+                    style="padding-bottom: 10px;">{{"messages.write-message" | translate}}</label>
+                <input type="text" [id]="'caf_' + field.key" [formControlName]="field.key"
+                    *ngIf="field.key !== 'file' && field.key !== 'body'" />
+                <textarea type="text" rows="2" [id]="'caf_' + field.key" [formControlName]="field.key"
+                    *ngIf="field.key === 'body'" (focus)="writeInTextarea = true" (blur)="writeInTextarea = false"
+                    (keyup)="detectTextarea($event)"></textarea>
+                <div class="error left" *ngFor="let err of errors">
+                    <span *ngIf="err.key == field.key">
+                        {{err.value}}
+                    </span>
+                </div>
+            </div>
+            <div class="messageAdminWrapper">
+                <button type="button" title="Envoyer" class="send" type="submit"
+                    (window:keypress)="submitEvent($event)"><i class="fal fa-paper-plane"></i></button>
+                <div class="addFile">
+                    <input type="file" id="addFile" formControlName="file"
+                        accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf" (change)="editPicture($event)"
+                        (click)="clearCache($event)" />
+                    <label for="addFile"><i class="fal fa-file-alt"></i></label>
+                </div>
+            </div>
+            <div class="imgConversation" *ngIf='fileUploaded && typeFileUploaded'>
+                <i class="fal fa-trash-alt" (click)="deleteImage()"></i>
+                <img [src]="fileUploaded">
+            </div>
+            <div class="imgConversation withFile" *ngIf='fileUploaded && !typeFileUploaded'>
+                <span>
+                    <i class="fal fa-trash-alt" (click)="deleteImage()"></i>
+                    {{fileUploaded}}
+                </span>
+            </div>
+        </div>
+    </form>
+    <div class="close" (click)="toggleModal()"><i class="fal fa-times-circle"></i></div>
+</div>

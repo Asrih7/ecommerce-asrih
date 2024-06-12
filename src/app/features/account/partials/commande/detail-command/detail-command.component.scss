@@ -1,0 +1,317 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.main-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.main-table th,
+.main-table td {
+    padding: 8px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.tabs-command-detail {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tabs-command-detail li {
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tabs-command-detail li:hover {
+    background-color: #f0f0f0;
+}
+
+.linkOrder {
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px;
+}
+
+@media (max-width: 768px) {
+    .main-table th,
+    .main-table td {
+        font-size: 12px;
+    }
+
+    .tabs-command-detail li {
+        flex-basis: 50%;
+    }
+    
+    .linkOrder {
+        cursor: pointer;
+        text-decoration: underline;
+        display: block;
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.icon-update {
+  height: 40px;
+  display: inline-flex; 
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #fff;
+  font-size: 17px;
+  margin-left: -1rem;
+  padding-right: 10px; 
+}
+
+
+.icon-update i, .icon-rating i {
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-update i::before, .icon-rating i::before {
+  margin-right: 10px; 
+}
+@media screen and (max-width: 640px) {
+  .icon-update i span {
+     display: none;
+   }
+   .icon-update  {
+    margin-left: 0rem;  
+
+  }
+ }
+ @media (max-width: 768px) {
+  .icon-update i span {
+    display: none;
+  }
+  .icon-update  {
+    margin-left: 0rem;  
+
+  }
+}
+@media (max-width: 910px) {
+  .icon-update i span {
+    display: none;
+  }
+  .icon-update  {
+    margin-left: 0rem;  
+
+  }
+}
+@media (max-width: 1150px) {
+  .icon-update {
+    font-size: 13px;;
+  }
+}
+
+.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+  }
+  
+::ng-deep .modal2 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 31.25rem;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 0 3.125rem #777;
+    z-index: 1000;
+    border-radius: .9375rem;
+    transition: all .5s ease;
+}
+
+@media screen and (max-width: 48em) {
+    .modal2 {
+        max-width: 100%;
+        width: 90%;
+    }
+}
+
+.modal2.show {
+    top: 50%;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.modal2 .titleModal {
+    width: 100%;
+    background: rgba(17, 37, 186, .8);
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #fff;
+    padding: 1rem;
+    margin-bottom: 1.875rem;
+    border-radius: .9375rem .9375rem 0 0;
+}
+
+.modal2 .field {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.modal2 .status-container {
+    display: flex;
+    justify-content: center;
+    width: 91%;
+    margin-left: 20px;
+}
+
+.modal2 .mat-select {
+    width: 80%; 
+    margin: 0 auto;
+}
+
+
+::ng-deep .mat-mdc-form-field-infix {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+::ng-deep .mat-mdc-select-arrow {
+    bottom: 6px;
+}
+.sendMessaage {
+    position: relative
+}
+
+.sendMessaage textarea {
+    border: .0625rem solid #c1c1c1;
+    padding: 0 .625rem;
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    color: #4e4e4e;
+    font-size: .875rem;
+    width: 80%;
+    background: #fff;
+    resize: none;
+    display: flex;
+    justify-content: center;
+    width: 91%;
+    margin-left: 20px;
+}
+
+@media screen and (max-width:48em) {
+    .sendMessaage textarea {
+        width: 97%
+    }
+}
+
+@media screen and (max-width:640px) {
+    .sendMessaage textarea {
+        width: 95%
+    }
+}
+
+::ng-deep  .subTitleCommande {
+    display: flex;
+    justify-content: center;
+    width: 91%;
+    margin-left: 20px;
+  }
+
+  .rating-box {
+    position: relative;
+    background: #fff;
+    padding: 25px 50px 35px;
+    display: flex;
+    justify-content: center;
+    width: 91%;
+    margin-left: 20px;
+  }
+  
+  .rating-box header {
+    font-size: 22px;
+    color: #dadada;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .rating-box .stars {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+  }
+  
+  .stars i {
+    color: #e6e6e6; 
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+
+  .stars i.active::before {
+    color: gold; 
+    font-size: 35px !important;
+    content: "\2605"; 
+  }
+  
+  .info.row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .info.row label {
+    margin-bottom: 7px;
+  }
+  
+  .status-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .helpInfo {
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: #777;
+  }
+  
+  .linkMore {
+    margin: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .info.row {
+      flex-direction: column;
+    }
+  }
+.modal2 .info input[type="text"] {
+  border: none;
+  border-bottom: 0.0625rem solid #c1c1c1;
+  max-width: 26.75rem;
+  width: 100%;
+  margin-left:10px
+}

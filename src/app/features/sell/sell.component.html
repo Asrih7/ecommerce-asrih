@@ -1,0 +1,68 @@
+<section class="section banner">
+    <div class="banner-content">
+        <h1>{{'open_shop.title' | translate}}</h1>
+        <a class="linkMore blue" [routerLink]="['/shop/create-shop']">{{'open_shop.bouton' | translate}}</a>
+    </div>
+    <p class="down" (click)="goSectionSellers()">
+        <i class="fal fa-angle-double-down"></i>
+    </p>
+</section>
+<section class="section steps-sallers" id="sellers">
+    <div class="container">
+        <h2 class="steps-sallers-title">{{'open_shop.title2' | translate}}</h2>
+        <ul>
+            <li>
+                <div class="picture">
+                    <img [src]="'assets/img/vendre/store.png'" alt="">
+                </div>
+                <div class="content">
+                    <h3 class="title">
+                        {{'open_shop.title_step_1' | translate}}
+                    </h3>
+                    <p class="desc">
+                        {{'open_shop.desc_step_1' | translate}}
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="picture">
+                    <img [src]="'assets/img/vendre/online-shopping1.png'" alt="">
+                </div>
+                <div class="content">
+                    <h3 class="title">
+                        {{'open_shop.title_step_2' | translate}}
+                    </h3>
+                    <p class="desc">
+                        {{'open_shop.desc_step_2' | translate}}
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="picture">
+                    <img [src]="'assets/img/vendre/express-delivery1.png'" alt="">
+                </div>
+                <div class="content">
+                    <h3 class="title">
+                        {{'open_shop.title_step_3' | translate}}
+                    </h3>
+                    <p class="desc">
+                        {{'open_shop.desc_step_3' | translate}}
+                    </p>
+                </div>
+            </li>
+            <li>
+                <div class="picture">
+                    <img [src]="'assets/img/vendre/wallet.png'" alt="">
+                </div>
+                <div class="content">
+                    <h3 class="title">
+                        {{'open_shop.title_step_4' | translate}}
+                    </h3>
+                    <p class="desc">
+                        {{'open_shop.desc_step_4' | translate}}
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>

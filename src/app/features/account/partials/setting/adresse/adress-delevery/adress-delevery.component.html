@@ -1,0 +1,29 @@
+<div class="box_title space-between">
+    <span> {{"information_account.title_address_delivery" | translate}} </span>
+    <button type="button" class="linkSecond" (click)="deleteAddresse()" *ngIf="!hideAddress">
+        {{"button.delete" |
+        translate}}
+    </button>
+</div>
+
+<div *ngIf="hideAddress; else adressBlock;" class="flex column" style="padding: 20px;">
+    <p class="mgb20"> {{"information_account.empty_address_delivery" | translate}} </p>
+    <button type="button" class="linkMore blue" (click)="showAddress()">
+        {{"button.add_address" | translate}}
+    </button>
+</div>
+
+<ng-template #adressBlock>
+    <div *ngIf="addressesFields">
+        <app-address-block [addressfileds]="addressesFields" [countryList]="countriesList" [errors]="errors"
+            [form]="form">
+        </app-address-block>
+        <div class="flex space-between align-items mgt10 mgb10" style="margin-left: 20px;">
+            <button type="button" class="linkMore" [ngClass]="showBtnAdd ? 'yellow':'blue'" (click)="editAdress()"
+                style="width: 150px;">
+                <ng-container *ngIf="!showBtnAdd">{{"button.edit" | translate}}</ng-container>
+                <ng-container *ngIf="showBtnAdd">{{"button.add" | translate}}</ng-container>
+            </button>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,115 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer_wrapper">
+      <div class="footer_item">
+        <h3 class="footer_item--title">{{ "footer.sell" | translate }}</h3>
+        <ul>
+          <li>
+            <a [routerLink]="['sell']">{{
+              "header.sell_on_noodra" | translate
+              }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['faq', 'seller']">{{
+              "footer.seller_council" | translate
+              }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['faq', 'seller']" [fragment]="'affiliate'">{{
+              "footer.affiliates" | translate
+              }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['faq', 'seller']" [fragment]="'ambassador'">{{
+              "footer.ambassadors" | translate
+              }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer_item">
+        <h3 class="footer_item--title">{{ "footer.buy" | translate }}</h3>
+        <ul>
+          <li>
+            <a [routerLink]="['faq', 'buyer']" [fragment]="'delivery'">{{
+              "footer.delivery" | translate
+              }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['faq', 'buyer']" [fragment]="'payment'">{{
+              "footer.payment" | translate
+              }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['faq', 'buyer']" [fragment]="'return'">{{
+              "footer.return" | translate
+              }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer_item">
+        <h3 class="footer_item--title">{{ "footer.aboute" | translate }}</h3>
+        <ul>
+          <li>
+            <a [routerLink]="['history']">{{
+              "footer.who_are_we" | translate
+              }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['legal', 'terms-of-use']">{{
+              "footer.legal_notice" | translate
+              }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer_item">
+        <h3 class="footer_item--title">
+          {{ "footer.assistance" | translate }}
+        </h3>
+        <ul>
+          <li>
+            <a [routerLink]="['faq', 'buyer']">{{ "footer.faqs" | translate }}</a>
+          </li>
+          <li><a (click)="showModalContact()">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="reseaux">
+      <a href="https://instagram.com/noodraofficial" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://instagram.com/noodraofficial" target="_blank">
+        <i class="fab fa-facebook-square"></i>
+      </a>
+      <a href="https://instagram.com/noodraofficial" target="_blank">
+        <i class="fab fa-pinterest"></i>
+      </a>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <div class="container">
+      <div class="footer_wrapper">
+        <div id="setting_local" class="show-modal" data-modal="modal-setting" (click)="showModal()">
+          <ul class="country">
+            <li> <img [src]="'assets/img/' + (flag ? flag : 'fr') + '.svg'" alt="language flag" /> </li>
+            <li>{{ country || "France" }}</li>
+            <li>{{ language || "Français" }}</li>
+            <li>{{ currency || "€ Euro" }}</li>
+          </ul>
+        </div>
+        <ul class="copyright">
+          <li>© {{ year }} Noodra, Inc.</li>
+          <li>
+            <a [routerLink]="['legal', 'terms-of-use']">{{ "footer.terms_of_service" | translate }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['legal', 'privacy']">{{ "footer.privacy" | translate }}</a>
+          </li>
+          <li>
+            <a [routerLink]="['legal','cookies']">Cookies</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<div> <app-consent></app-consent> </div>

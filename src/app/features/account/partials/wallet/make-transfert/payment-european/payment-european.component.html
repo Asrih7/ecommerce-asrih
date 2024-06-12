@@ -1,0 +1,57 @@
+<div class="box" id="account_bank">
+    <div class="box_title">{{"wallet.transfer.account_europeen" | translate}}</div>
+    <div class="flex align-items mgt30 mgb30 wrap" *ngIf="europeanAccountCurrent.length > 0">
+        <div *ngFor="let account of europeanAccountCurrent" class="accountSugger mgl20 mgb10 flex column"
+            (click)="accountSelected(account)" [ngClass]="account.id === id ? 'selected':''">
+            <div class="lineInfo">
+                <div class="flex column item">
+                    <span class="bold font-size-12">{{accountOwner}}</span>
+                    <span class="item">{{account.account_owner}}</span>
+                </div>
+                <div class="flex column item">
+                    <span class="bold font-size-12">{{bankName}}</span>
+                    <span class="item">{{account.bank_name}}</span>
+                </div>
+            </div>
+            <div class="lineInfo">
+                <div class="flex column item">
+                    <span class="bold font-size-12">{{iban}}</span>
+                    <span class="item">{{account.iban}}</span>
+                </div>
+            </div>
+        </div>
+        <i class="fal fa-plus-circle addNewAccount" (click)='newAccount()' [attr.disabled]='hideAddNewAccount'></i>
+    </div>
+    <form class="box_content" [formGroup]="submitGroup"
+        [attr.style]="europeanAccountCurrent.length > 0 ? 'padding-top:0px':''"
+        *ngIf="hideAddNewAccount || europeanAccountCurrent.length === 0">
+        <p class="icon icon-warning warning">{{"wallet.transfer.msg_account_bank" | translate}}</p>
+        <div class="with2fields2">
+            <div class="info row mgb40" *ngFor="let field of fieldsEuropeanbankAccount">
+                <div style="width: 100%;">
+                    <label [for]="field.key" class="bold"
+                        [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                    <input type="text" [id]="field.key" [formControlName]="field.key"
+                        *ngIf="field.key !== 'bank_country'" />
+                    <mat-form-field class="" appearance="fill" *ngIf="field.key == 'bank_country'">
+                        <input type="text" id="bank_country" formControlName="bank_country" matInput
+                            [matAutocomplete]="autoCountry" (input)="searchCountry($event)">
+                        <mat-autocomplete #autoCountry="matAutocomplete" [displayWith]="displayCountFn.bind(this)">
+                            <mat-option *ngFor="let option of searchedCountry " [value]="option.value">
+                                {{option.display_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+                <span class="helpInfo">{{field.value.help_text}}</span>
+                <ng-container *ngFor="let err of errorsEuropeanaccount">
+                    <div class="error" *ngIf="field.key == err.key">
+                        <span>
+                            {{err.value}}
+                        </span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>

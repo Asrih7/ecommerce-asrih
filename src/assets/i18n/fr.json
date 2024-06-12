@@ -1,0 +1,534 @@
+{
+  "home": {
+    "coming_soon": {
+      "coming_soon_text": "COMING SOON",
+      "welome_text": "Bienvenue sur Noodra ! Nous sommes ravis de vous accueillir sur notre plateforme en plein essor.  Actuellement en phase de développement, notre équipe travaille avec dévouement pour créer une  expérience unique et exceptionnelle. Pendant cette période, certaines fonctionnalités peuvent être  en cours d'ajustement, mais soyez assurés que nous mettons tout en œuvre pour vous offrir un site  fiable, convivial et rempli d'opportunités."
+    },
+    "cookie": {
+      "main_text": {
+        "before": "Nous utilisons nos cookies et cookies tiers pour comprendre l'utilisation de notre site internet et pouvoir l'améliorer, adapter son contenu à vos préférences et personnaliser nos publicités et nos publications sur les réseaux sociaux. Pour plus d'informations, consultez notre Politique relative aux cookies sur notre",
+        "terms": "Conditions d'utilisation et",
+        "privacy_policy": "politique de confidentialité",
+        "after": "avec des informations importantes concernant l'utilisation de vos données, la manière dont nous les partageons avec nos partenaires et les options qui s'offrent à vous."
+      },
+      "button_1": "Continuer sans accepter",
+      "button_2": "Accepter tous les cookies",
+      "button_3": "Mes choix personnalisés",
+      "choices": {
+        "btn_save": "Sauvegarder",
+        "btn_cancel": "Retour"
+      }
+    },
+    "seller": {
+      "title": "Comment devenir vendeur et proposer mes produits sur Noodra ?",
+      "first_step": "Créer une ou plusieurs boutiques gratuitement",
+      "second_step": "Alimenter sa/ses boutique(s) de produit(s)",
+      "third_step": "Mettre en ligne sa boutique",
+      "decouvrir": "Découvrir mes avantages en tant que vendeur sur Noodra.",
+      "desc_1": "C'est aussi simple que ça de devenir vendeur chez Noodra.",
+      "desc_2": "Ainsi, vous pourrez profiter d'une clientèle internationale pour vendre vos produits."
+    },
+    "filter": {
+      "region": "Sélectionnez par région",
+      "country": "Sélectionnez par pays"
+    },
+    "about": {
+      "title": "Noodra, c'est quoi ?",
+      "histoire": "Une histoire, ça vous tente ?",
+      "tourdumonde": "Offrez vous un tour du Monde",
+      "tourdumondedesc": "Plus besoin de faire le tour du monde pour s’offrir les spécialités de chaque pays. Avec Noodra, le monde est à portée de main.",
+      "meaning": "Qu'est-ce que signifie noodra?",
+      "meaning_desc": "Le mot Noodra signifie « rareté ». Chez Noodra, chacun des produits que vous trouverez sont rares et uniques.",
+      "culture": "mettre en avant les cultures locales",
+      "culture_desc": "Nos produits ? Ce sont les vôtres. Ils sont conçus par des créateurs indépendants, venant des 4 coins du monde. Chaque produit est unique. Chaque produit a une histoire.",
+      "question": "Une question ? On vous répond.",
+      "question_button": "Découvrez notre FAQ"
+    },
+    "subscription": {
+      "title": "SUIVEZ-NOUS SUR INSTAGRAM",
+      "desc": "Pour découvrir l'actualité de Noodra ainsi que nos dernières nouveautés en exclusivité.",
+      "subscribe": "Je m'abonne"
+    },
+    "map": {
+      "nbr_shops": "Nbr magasins",
+      "nbr_products": "Nbr produits"
+    }
+  },
+  "product": {
+    "title": "Ajouter une nouvelle fiche produit",
+    "btn_add_product": "Nouvelle fiche produit",
+    "detail": "Détails de la fiche produit",
+    "personalization": "Personnalisation",
+    "stock": "Stock et prix",
+    "save": "Enregistrer",
+    "add_product": "Votre produit a été créé avec succès",
+    "info_shipping": "Vous n’avez aucun profil de livraison",
+    "title_image": "Photos",
+    "description_image": "Ajoutez-en le plus possible, afin que les acheteurs puissent bien voir tous les détails.",
+    "info_image": "Téléchargez au moins une photo.",
+    "yes": "Oui",
+    "no": "Non",
+    "error_number_integer": "devrait être d'au moins 1.",
+    "error_number_decimal": "devrait être supérieur à 0.",
+    "required_units": "les unités sont requises.",
+    "units": "Unités",
+    "required": "Ce champs est obligatoire",
+    "product_deleted": "Votre produit a été supprimer avec succès",
+    "edit_product": "Votre produit a été modifié avec succès",
+    "delete_confirmation_content": "Êtes-vous sûr de vouloir supprimer ce produit ?",
+    "return_to_products_serach": "Retour aux résultats de recherche",
+    "out_of_stock_msg": "La combinaison choisie est actuellement indisponible",
+    "add_to_cart": "Ajouter Maintenant",
+    "Details": "Détails",
+    "select_option": "Sélectionner une option",
+    "quantity": "Quantité",
+    "max_stock_msg": "Vous avez dépassé le stock disponible",
+    "new": "LES NOUVEAUTÉS",
+    "add_customization": "Ajouter votre personnalisation",
+    "optional": "Facultative",
+    "mandatory": "Obligatoire",
+    "customizable": "Personnalisable"
+  },
+  "state": {
+    "error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard."
+  },
+  "login": {
+    "title": "Connexion",
+    "email": {
+      "label": "Adresse email",
+      "placeholder": "Email"
+    },
+    "code": {
+      "sent_code": "Nous avons envoyé un code à",
+      "in": "dans ",
+      "resend_code": "Renvoyer le code"
+    },
+    "first_name": {
+      "label": "Prénom",
+      "placeholder": "Prénom"
+    },
+    "last_name": {
+      "label": "Nom",
+      "placeholder": "Nom"
+    },
+    "password": {
+      "label": "Mot de passe",
+      "placeholder": "Mot de passe"
+    },
+    "forgot": "Mot de passe oublié ?",
+    "stay": "Rester connecté",
+    "btn_login": "Se connecter",
+    "register": {
+      "text": "Vous n'avez pas encore de compte?",
+      "btn": "S'inscrire"
+    },
+    "not_connected": "Vous n'arrivez pas à vous connecter?",
+    "or": "ou",
+    "google": "Continue avec google",
+    "facebook": "Continue avec facebook",
+    "cgu": {
+      "text": "En cliquant sur Se connecter ou Continuer avec Google, Facebook, vous acceptez les",
+      "href": "Conditions d'utilisation"
+    }
+  },
+  "set_password": {
+    "title": "Mot de passe"
+  },
+  "set_email": {
+    "title": "Email"
+  },
+  "profile": {
+    "about-you": "A propos de vous"
+  },
+  "header": {
+    "big_text_header": "MARKETPLACE DE L'ARTISANAT TRADITIONNEL ET MODERNE DU MONDE",
+    "profil": "Votre profil",
+    "setting_account": "Paramètres du compte",
+    "commande_avis": "Commandes et avis",
+    "wallet": "Portefeuille",
+    "messages": "Messages",
+    "logout": "Se déconnecter",
+    "login": "Se connecter",
+    "sell_on_noodra": "Vendre sur Noodra",
+    "placeholder-search": "Effectuez votre recherche ici.",
+    "store_manager": "Gestionnaire de boutique"
+  },
+  "footer": {
+    "sell": "Vendre",
+    "seller_council": "Conseil Vendeur",
+    "affiliates": "Affiliers",
+    "ambassadors": "Ambassadeurs",
+    "buy": "Acheter",
+    "delivery": "Livraison",
+    "payment": "Paiement",
+    "return": "Retour & remboursement",
+    "aboute": "À propos",
+    "who_are_we": "Qui sommes-nous ?",
+    "legal_notice": "Mentions légales",
+    "assistance": "Aide",
+    "faqs": "FAQ",
+    "terms_of_service": "Conditions Générales d'Utilisation",
+    "privacy": "Confidentialité"
+  },
+  "message_success": {
+    "password_reset": "Réinitialisation du mot de passe demandée avec succès. Consultez votre courrier électronique pour obtenir des instructions supplémentaires."
+  },
+  "button": {
+    "send": "Envoyer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "delete": "Supprimer",
+    "add_address": "Ajouter une nouvelle adresse",
+    "validate": "Valider",
+    "cancel": "Annuler",
+    "Contacter": "Contacter",
+    "my_store": "Ma boutique",
+    "add_picture": "Ajouter une photo",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "forget_password": {
+    "title": "Modifier votre mot de passe",
+    "description": "Indiquez votre adresse email, nous vous enverrons un lien pour le réinitialiser."
+  },
+  "information_account": {
+    "account": "Compte",
+    "address": "Adresses",
+    "one-address": "Adresse",
+    "new-address": "Nouvelle Adresse",
+    "title_address_billing": "Adresse de facturation",
+    "empty_address_billing": "Vous n'avez pas d'adresse de facturation",
+    "title_address_delivery": "Adresse de livraison",
+    "empty_address_delivery": "Vous n'avez pas d'adresse de livraison",
+    "title_others_address": "Autres adresses",
+    "empty_others_address": "Vous n'avez pas d'autres adresses",
+    "phone": "Tél",
+    "address_billing_is_address_delivery": "L’adresse de facturation est la même que l’adresse de livraison"
+  },
+  "confirmation_mail": {
+    "link": "renvoyer l'e-mail de confirmation"
+  },
+  "information_message": {
+    "message_modified": "a été modifié avec succès",
+    "message_added": "a été ajouté avec succès",
+    "message_deleted": "a été supprimé avec succès"
+  },
+  "success_confirmation": {
+    "send_success": "E-mail de confirmation envoyé avec succès"
+  },
+  "error_about_birthday": {
+    "birthday_error": "Votre date de naissance doit être inférieure à la date d'aujourd'hui"
+  },
+  "regional_settings": {
+    "title": "Paramètres régionaux",
+    "description": "Paramétrez votre pays, votre langue, et la devise que vous utilisez."
+  },
+  "wallet": {
+    "balance": "Balance",
+    "transaction": {
+      "title": "Transaction",
+      "price": "Montant",
+      "state": "Status"
+    },
+    "transfer": {
+      "title": "Transfert",
+      "btn_event_transfer": "Transfer account",
+      "btn_account_transfer": "Liste de transfers",
+      "btn_make_transfer": "Effectuer un transfert",
+      "title_transfer_amount": "Combien souhaitez-vous transférer?",
+      "title_type_transfer": "Quelle méthode de paiement souhaitez-vous utiliser?",
+      "title_password": "Sécurité",
+      "btn_send_transfer": "Envoyer la demande de virement",
+      "account_europeen": "Compte bancaire européen",
+      "account_european_description1": "Les virements bancaires sont effectués",
+      "account_european_description2": " Ils sont gratuits.",
+      "wednesday": " les mercredis. ",
+      "account_international": "Compte bancaire international",
+      "account_international_description1": "Les virements bancaires sont effectués",
+      "account_international_description2": "et coûtent 4% du montant.",
+      "account_paypal_description1": "Les virements Paypal sont effectués",
+      "account_paypal_description2": "et coûtent 2% du montant + 2,75 €.",
+      "account_western_description1": "Les virements Western Union peuvent prendre",
+      "account_western_description2": "suivants la date de demande et coutent 15 € (hors frais Western Union).",
+      "days": " jusqu'à 10 jours ",
+      "msg_account_bank": "Un virement bancaire comportant de mauvaises informations est automatiquement refusé par la banque ce qui engendre des complications et un délai supplémentaire.",
+      "msg_account_wu": "Les informations renseignées doivent impérativement correspondrent aux informations présentes sur la pièce d'identité qui servira à retirer les fonds.",
+      "msg_error_transfer": "Votre demande de virement n'a pas été enregistrée. Vérifiez vos informations de virement et essayez à nouveau!",
+      "msg_success_transfer": "Votre demande de virement à été enregistrée avec succès. Nous allez recevoir votre paiement sous peu.",
+      "msg_empty_paypal": "Vous n'avez aucun compte Paypal.",
+      "msg_empty_westernunion": "Vous n'avez aucun compte Western Union.",
+      "msg_empty_europeen": "Vous n'avez aucun compte bancaire Européen.",
+      "msg_empty_international": "Vous n'avez aucun compte bancaire International.",
+      "msg_empty_transaction": "Vous n'avez aucune transaction",
+      "msg_empty_transfer": "Vous n'avez aucun transfert"
+    },
+    "credit": {
+      "title": "Créditer mon portefeuille",
+      "title_amount_credit": "Crédit portefeuille",
+      "transaction_success": "Votre portefeuille a été crédité avec succès. Votre solde sera bientôt mis à jour.",
+      "transaction_deleted": "Votre portefeuille a été supprimé avec succès",
+      "transaction_error": "Votre transaction a rencontré des erreurs, veuillez réessayer plus tard.",
+      "transaction_cancel": "Votre transaction a été annulée.",
+      "confirm_amount": "Confirmer le montant",
+      "step_1_title": "Définir le montant du dépôt",
+      "step_2_title": "Confirmer le mode de paiement",
+      "btn_back": "Retourner",
+      "title_payment": "Paiement",
+      "cardNumber": "Numéro de carte",
+      "expirationDate": "Date d'expiration",
+      "cvc": "CVC",
+      "pay": "Payer",
+      "errorCard": "Sélection une carte pour passer au paiement",
+      "delete_confirmation_content": "Êtes-vous sûr de vouloir supprimer cette carte ?",
+      "successDeltedCard": "Votre carte a été supprimée avec succès"
+    }
+  },
+  "messages": {
+    "title": "Conversations",
+    "search": "Rechercher dans conversations",
+    "write-message": "Taper votre message",
+    "select-conversation": "Sélectionner un contact pour voir la conversation",
+    "success": "Ce message à été envoyé avec succés"
+  },
+  "month_of_the_year": {
+    "mois01": "Janvier",
+    "mois02": "Février",
+    "mois03": "Mars",
+    "mois04": "Avril",
+    "mois05": "Mai",
+    "mois06": "Juin",
+    "mois07": "Juillet",
+    "mois08": "Août",
+    "mois09": "Septembre",
+    "mois10": "Octobre",
+    "mois11": "Novembre",
+    "mois12": "Décembre"
+  },
+  "commandes": {
+    "title": "Commandes",
+    "commandes_acheteur": "Commandes acheteur",
+    "commandes_vendeur": "Commandes vendeur",
+    "new_message": "Nouveau message",
+    "Avis_vendeur": "Avis vendeur",
+    "Avis_client": "Avis client",
+    "Avis_commande": "Avis sur la commande",
+    "vendeur": "Le vendeur",
+    "achteur": "L'achteur",
+    "addline": "Si vous voulez demander un remboursement ou un échange ajouter une ligne",
+    "TTC": "Prix TTC",
+    "produit": "Produit",
+    "list_command": "Liste des articles commandés",
+    "Information": "Information",
+    "Personnalisation": "Personnalisation",
+    "Prix_livraison": "Prix de livraison ",
+    "Facture": "Facture",
+    "etiquette": "étiquette d'expédition",
+    "Details_Command": "Details de la commande client",
+    "Details_Command_vendeur": "Details de la commande Vendeur",
+    "Edit_Command": "Modifier la commande",
+    "ACTIONS": "ACTIONS",
+    "quantity": "quantité",
+    "empty_buyer": "Vous n'avez aucune commande acheteur",
+    "empty_seller": "Vous n'avez aucune commande vendeur",
+    "update_status_order":"Impossible de modifier le statut de cette commande",
+    "review_order":"Impossible d'evaluer cette commande",
+    "confirmation_status": "a été modifié avec succès",
+    "confirmation_evaluation":"a été évalué avec succès",
+    "status_completed":"Vous ne pouvez plus modifier le status de cette commande",
+    "status_not_completed":"Aucune action n'est requise pour le moment",
+    "rate_buyer_completed":"Vous ne pouvez plus modifier le statuts de cette commande",
+    "rate_buyer_not_completed":"Veuillez attendre l'expédition de votre commande pour l'évaluer",
+    "rate_seller_completed":"Vous ne pouvez plus modifier le statuts de cette commande",
+    "rate_seller_not_completed":"Veuillez attendre l'évaluation de l'acheteur pour ajouter votre commentaire",
+    "label_edit":"Modifier",
+    "label_rating":"Evaluer",
+    "information_order": {
+      "command_N": "Commande N°",
+      "Vente": "Vente",
+      "Date": "Date",
+      "price": "Montant",
+      "price_total": "Montant Total",
+      "price_seller": "Montant vendeur"
+    }
+  },
+  "litiges": {
+    "title": "Litiges",
+    "demande_remboursement": "Si vous voulez ajouter un nouveau litige",
+    "new_litige": "Créer un nouveau litige",
+    "confirmation_litige": "Nouveau litige a été créé avec succès",
+    "empty": "Vous n'avez aucun litige"
+  },
+  "confirmation_admin": {
+    "send_message_admin": "Votre message a été envoyé avec succés."
+  },
+  "boutique": {
+    "add_new_shop": "Ajouter une nouvelle boutique",
+    "boutique_title": "Préférences régionales de la boutique",
+    "charte_vendeurs": "Charte vendeur",
+    "profile": "Profil",
+    "address": "Adresse",
+    "save": "Enregistrer et continuer",
+    "continuer": "Continuer",
+    "boutique": "Boutique",
+    "setting_store": "Paramètre de la boutique",
+    "devise": "Devise de la boutique",
+    "qst_location": "Où se trouve votre boutique ?",
+    "previous": "précédent",
+    "title1": "La tarification et les services Noodra",
+    "paragraphe1": "Créer sa boutique sur Noodra et approvisionner sa boutique de produit est gratuit. Seul une commision est appliquée sur les ventes réalisées. La commission est de 14% pour les non-affiliés et de 9% pour les affiliés. Contactez Noodra après la création de votre boutique pour connaître les conditions d'affiliation et devenir affilié",
+    "title2": "Création inspirée par les pays du monde",
+    "paragraphe2": "Tout produit remplissant les conditions suivantes est considéré une création inspirée par un pays en particulier:",
+    "personal_informations": "Informations personnelles",
+    "address_shop": "Adresse de la boutique",
+    "ambassador": "Ambassadeur",
+    "error_500": "Quelque chose s'est mal passé. Merci de réessayer ultérieurement",
+    "guideline": "<div><h2>Tarifs et services Noodra</h2> <p>Créer sa boutique sur Noodra et approvisionner sa boutique de produit est gratuit. Seul une commision est appliquée sur les ventes réalisées. La commission est de 14% pour les non-affiliés et de 9% pour les affiliés. Contactez Noodra après la création de votre boutique pour connaître les conditions d'affiliation et devenir affilié</p></div><div><h3>Création inspirées par les pays du monde</h3><p>Tout produit remplissant les conditions suivantes est considéré une création inspirée par un pays en particulier:</p><ol><li>Les créations composées de matières artisanales du monde d'origine ou d'usage.</li><li>Avec un message ou une signification claires et liés à un pays particulier ou à sa culture.</li><li>Toutes créations que l’équipe Noodra accepte de qualifier de création d’inspiration d'unpays.</li></ol></div><hr><div><h2>Règlement sur le traitement des commandes</h2><h3>1- Avant la commande</h3><ol><li>S’assurer que les photos reflètent bien les couleurs du produit.</li><li>S’assurer que les dimensions sont mentionnées dans la description ou dans les attributs.</li><li>S’assurer que les délais de livraison sont bien le nombre de jours maximum entre la date de création de la commande et la réception par l’acheteur, y compris le délai de fabrication et de préparation.</li><li>Vérifier régulièrement les variations et stocks des produits mis en ligne pour éviter les annulations de commandes.</li><li>L’adresse de la boutique est considérée comme une adresse de retour produit par défaut.</li></ol></div><div><h3>2- Réception de la commande - Statut 'À Accepter'</h3><ol><li>Vous aurez 48h pour accepter la commande, sinon l’acheteur sera automatiquement remboursé sur son portefeuille virtuel Noodra.</li><li>En cas de refus et d’annulation, le vendeur doit donner une explication à l'acheteur.</li><li>Au bout de 3 annulations consécutives, la boutique devient automatiquement invisible et le vendeur doit la réactiver.</li><li>Au bout de 10 annulations ou remboursements sur 30 jours, la boutique du créateur peut être désactivée ou bloquée temporairement et à l’étude pour être définitivement fermée.</li></ol></div><div><h3>3- Après avoir accepté la commande - Statut 'À Expédier'</h3><ol><li>S'il y a un retard de préparation de la commande, le créateur DOIT IMPERATIVEMENT PRÉVENIR L’ACHETEUR. si le client contacte le Service Client et demande une annulation de la commande. Cette annulation pourra alors être faite par l'équipe Noodra sans prévenir le vendeur.</li><li>Quand un acheteur contacte le vendeur, ce dernier a un maximum de 48h pour y répondre. En cas de non réponse, l’acheteur peut contacter le Service Client et demander une annulation de la commande, sans prévenir le vendeur.</li></ol></div><div><h3>4- A l’expédition de la commande - Statut 'Expédiée'</h3><ol><li>Ajouter un numéro de suivi lors d’une expédition est fortement recommandé. Sinon, en cas de perte de colis ou de non réception, l’acheteur peut demander l’annulation et le remboursement intégral de la commande, car aucune preuve d’envoi n’est disponible.</li><li>En cas de non réception de la commande , le vendeur doit lancer les démarches auprès de son transporteur. En cas d’envoi avec un numéro de suivi indiquant que le produit a été reçu, le créateur n’est pas tenu de rembourser, même si la cliente indique ne pas l’avoir reçu.</li></ol></div><div><h3>5- Cas de retour de la commande pour échange ou annulation</h3><ol><li>Si un acheteur veut retourner un produit qui s’avère non conforme, les frais de retour sont à la charge du vendeur.</li><li>En cas de retour, le vendeur a un délai de 15 jours pour confirmer la réception du retour commande ou prévenir qu’il ne l'a pas reçu. Sinon, le colis est considéré comme renvoyé.</li></ol></div><div><h3>6- Définition d’un produit non conforme</h3><p>Si le vendeur envoie un produit et qu’il s’avère être non conforme, il prend en charge les frais de retour et le remboursement est intégral.</p><p>Tout produit remplissant ces conditions est considéré comme non conforme:</p><ol><li>le produit est arrivé endommagé.</li><li>il y a un défaut de fabrication.</li><li>le produit n’est pas le même que celui présenté sur la photo produit.</li><li>les matières et les autres éléments descriptifs sont différents de la réalité.</li><li>la couleur est différente que sur la photo du produit.</li></ol></div>",
+    "accept": "J'accepte la charte vendeurs",
+    "validate_shop": "Votre boutique a été créé avec succès",
+    "edit_shop": "Votre boutique a été modifié avec succès",
+    "terms": "Termes et conditions de la boutique",
+    "add_products_msg": "Ajoutez autant de fiches produits que possible. Dix ou plus serait un bon début. Plus vous avez d'articles dans votre boutique, plus vous avez de chances que les acheteurs vous découvrent !",
+    "free_return": "Retour gratuit",
+    "exchangeable_text": "Echanges acceptés sous",
+    "not_exchangeable_text": "Echanges non acceptés",
+    "refundable_text": "Remboursement accepté sous",
+    "not_refundable_text": "Remboursement non accepté",
+    "exchangeable_custom_product_text": "Echange d'articles personnalisés",
+    "refundable_custom_product_text": "Remboursement d'articles personnalisés",
+    "days": "jours"
+  },
+  "open_shop": {
+    "title": "Des millions d'acheteurs sont impatients de découvrir ce que vous allez proposer",
+    "bouton": "Ouvrir votre boutique Noodra",
+    "title2": "Vendez des oeuvres inspirées par votre monde partout dans le monde.",
+    "title_step_1": "1. Ouvrir votre boutique gratuitement",
+    "desc_step_1": "Ajoutez autant de produits que vous le souhaitez, simplement et en quelques minutes.",
+    "title_step_2": "2. L'acheteur paie en ligne directement",
+    "desc_step_2": "Vous êtes prévenus par mail et avez 48 heures pour confirmer la commande. Sinon l'acheteur est automatiquement remboursé",
+    "title_step_3": "3. Vous expédiez",
+    "desc_step_3": "Une fois la commande confirmée, le montant est crédité sur portefeuille virtuel, moins la commission. Sinon l'acheteur est automatiquement remboursé",
+    "title_step_4": "4. Vous disposez des fonds",
+    "desc_step_4": "Vous pouvez procéder à des virements quand vous le souhaitez sur le compte de votre choix."
+  },
+  "wishlist": {
+    "favorites": "favoris",
+    "favorite_articles": "Articles favoris",
+    "favorite_shops": "Boutiques favorites",
+    "empty_articles_text": "Vous n'avez pas encore de produits dans vos Favoris. Parcourez notre site web pour ajouter des produits.",
+    "delete_article_msg": "Le produit a été supprimé de vos favoris avec succès",
+    "add_article_msg": "Le produit a été ajouté dans vos favoris avec succès"
+  },
+  "basket": {
+    "continue_shopping": "Continuer vos achats",
+    "items_in_basket": "articles dans votre panier",
+    "item_in_basket": "article dans votre panier",
+    "conact_shop": "Contacter la boutique",
+    "delete_basket_item": "Supprimer",
+    "modify_basket_item": "Modifier",
+    "put_aside_basket_item": "Mettre à côté",
+    "payment_method": "Mode de paiement",
+    "apply": "Appliquer",
+    "add_promo_code_msg": "Si vou savez un code promo, Ajoutez-le à la prochaine étape",
+    "total_items": "Total des articles",
+    "sub_total": "Sous-total",
+    "total": "Total",
+    "item": "article",
+    "to": "Vers",
+    "shipping_cost": "Frais de livraison",
+    "checkout": "Finaliser la commande",
+    "order_is_gift": "Cette commande est un cadeau",
+    "prices_not_showing_in_delevery_note": "Les prix ne seront pas affichés sur le bon de livraison",
+    "from": "De",
+    "delay": "Délai",
+    "empty_basket_text": "Votre panier est vide! Parcourez notre site web pour ajouter des produits.",
+    "update_basket_msg": "Votre panier a été mise à jour avec succès",
+    "update_item": "Modifier l'article",
+    "update_btn": "Modifier",
+    "finish_btn": "Terminer",
+    "btn_cancel": "Annuler",
+    "customisation": "Personnalisation",
+    "customisations": "Personnalisations",
+    "quantity": "Quantité",
+    "apply_promo_code": "Appliquer un code promo",
+    "change_delivery_address": "Changer l'adresse de livraison",
+    "change_billing_address": "Changer l'adresse de facturation",
+    "change_adresse": "Changer l'adresse",
+    "shipping_adresses": "Adresses de livraison",
+    "add_adresse": "Ajouter une adresse"
+  },
+  "products": {
+    "title": "Produits",
+    "results_nbr_text": "résultats",
+    "no_results_text": "Aucun produit ne correspond à votre recherche",
+    "back_to_home_btn": "Retour à l'accueil",
+    "see_more_in_text": "Voir tout dans",
+    "filters_label": "Tous les filtres",
+    "see_more": "Voir plus",
+    "see_less": "Voir moin"
+  },
+  "promotion": {
+    "title": "Promotion",
+    "btn_promotion": "Nouvelle promotion",
+    "add_deal": "Votre promotion a été créé avec succès",
+    "delete_deal": "Votre promotion a été supprimer avec succès",
+    "edit_deal": "Votre promotion a été modifier avec succès",
+    "action": "Actions",
+    "apply": "Appliquer aux",
+    "btn_create": "Créer",
+    "btn_update": "Modifier",
+    "btn_cancel": "Annuler",
+    "delete_confirmation_content": "Êtes-vous sûr de vouloir supprimer cette promotion ?"
+  },
+  "discount_coupon": {
+    "title": "Coupon de réduction",
+    "btn_discount": "Nouveau coupon de réduction",
+    "title_reduction": "Réduction",
+    "title_reduction_promo_code": "Code promo",
+    "choice": "Réduction en",
+    "add_discount": "Votre promotion a été créé avec succès",
+    "edit_discount": "Votre promotion a été modifier avec succès",
+    "delete_discount": "Votre promotion a été supprimer avec succès",
+    "delete_confirmation_content": "Êtes-vous sûr de vouloir supprimer ce coupon ?"
+  },
+  "delivery": {
+    "title": "Livraison",
+    "btn_delivery": "Nouveau profil livraison",
+    "info": "Complétez la grille de frais de port ci-dessous. Entrez le chiffre 0 quand vous souhaitez les offrir.<span class='bluetxt'> Augmentez vos ventes de 30% en offrant les frais de port.</span> Laissez les valeurs vides dans la colonne 'Livraison gratuite à partir de' si vous ne voulez pas appliquer cette option.",
+    "add_delivery": "Votre livraison a été créé avec succès",
+    "delete_delivery": "Votre livraison a été supprimer avec succès",
+    "edit_delivery": "Votre livraison a été modifier avec succès",
+    "action": "Actions",
+    "day": "j",
+    "region": "region",
+    "pays": "Pays",
+    "add_region": "Ajouter une region",
+    "add_pays": "Ajouter un pays",
+    "delete_confirmation_content": "Êtes-vous sûr de vouloir supprimer cette livraison ?",
+    "free_delivery": "Livraison GRATUITE"
+  },
+  "language": {
+    "french": "Français",
+    "english": "English"
+  },
+  "message_empty": {
+    "empty_field": "Ce champ ne peut être vide."
+  },
+  "newsletter": {
+    "big_text_newsletter": "Recevez des offres exclusives en vous abonnant à la Newsletter",
+    "label_button_subscription": "Souscription",
+    "placeholder_subscription": "Renseignez votre e-mail.",
+    "already_subscribed_user": "Vous êtes inscrit à notre Newsletter.",
+    "successful_subscription": "Votre inscription est faite avec succès !"
+  },
+  "pagination": {
+    "items_per_page_text": "Elements par page"
+  },
+  "delete_confirmation": {
+    "delete_confirmation_title": "Confirmation de suppression",
+    "delete_confirmation_cancel": "Annuler",
+    "delete_confirmation_confirm": "supprimer"
+  },
+  "transfer_account": {
+    "delete_confirmation_content": "Êtes-vous sûr de vouloir supprimer ce compte ?"
+  }
+}

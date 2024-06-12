@@ -1,0 +1,44 @@
+<div class="box" id="account_bank" style="margin-bottom: 10px;">
+    <div class="box_title">Western Union</div>
+    <div class="loader--container" *ngIf="showLoader==true">
+        <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+
+    </div>
+    <ng-container *ngIf="!emptyAccount && showLoader==false">
+        <div class="box_content separateur" *ngFor="let item of westernAccountCurrent">
+            <div class="delete">
+                <i class="fal fa-times" (click)="deleteConfirmation(item.id, 'Western Union')"></i>
+            </div>
+            <div class="lineInfo">
+                <div class="item flex column mgb20">
+                    <span class="bold text-size-12">{{firstName}} & {{lastName}}</span>
+                    <span>{{item.first_name}} {{item.last_name}}</span>
+                </div>
+                <div class="item flex column mgb20">
+                    <span class="bold text-size-12">{{receivingCity}}</span>
+                    <span>{{item.receiving_city}}</span>
+                </div>
+                <div class="item flex column mgb20">
+                    <span class="bold text-size-12">{{state}}</span>
+                    <span>{{item.state}}</span>
+                </div>
+                <div class="item flex column mgb20">
+                    <span class="bold text-size-12">{{region}}</span>
+                    <span>{{item.region}}</span>
+                </div>
+                <div class="item flex column mgb20">
+                    <span class="bold text-size-12">{{country}}</span>
+                    <ng-container *ngFor='let country of listCountries'>
+                        <span class="item" *ngIf='country.value === item.country'>{{country.display_name}}</span>
+                    </ng-container>
+                    <!-- <span>{{item.country}}</span> -->
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="emptyAccount && showLoader==false">
+        <div class="box_content">
+            <p class="bold center">{{'wallet.transfer.msg_empty_westernunion' | translate}}</p>
+        </div>
+    </ng-container>
+</div>

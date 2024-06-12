@@ -1,0 +1,63 @@
+<div class="modal2" id="modal-setting show" [ngClass]="modal ? 'show' : ''">
+    <div *ngIf="!listFields.length" style="border-radius: 15px;" class="loader-container">
+        <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+    </div>
+    <h4 class="modal-title" style="padding-bottom: 10px !important;">{{'regional_settings.title' | translate}}</h4>
+
+    <form [formGroup]='form.group'>
+        <p class="mgb20">{{'regional_settings.description' | translate}}</p>
+        <ng-container *ngIf="listFields">
+            <div class="wrapperBox" *ngFor="let field of listFields">
+                <div class="info row">
+                    <label [for]="field.key+'_setting_reg'" class="bold mgb10"
+                        [ngClass]="field.value.required ? 'required':''">
+                        {{field.value.label}}
+                    </label>
+
+                    <mat-form-field *ngIf="field.key == 'language' && modal" class="" appearance="fill">
+                        <input type="text" [formControlName]="field.key" matInput [matAutocomplete]="auto"
+                            (input)="searchLanguage($event)" [id]="field.key+'_setting_reg'">
+                        <mat-autocomplete (optionSelected)="selectSettingsItem(field.key,$event)"
+                            #auto="matAutocomplete" [displayWith]="displayLangFn.bind(this)">
+                            <mat-option *ngFor="let option of searchedLanguages " [value]="option.value">
+                                {{option.display_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="field.key == 'currency' && modal" class="" appearance="fill">
+                        <input [formControlName]="field.key" type="text" matInput [matAutocomplete]="autoCurrency"
+                            (input)="searchCurency($event)" [id]="field.key+'_setting_reg'">
+                        <mat-autocomplete (optionSelected)="selectSettingsItem(field.key,$event)"
+                            #autoCurrency="matAutocomplete" [displayWith]="displayCurrFn.bind(this)">
+                            <mat-option *ngFor="let option of searchedCurrency " [value]="option.value">
+                                {{option.display_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <mat-form-field *ngIf="field.key == 'country' && modal" class="" appearance="fill">
+                        <input type="text" [formControlName]="field.key" matInput [matAutocomplete]="autoCountry"
+                            (input)="searchCountry($event)" [id]="field.key+'_setting_reg'">
+                        <mat-autocomplete (optionSelected)="selectSettingsItem(field.key,$event)"
+                            #autoCountry="matAutocomplete" [displayWith]="displayCountFn.bind(this)">
+                            <mat-option *ngFor="let option of searchedCountry " [value]="option.value">
+                                {{option.display_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+
+                    <span class="helpInfo" *ngIf="field.value.help_text">{{field.value.help_text}}</span>
+                    <div class="error" *ngFor="let err of errors">
+                        <span *ngIf="err.key == field.key"> {{err.value}} </span>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="flex right">
+            <button type="button" class="linkMore blue" (click)="updateSettings()">{{'button.validate' |
+                translate}}</button>
+        </div>
+    </form>
+    <div class="close"><i class="fal fa-times-circle"></i></div>
+</div>

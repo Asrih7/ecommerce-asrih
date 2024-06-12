@@ -1,0 +1,73 @@
+<div *ngIf='!alreadyConfirmed && showEmailConfirmation==true'>
+    <p class="msgConfirmation hide" [ngClass]="getMsgConfirmationSend ? 'show':''">{{"success_confirmation.send_success"
+        | translate }}</p>
+</div>
+<form class="wrapperBox" [formGroup]="form.group">
+    <div class="box">
+        <div class="box_title">
+            <span>{{'profile.about-you' | translate}}</span>
+        </div>
+        <div class="box_content">
+            <ng-containe *ngIf="profileFields?.length  else loaderIndicator">
+                <div class="wrapperBox with2fields">
+                    <div class="info row mgb30 mgb-small-20" *ngFor="let field of profileFields">
+                        <label class="bold"
+                            [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                        <input type="text" [id]="field.key" [formControlName]="field.key"
+                            *ngIf="field.key === 'first_name' || field.key === 'last_name'" />
+                        <div class="profile-picture" *ngIf="field.key == 'profile_picture'">
+                            <div class="update-logo" (click)="editPicture()">
+                                <label style="color: white;">{{'button.edit' | translate}}</label>
+                            </div>
+                            <div class="visuel">
+                                <i class="fal fa-user" *ngIf='!imgProfile'></i>
+                                <img [src]="imgProfile" alt="">
+                            </div>
+                        </div>
+                        <mat-select class="selectBox selectBox-dropdown-language"
+                            [placeholder]="form.group.get('gender')?.value ? '' : field.value.label"
+                            *ngIf="field.key == 'gender'" id="user_gender" formControlName="gender">
+                            <mat-option *ngFor="let item of genderList" [value]="item.value">
+                                {{item.display_name}}
+                            </mat-option>
+                        </mat-select>
+
+                        <mat-select class="selectBox selectBox-dropdown-language"
+                            [placeholder]="form.group.get('_language')?.value ? '' : field.value.label"
+                            *ngIf="field.key == '_language'" id="user_language" formControlName="_language">
+                            <mat-option *ngFor="let item of languageList" [value]="item.value">
+                                {{item.display_name}}
+                            </mat-option>
+                        </mat-select>
+                        <ngx-intl-tel-input autocomplete="off" formControlName="phone" [searchCountryFlag]="true"
+                            [separateDialCode]="false" [selectFirstCountry]="false" *ngIf="field.key == 'phone'">
+                        </ngx-intl-tel-input>
+                        <div class="field-date" *ngIf="field.key == 'birth_date'">
+                            <input autocomplete="off" type="text" (keyup)="dateMask($event)"
+                                [formControlName]="field.key"
+                                [bsConfig]="{ isAnimated : true ,dateInputFormat: inputFormatDate, returnFocusToInput: true }"
+                                [value]="valDate" id="user_birthday" bsDatepicker>
+                        </div>
+                        <span class="helpInfo">{{field.value.help_text}}</span>
+                        <div class="error" *ngFor="let err of errors">
+                            <span *ngIf="err.key == field.key">
+                                {{err.value}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <span class="success left success-form" *ngFor="let message of success">
+                    {{message.message}}
+                </span> -->
+                <button type="button" style="float: right;"
+                    [ngStyle]="{'margin-left': showMoveToNext == true  ? 'auto' : '0px','width': showMoveToNext ==true  ? 'auto' : '150px','padding': showMoveToNext ==true  ?  '0px 16px' : '0 2.5rem'}"
+                    class="linkMore blue" (click)="editInfos()">
+                    {{ showMoveToNext ==true ? ("boutique.save" | translate) :('button.edit' |translate)}}</button>
+            </ng-containe>
+
+            <ng-template #loaderIndicator>
+                <noo-loader></noo-loader>
+            </ng-template>
+        </div>
+    </div>
+</form>

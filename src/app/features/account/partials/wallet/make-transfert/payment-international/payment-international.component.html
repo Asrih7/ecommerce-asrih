@@ -1,0 +1,59 @@
+<div class="box" id="account_bank_2">
+    <div class="box_title">{{"wallet.transfer.account_international" | translate}}</div>
+    <div class="flex align-items mgt30 mgb30 wrap" *ngIf="internationalAccountCurrent.length > 0">
+        <div *ngFor="let item of internationalAccountCurrent" class="accountSugger mgl20 mgb10 column"
+            (click)="accountSelected(item)" [ngClass]="item.id === id ? 'selected':''">
+            <div class="lineInfo">
+                <div class="flex item column" style="flex-basis: 50%;">
+                    <span class="bold text-size-12">{{accountOwner}}</span>
+                    <span class="item">{{item.account_owner}}</span>
+                </div>
+                <div class="flex column item" style="flex-basis: 50%;">
+                    <span class="bold text-size-12">{{bankName}}</span>
+                    <span class="item">{{item.bank_name}}</span>
+                </div>
+            </div>
+            <div class="flex item column">
+                <span class="bold text-size-12">{{accountNumber}}</span>
+                <span class="item">{{item.account_number}}</span>
+            </div>
+        </div>
+        <i class="fal fa-plus-circle addNewAccount" (click)='newAccount()' [attr.disabled]='hideAddNewAccount'></i>
+    </div>
+    <form class="box_content" style="padding-top: 0;" [formGroup]="submitGroup"
+        [attr.style]="internationalAccountCurrent.length > 0 ? 'padding-top:0px':''"
+        *ngIf="hideAddNewAccount || internationalAccountCurrent.length === 0">
+        <p class="icon icon-warning warning">{{"wallet.transfer.msg_account_bank" | translate}}</p>
+        <div class="with2fields2">
+            <div class="info row mgb30" *ngFor="let field of fieldsInternationalbankAccount">
+                <div style="min-height: 30px;" class="i-field"> <label [for]="field.key" class="bold"
+                        [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                    <input type="text" [id]="field.key" [formControlName]="field.key"
+                        *ngIf="field.key !== 'bank_country' && field.key !== 'birth_date'" />
+                    <mat-form-field class="" appearance="fill" *ngIf="field.key == 'bank_country'">
+                        <input type="text" id="bank_country" formControlName="bank_country" matInput
+                            [matAutocomplete]="autoCountry" (input)="searchCountry($event)">
+                        <mat-autocomplete #autoCountry="matAutocomplete" [displayWith]="displayCountFn.bind(this)">
+                            <mat-option *ngFor="let option of searchedCountry " [value]="option.value">
+                                {{option.display_name}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <div class="field-date" *ngIf="field.key == 'birth_date'">
+                        <input autocomplete="off" type="text" (keyup)="dateMask($event)" formControlName="birth_date"
+                            [bsConfig]="{isAnimated : true ,dateInputFormat: 'DD-MM-YYYY', returnFocusToInput: true }"
+                            [value]="valDate" id="user_birthday" bsDatepicker>
+                    </div>
+                </div>
+                <span class="helpInfo" *ngIf="field?.value?.help_text">{{field.value.help_text}}</span>
+                <ng-container *ngFor="let err of errorsInternationalaccount">
+                    <div class="error" *ngIf="err.key == field.key">
+                        <span>
+                            {{err.value}}
+                        </span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>

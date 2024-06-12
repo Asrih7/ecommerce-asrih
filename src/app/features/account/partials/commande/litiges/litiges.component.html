@@ -1,0 +1,138 @@
+<div class="tab-command-detail-content-litiges current">
+    <div class="line">
+        <div class="addLine">
+            <p>{{"litiges.demande_remboursement" | translate}}</p>
+            <a (click)="showModal()" class="addLine">+</a>
+        </div>
+    </div>
+    <ng-container *ngIf="loadingDisputeList; else loadedContent">
+        <noo-loader></noo-loader>
+    </ng-container>
+    <ng-template #loadedContent>
+        <ng-container *ngIf="disputeList.length > 0; else emptyMessage">
+            <table class="main-table litiges-table" style="margin-top: 30px;">
+                <thead>
+                    <tr>
+                        <th *ngFor="let field of listFields">{{ field.value.label }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dispute of disputeList | paginate: { itemsPerPage: 5, currentPage: p2, id: 'disputeListID' }">
+                        <td>{{ dispute.id }}</td>
+                        <td>
+                            {{ getTranslatedDescription(dispute.translations) }}                  
+                        </td>
+                        <td>{{ dispute.created_on | date: formatDate }}</td>
+                        <td>{{ dispute.modified_on | date: formatDate }}</td>
+                        <td >{{ getQueryTypeName(dispute.query_type) }}</td>
+                        <td>
+                            <img style="width: 50%; cursor: pointer;" [src]="dispute.file" (click)="showImage(dispute.file)">
+                        </td>
+                        <td style="padding-left: 0px;">{{ getOrderReferenceNumber(dispute.order) }}</td>
+                      </tr>
+                </tbody>
+            </table>
+            <ng-container *ngIf="disputeList.length > 5">
+                <pagination-controls class="my-pagination" [previousLabel]="''" [nextLabel]="''" (pageChange)="p2 = $event"
+                    id="disputeListID"></pagination-controls>
+            </ng-container>
+        </ng-container>
+        <ng-template #emptyMessage>
+            <p class="bold center mgb30 mgt30">{{'litiges.empty' | translate}}</p>
+        </ng-template>
+    </ng-template>
+</div>
+<div class="overlay" [ngClass]="{'show': modalLitiges}"></div>
+
+<div class="modal-litiges" id="modal-litiges" *ngIf="modalLitiges">
+  <h4 class="title-litiges" >{{'litiges.new_litige' | translate}}</h4>
+    <form [formGroup]="form.group">
+        <div class="wrapperBox padt30" *ngFor="let field of listFieldCreation">
+          <div class="info row" *ngIf="field.value.type == 'field' || field.value.type == 'choice' || field.key == 'description'">
+            
+            <ng-container *ngIf="field.value.type != 'choice'; else choiceLabel">
+              <label *ngIf="field.value.type !== 'field upload'" 
+                     [for]="field.value.type == 'choice' ? undefined : 'litf_' + field.key"
+                     [ngClass]="(field.value.required || field.key === 'description') ? 'required' : ''"
+                     class="bold">
+                {{ field.value.label }}<ng-container *ngIf="field.key === 'description'">
+                  (<span>
+                    <ng-container *ngIf="language === 'fr'">{{ "language.french" | translate }}</ng-container>
+                    <ng-container *ngIf="language === 'en'">{{ "language.english" | translate }}</ng-container>
+                  </span>)
+                </ng-container>
+              </label>
+            </ng-container>
+            
+            <ng-template #choiceLabel>
+              <label *ngIf="field.value.type !== 'field upload'" class="bold" [ngClass]="field.value.required ? 'required' : ''">
+                {{ field.value.label }}
+              </label>
+            </ng-template>
+            
+            <mat-form-field appearance="fill" *ngIf="field.value.type == 'field' && field.value.type !== 'field upload'">
+              <mat-select [formControlName]="field.key">
+                <mat-option *ngFor="let order of orderOptions" [value]="order.value">
+                  {{ order.display_name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+              
+            
+            <textarea [id]="'litf_' + field.key" *ngIf="field.value.type == 'string'" class="textareaStyle text-area mgb10" rows="3"
+                      [formControlName]="field.key"></textarea>
+            
+            <mat-select class="selectBox selectBox-dropdown-language" *ngIf="field.value.type == 'choice'"
+                        [id]="'litf_' + field.key" [formControlName]="field.key">
+              <mat-option *ngFor="let item of field.value.choices" [value]="item.value">
+                {{ item.display_name }}
+              </mat-option>
+            </mat-select>
+            
+            <span class="helpInfo">{{ field.value.help_text }}</span>
+            <ng-container *ngFor="let err of errors">
+              <div class="error" *ngIf="field.key == err.key">
+                <span>{{ err.value }}</span>
+              </div>
+              <div class="error" *ngIf="field.key == 'description' && err.key == 'translations'">
+                <span>{{ err.value }}</span>
+              </div>
+            </ng-container>
+          </div>
+          
+          <div class="info row mgb20 column" *ngIf="field.value.type == 'file upload'">
+            <div class="addFile mgb10" style="position: relative; right: auto; top: auto; left: auto;">
+              <input type="file" id="addFile" accept="image/*" (change)="preparPicture($event)" (click)="clearCache($event)" />
+              <label class="bold align-items flex" for="addFile">
+                <i class="icon-upload fal fa-file-upload fa-1x"></i>
+                <span class="label-upload">{{ field.value.label }}</span>
+              </label>
+            </div>
+            <div class="helpInfo">{{ field.value.help_text }}</div>
+            <ng-container *ngFor="let err of errors">
+              <div class="error" *ngIf="field.key == err.key">
+                <span>{{ err.value }}</span>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </form>
+        <div class="field padt30">
+            <button type="button" class="linkMore gris" (click)="hideModal()">{{'button.cancel' |
+                translate}}</button>
+            <button type="button" class="linkMore green" (click)="createDispute()">{{'button.validate' |
+                translate}}</button>
+        </div>
+    <div class="close" (click)="hideModal()">
+        <i class="fal fa-times-circle"></i>
+    </div>
+</div>
+<div class="overlay" [ngClass]="modalLitiges? 'show' : ''"></div>
+<div class="slideImg" *ngIf="slideImg">
+    <div class="slideImg_content">
+        <i class="fal fa-times-circle" (click)="closeSlide()"></i>
+        <div class="slideImg_content--wrapper">
+            <img [src]="slideImg" alt="">
+        </div>
+    </div>
+</div>

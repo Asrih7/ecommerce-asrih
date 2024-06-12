@@ -1,0 +1,27 @@
+<form class="writeMessage" [formGroup]='form.group' (submit)="sendMessage()">
+    <div class="error" *ngFor="let err of errors">
+        <span>
+            {{err.value}}
+        </span>
+    </div>
+    <!-- <input name="message" id="msg" placeholder='{{"messages.write-message" | translate}}' formControlName="body" /> -->
+    <textarea type="text" rows="2" name="message" id="msg" placeholder='{{"messages.write-message" | translate}}'
+        formControlName="body" (focus)="func()" (blur)="otherFunc()" (keyup)="detectTextarea($event)"></textarea>
+    <button type="button" title="Envoyer" class="send" type="submit" (window:keypress)="submitEvent($event)"><i
+            class="fal fa-paper-plane"></i></button>
+    <div class="addFile">
+        <input type="file" id="addFile" accept=".xlsx,.xls,image/*,.doc, .docx,.ppt, .pptx,.txt,.pdf"
+            (change)="editPicture($event)" (click)="clearCache($event)" />
+        <label for="addFile"><i class="fal fa-file-alt"></i></label>
+    </div>
+    <div class="imgConversation" *ngIf='fileUploaded && typeFileUploaded'>
+        <i class="fal fa-trash-alt" (click)="deleteImage()"></i>
+        <img [src]="fileUploaded">
+    </div>
+    <div class="imgConversation withFile" *ngIf='fileUploaded && !typeFileUploaded' style="max-width: 100%;">
+        <span>
+            <i class="fal fa-trash-alt" (click)="deleteImage()"></i>
+            {{fileUploaded}}
+        </span>
+    </div>
+</form>

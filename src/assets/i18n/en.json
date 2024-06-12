@@ -1,0 +1,534 @@
+{
+  "home": {
+    "coming_soon": {
+      "coming_soon_text": "COMING SOON",
+      "welome_text": "Welcome to Noodra! We're delighted to welcome you to our growing platform. Currently in the  development phase, our team is working with dedication to create a unique and exceptional  experience. During this period, some features may be in the process of being fine-tuned, but rest  assured that we're doing everything we can to provide you with a reliable, user-friendly site full of opportunities."
+    },
+    "cookie": {
+      "main_text": {
+        "before": "We use our cookies and third-party cookies to understand the use of our website and to be able to improve it, adapt its content to your preferences and personalize our advertisements and our publications on social networks. For more information, see our Cookie Policy on our",
+        "terms": "Terms of Service and",
+        "privacy_policy": "Privacy Policy",
+        "after": "with important information related to our use of your data, how we share it with our partners, and the options available to you."
+      },
+      "button_1": "Continue without accepting",
+      "button_2": "Accept all Cookies",
+      "button_3": "Custom My choices",
+      "choices": {
+        "btn_save": "Save",
+        "btn_cancel": "Back"
+      }
+    },
+    "seller": {
+      "title": "How to become a seller and offer my products on Noodra?",
+      "first_step": "Create one or more stores for free",
+      "second_step": "Supply your store(s) with products",
+      "third_step": "Setting your store online",
+      "decouvrir": "Discover my advantages as a seller on Noodra.",
+      "desc_1": "It's that easy to become a salesperson at Noodra.",
+      "desc_2": "This way, you can take advantage of an international clientele to sell your products."
+    },
+    "filter": {
+      "region": "Select by region",
+      "country": "Select by country"
+    },
+    "about": {
+      "title": "What is Noodra?",
+      "histoire": "How about a story?",
+      "tourdumonde": "Give yourself a world tour",
+      "tourdumondedesc": "No need to travel around the world to treat yourself to the specialties of each country. With Noodra, the world is at your fingertips.",
+      "meaning": "What does noodra mean?",
+      "meaning_desc": "The word Noodra means \"rarity\". At Noodra, every product you find is rare and unique.",
+      "culture": "highlighting local cultures",
+      "culture_desc": "Our products? They are yours. They are designed by independent creators, coming from the 4 corners of the world. Each product is unique. Each product has a story.",
+      "question": "Got a question? We answer you.",
+      "question_button": "Discover our FAQ"
+    },
+    "subscription": {
+      "title": "FOLLOW US ON INSTAGRAM",
+      "desc": "To discover the news of Noodra and our latest news in exclusivity.",
+      "subscribe": "subscribe"
+    },
+    "map": {
+      "nbr_shops": "Nb shops",
+      "nbr_products": "Nb products"
+    }
+  },
+  "product": {
+    "title": "Add a new product sheet",
+    "btn_add_product": "New Product",
+    "detail": "Product sheet details",
+    "personalization": "Personalization",
+    "stock": "Stock and prices",
+    "save": "Save",
+    "add_product": "Your product has been successfully created",
+    "info_shipping": "You have no delivery profile",
+    "title_image": "Pictures",
+    "description_image": "Add as many as possible, so buyers can see all the details well.",
+    "info_image": "Upload at least one photo.",
+    "yes": "Yes",
+    "no": "No",
+    "error_number_integer": "should be at least 1.",
+    "error_number_decimal": "should be greater than 0.",
+    "required_units": "units is required.",
+    "units": "Units",
+    "required": "This field is required",
+    "product_deleted": "Your product has been successfully deleted",
+    "edit_product": "Your product has been successfully edited",
+    "delete_confirmation_content": "Are you sure you want to delete this product ?",
+    "return_to_products_serach": "Back to search results",
+    "out_of_stock_msg": "The chosen combination is currently out of stock",
+    "add_to_cart": "Add to basket",
+    "Details": "Details",
+    "select_option": "Select an option",
+    "quantity": "Quantity",
+    "max_stock_msg": "You have exceeded the available stock",
+    "new": "NEW PRODUCTS",
+    "add_customization": "Add your personalisation",
+    "optional": "Optional",
+    "mandatory": "Mandatory",
+    "customizable": "Customizable"
+  },
+  "state": {
+    "error": "Something went wrong. Please try again later."
+  },
+  "login": {
+    "title": "Authentification",
+    "email": {
+      "label": "Email",
+      "placeholder": "Email"
+    },
+    "code": {
+      "sent_code": "We sent a code to",
+      "in": "in ",
+      "resend_code": "Resend the code"
+    },
+    "first_name": {
+      "label": "First name",
+      "placeholder": "First name"
+    },
+    "last_name": {
+      "label": "Last name",
+      "placeholder": "Last name"
+    },
+    "password": {
+      "label": "Password",
+      "placeholder": "Password"
+    },
+    "forgot": "Forgot password?",
+    "stay": "Stay logged in",
+    "btn_login": "Login",
+    "register": {
+      "text": "Don't have an account yet?",
+      "btn": "Register"
+    },
+    "not_connected": "You can't log in?",
+    "or": "or",
+    "google": "Continue with google",
+    "facebook": "Continue with facebook",
+    "cgu": {
+      "text": "By clicking Sign in or Continue with Google, Facebook, you agree to",
+      "href": "Terms of Use"
+    }
+  },
+  "set_password": {
+    "title": "Password"
+  },
+  "set_email": {
+    "title": "Email"
+  },
+  "profile": {
+    "about-you": "About you"
+  },
+  "header": {
+    "big_text_header": "MARKETPLACE OF TRADITIONAL AND MODERN CRAFTS FROM THE WORLD",
+    "profil": "your profile",
+    "setting_account": "Account settings",
+    "commande_avis": "Orders and Reviews",
+    "wallet": "Wallet",
+    "messages": "Messages",
+    "logout": "Sign out",
+    "login": "Sign in",
+    "sell_on_noodra": "Sell on Noodra",
+    "placeholder-search": "Do your research here.",
+    "store_manager": "Store manager"
+  },
+  "footer": {
+    "sell": "Sell",
+    "seller_council": "Seller Council",
+    "affiliates": "Affiliates",
+    "ambassadors": "Ambassadors",
+    "buy": "Buy",
+    "delivery": "Delivery",
+    "payment": "Payment",
+    "return": "Return & refund",
+    "aboute": "Aboute us",
+    "who_are_we": "Who are we ?",
+    "legal_notice": "Legal Notice",
+    "assistance": "Assistance",
+    "faqs": "FAQ",
+    "terms_of_service": "Terms of Service",
+    "privacy": "Privacy"
+  },
+  "message_success": {
+    "password_reset": "Password reset requested successfully. Check your email for further instructions."
+  },
+  "button": {
+    "send": "Send",
+    "edit": "Edit",
+    "add": "Add",
+    "delete": "Delete",
+    "add_address": "Add a new address",
+    "validate": "Validate",
+    "cancel": "Cancel",
+    "Contacter": "Contact",
+    "my_store": "My shop",
+    "add_picture": "Add a picture",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "forget_password": {
+    "title": "Change your password",
+    "description": "Enter your email address, we will send you a link to reset it."
+  },
+  "information_account": {
+    "account": "Account",
+    "address": "Addresses",
+    "one-address": "Addresse",
+    "new-address": "New Address",
+    "title_address_billing": "Billing address",
+    "empty_address_billing": "You don't have a billing address",
+    "title_address_delivery": "Delivery address",
+    "empty_address_delivery": "You do not have a delivery address",
+    "title_others_address": "Other addresses",
+    "empty_others_address": "You have no other address",
+    "phone": "Phone",
+    "address_billing_is_address_delivery": "Billing address is the same as delivery address"
+  },
+  "confirmation_mail": {
+    "link": "resend confirmation email."
+  },
+  "information_message": {
+    "message_modified": "has been successfully modified",
+    "message_added": "has been added successfully",
+    "message_deleted": "has been successfully deleted"
+  },
+  "success_confirmation": {
+    "send_success": "Confirmation email sent successfully"
+  },
+  "error_about_birthday": {
+    "birthday_error": "Your birth date should be smaller than date of today"
+  },
+  "regional_settings": {
+    "title": "Regional settings",
+    "description": "Set your country, your language, and the currency you use."
+  },
+  "wallet": {
+    "balance": "Balance",
+    "transaction": {
+      "title": "Transaction",
+      "price": "Amount",
+      "state": "Status"
+    },
+    "transfer": {
+      "title": "Transfer",
+      "btn_event_transfer": "Transfers list",
+      "btn_account_transfer": "Transfer account",
+      "btn_make_transfer": "Make a transfer",
+      "title_transfer_amount": "How much do you want to transfer?",
+      "title_type_transfer": "Which payment method do you want to use?",
+      "title_password": "Security",
+      "btn_send_transfer": "Send the transfer request",
+      "account_europeen": "European bank account",
+      "account_european_description1": "Bank transfers are made on",
+      "account_european_description2": "They are free.",
+      "wednesday": " Wednesdays. ",
+      "account_international": "International bank account",
+      "account_international_description1": "Bank transfers are made on",
+      "account_international_description2": "and cost 4% of the amount.",
+      "account_paypal_description1": "Paypal transfers are made on",
+      "account_paypal_description2": "and cost 2% of the amount + € 2.75.",
+      "account_western_description1": "Western Union transfers can",
+      "account_western_description2": "from the date of request and cost € 15 (excluding Western Union fees).",
+      "days": " take up to 10 days ",
+      "msg_account_bank": "A bank transfer with incorrect information is automatically refused by the bank, which causes complications and additional delay.",
+      "msg_account_wu": "The information provided must imperatively correspond to the information present on the identity document which will be used to withdraw the funds.",
+      "msg_error_transfer": "Your transfer request has not been recorded. Check your transfer information and try again!",
+      "msg_success_transfer": "Your transfer request has been successfully registered. We will receive your payment shortly.",
+      "msg_empty_paypal": "You have no Paypal account.",
+      "msg_empty_westernunion": "You have no Western Union account.",
+      "msg_empty_europeen": "You have no European bank account.",
+      "msg_empty_international": "You have no International bank account.",
+      "msg_empty_transaction": "You have no transaction",
+      "msg_empty_transfer": "You have no transfer"
+    },
+    "credit": {
+      "title": "Credit my wallet",
+      "title_amount_credit": "Wallet credit",
+      "title_payment": "Payment",
+      "transaction_success": "Your wallet has been credited successfully. Your balance will update shortly.",
+      "transaction_deleted": "Your wallet has been deleted successfully.",
+      "transaction_error": "Your transaction faced some errors, please try again later.",
+      "transaction_cancel": "Your transaction has been cancelled.",
+      "confirm_amount": "Confirm Amount",
+      "step_1_title": "Set Deposit Amount",
+      "step_2_title": "Confirm Payment Method",
+      "btn_back": "Go back",
+      "cardNumber": "Card Number",
+      "expirationDate": "Expiration Date",
+      "cvc": "CVC",
+      "pay": "Pay",
+      "errorCard": "Select a card to proceed to payment",
+      "delete_confirmation_content": "Are you sure you want to delete this card ?",
+      "successDeltedCard": "Your card has been successfully deleted"
+    }
+  },
+  "messages": {
+    "title": "Conversations",
+    "search": "Search conversations",
+    "write-message": "Type your message",
+    "select-conversation": "Select a contact to view the conversation",
+    "success": "This message has been sent successfully"
+  },
+  "month_of_the_year": {
+    "mois01": "January",
+    "mois02": "February",
+    "mois03": "March",
+    "mois04": "April",
+    "mois05": "May",
+    "mois06": "June",
+    "mois07": "July",
+    "mois08": "August",
+    "mois09": "September",
+    "mois10": "October",
+    "mois11": "November",
+    "mois12": "December"
+  },
+  "commandes": {
+    "title": "Orders",
+    "commandes_acheteur": "Buyer orders",
+    "commandes_vendeur": "Seller orders",
+    "new_message": "New message",
+    "Avis_vendeur": "Seller Notice",
+    "Avis_client": "Customer reviews",
+    "Avis_commande": "Order Notice",
+    "vendeur": "Seller",
+    "achteur": "Buyer",
+    "addline": "If you want to request a refund or an exchange add a line",
+    "TTC": "Price TTC",
+    "produit": "Product",
+    "list_command": "List of items ordered",
+    "Information": "Information",
+    "Personnalisation": "Customization",
+    "Prix_livraison": "Delivery price",
+    "Facture": "Bill",
+    "etiquette": "shipping label",
+    "Details_Command": "Sales order details",
+    "Details_Command_vendeur": "Seller order details",
+    "Edit_Command": "Edit order",
+    "ACTIONS": "ACTIONS",
+    "quantity": "quantity",
+    "empty_buyer": "You have no buyer orders",
+    "empty_seller": "You have no seller orders",
+    "update_status_order":"Cannot modify the status of this order",
+    "review_order":"Cannot review this order",
+    "confirmation_status": "has been modified successfully",
+    "confirmation_evaluation":"has been successfully evaluated",
+    "status_completed": "You can no longer modify the status of this order",
+    "status_not_completed": "No action is required at the moment",
+    "rate_buyer_completed": "You can no longer modify the status of this order",
+    "rate_buyer_not_completed": "Please wait for your order to be shipped to evaluate it",
+    "rate_seller_completed": "You can no longer modify the status of this order",
+    "rate_seller_not_completed": "Please wait for the buyer's evaluation to add your comment",
+    "label_edit":"Edit",
+    "label_rating":"Evaluate",
+    "information_order": {
+      "command_N": "Command N°",
+      "Vente": "Shop",
+      "Date": "Date",
+      "price": "Price",
+      "price_total": "Total price",
+      "price_seller": "Seller Price"
+    }
+  },
+  "litiges": {
+    "title": "Litiges",
+    "demande_remboursement": "If you want to add a new dispute",
+    "new_litige": "Create a new dispute",
+    "confirmation_litige": "New dispute has been successfully created",
+    "empty": "You have no disputes"
+  },
+  "confirmation_admin": {
+    "send_message_admin": "Your message has been sent successfully."
+  },
+  "boutique": {
+    "add_new_shop": "Add new store",
+    "boutique_title": "Regional store preferences",
+    "charte_vendeurs": "Sellers charter",
+    "profile": "Profile",
+    "address": "Address",
+    "save": "Save and continue",
+    "continuer": "Continue",
+    "boutique": "Shop",
+    "setting_store": "Shop setting",
+    "devise": "Shop currency",
+    "qst_location": "Where is your store located ?",
+    "previous": "previous",
+    "title1": "Noodra pricing and services",
+    "paragraphe1": "Creating your store on Noodra and supplying your store with products is free. Only a commission is applied to sales made. The commission is 14% for non-affiliates and 9% for affiliates. Contact Noodra after creating your store to find out about the membership conditions and become an affiliate",
+    "title2": "Creation inspired by the countries of the world",
+    "paragraphe2": "Any product meeting the following conditions is considered a creation inspired by a particular country:",
+    "personal_informations": "Personal informations",
+    "address_shop": "Shop address",
+    "ambassador": "Ambassador",
+    "error_500": "Something went wrong. Please retry later",
+    "guideline": "<div> <h2>Noodra pricing and services</h2> <p> Creating your store on Noodra and supplying your product store is free. Only a commission is applied on the sales made. The commission is 14% for non-affiliates and 9% for affiliates. Contact Noodra after the creation of your store to know the conditions of affiliation and to become an affiliate </p></div><div> <h3>Creation inspired by the countries of the world</h3> <p> Any product meeting the following conditions is considered a creation inspired by a particular country: </p> <ol> <li> Creations composed of artisanal materials from the world of origin or use. </li> <li> With a clear message or meaning related to a particular country or its culture. </li> <li> All creations that the Noodra team accepts to qualify as creations inspired by a country. </li> </ol></div><hr /><div> <h2>Order Processing Policy</h2> <h3>1- Before order</h3> <ol> <li> Ensure that the photos accurately reflect the colors of the product. </li> <li> Make sure that the dimensions are mentioned in the description or in the attributes. </li> <li> Ensure that delivery times are the maximum number of days between the date of creation of the order and receipt by the buyer, including the manufacturing and preparation time. </li> <li> Regularly check the variations and stocks of products posted online to avoid order cancellations. </li> <li>The shop address is considered a product return address by default.</li> </ol></div><div> <h3>2- Receipt of the order - Status 'To Accept'</h3> <ol> <li> You will have 48 hours to accept the order, otherwise the buyer will be automatically refunded to his Noodra virtual wallet. </li> <li> In case of refusal and cancellation, the seller must give an explanation to the buyer. </li> <li> After 3 consecutive cancellations, the shop automatically becomes invisible and the seller must reactivate it. </li> <li> After 10 cancellations or 30-day refunds, the Creator Store may be disabled or temporarily blocked and under consideration for permanent closure. </li> </ol></div><div> <h3>3- After accepting the order - Status 'To Ship'</h3> <ol> <li> If there is a delay in preparing the order, the designer MUST NOTIFY THE BUYER. if the customer contacts Customer Service and requests a cancellation of the order. This cancellation can then be made by the Noodra team without notifying the seller. </li> <li> When a buyer contacts the seller, the latter has a maximum of 48 hours to respond. In the event of no response, the buyer can contact Customer Service and request a cancellation of the order, without notifying the seller. </li> </ol></div><div> <h3>4- When the order is shipped - Status 'Shipped''</h3> <ol> <li> Adding a tracking number when shipping is highly recommended. Otherwise, in the event of loss of the package or non-receipt, the buyer may request the cancellation and full refund of the order, as no proof of dispatch is available. </li> <li> In the event of non-receipt of the order, the seller must initiate the process with his carrier. In case of shipment with a tracking number indicating that the product has been received, the creator is not required to reimburse, even if the customer indicates that she has not received it. </li> </ol></div><div> <h3>5- Case of return of the order for exchange or cancellation</h3> <ol> <li> If a buyer wants to return a product that turns out to be non-compliant, the return costs are the responsibility of the seller. </li> <li> In the event of a return, the seller has a period of 15 days to confirm receipt of the returned order or to notify that he has not received it. Otherwise, the package is considered returned. </li> </ol></div><div> <h3>6- Definition of a nonconforming product</h3> <p> If the seller sends a product and it turns out to be non-compliant, he bears the cost of return and the refund is full. </p> <p>Any product meeting these conditions is considered non-compliant:</p> <ol> <li>the product arrived damaged.</li> <li>there is a manufacturing defect.</li> <li>The product is not the same as the one shown in the product photo.</li> <li> The materials and other descriptive elements are different from reality. </li> <li>The color is different than the product photo.</li> </ol></div>",
+    "accept": "I accepted the sellers charter",
+    "validate_shop": "Your shop has been successfully created ",
+    "edit_shop": "Your shop has been modified successfully",
+    "terms": "Terms and conditions of shop",
+    "add_products_msg": "Add as many products as possible. Ten or more would be a good start. The more items you have in your store, the more likely shoppers will discover you !",
+    "free_return": "Free return",
+    "exchangeable_text": "Exchanges accepted under",
+    "not_exchangeable_text": "Exchanges not accepted",
+    "refundable_text": "Refund accepted under",
+    "not_refundable_text": "Refund not accepted",
+    "exchangeable_custom_product_text": "Exchange of personalized items",
+    "refundable_custom_product_text": "Refund of personalized items",
+    "days": "days"
+  },
+  "open_shop": {
+    "title": "Millions of buyers are eager to find out what you are going to offer",
+    "bouton": "Open your Noodra store",
+    "title2": "Sell artwork inspired by your world all over the world.",
+    "title_step_1": "1. Open your store for free",
+    "desc_step_1": "Add as many products as you want, simply and in minutes.",
+    "title_step_2": "2. The buyer pays online directly",
+    "desc_step_2": "You are notified by email and have 48 hours to confirm the order. Otherwise the buyer is automatically refunded",
+    "title_step_3": "3. You ship",
+    "desc_step_3": "Once the order is confirmed, the amount is credited to the virtual wallet, less the commission. Otherwise the buyer is automatically refunded",
+    "title_step_4": "4. You have the funds",
+    "desc_step_4": "You can make transfers whenever you want to the account of your choice."
+  },
+  "wishlist": {
+    "favorites": "favorites",
+    "favorite_articles": "Favorite articles",
+    "favorite_shops": "Favorite shops",
+    "empty_articles_text": "You do not yet have any products in your Favorites. Browse our website to add products.",
+    "delete_article_msg": "The product has been successfully removed from your wishlist",
+    "add_article_msg": "The product has been successfully added to your wishlist"
+  },
+  "basket": {
+    "continue_shopping": "Continue shopping",
+    "items_in_basket": "items in your basket",
+    "item_in_basket": "item in your basket",
+    "conact_shop": "Contact shop",
+    "delete_basket_item": "Delete",
+    "modify_basket_item": "Modify",
+    "put_aside_basket_item": "Put aside",
+    "payment_method": "Payment method",
+    "apply": "Apply",
+    "add_promo_code_msg": "If you have a promo code, Add it in the next step",
+    "total_items": "Total items",
+    "sub_total": "Sub-total",
+    "total": "Total",
+    "item": "item",
+    "to": "To",
+    "shipping_cost": "Shipping cost",
+    "checkout": "Checkout",
+    "order_is_gift": "This order is a gift",
+    "prices_not_showing_in_delevery_note": "The prices will not be displayed on the delivery slip",
+    "from": "From",
+    "delay": "Delay",
+    "empty_basket_text": "Your basket is empty! Browse our website to add products.",
+    "update_basket_msg": "Your basket has been successfully updated",
+    "update_item": "Update item",
+    "update_btn": "Update",
+    "finish_btn": "Finish",
+    "btn_cancel": "Cancel",
+    "customisation": "Personnalisation",
+    "customisations": "Personnalisations",
+    "quantity": "Quantity",
+    "apply_promo_code": "Apply a promo code",
+    "change_delivery_address": "Change delivery address",
+    "change_billing_address": "Change billing address",
+    "change_adresse": "Change address",
+    "shipping_adresses": "Delivery addresses",
+    "add_adresse": "Add an address"
+  },
+  "products": {
+    "title": "Products",
+    "results_nbr_text": "results",
+    "no_results_text": "No product matches for your search",
+    "back_to_home_btn": "Back to home",
+    "see_more_in_text": "See all in",
+    "filters_label": "All Filters",
+    "see_more": "See more",
+    "see_less": "See less"
+  },
+  "promotion": {
+    "title": "Promotion",
+    "btn_promotion": "New promotion",
+    "add_deal": "Your shop has been successfully created",
+    "edit_deal": "Your shop has been successfully updated",
+    "delete_deal": "Votre promotion a été supprimer avec succès",
+    "action": "Actions",
+    "apply": "Apply to",
+    "btn_create": "Create",
+    "btn_update": "Update",
+    "btn_cancel": "Cancel",
+    "delete_confirmation_content": "Are you sure you want to delete this promotion ?"
+  },
+  "discount_coupon": {
+    "title": "Discount coupon",
+    "btn_discount": "New discount coupon",
+    "title_reduction": "Reduction",
+    "title_reduction_promo_code": "Discount code",
+    "choice": "Reduction by",
+    "add_discount": "Your shop has been successfully created",
+    "edit_discount": "Your shop has been successfully updated",
+    "delete_discount": "Your promotion has been successfully deleted",
+    "delete_confirmation_content": "Are you sure you want to delete this discount coupon ?"
+  },
+  "delivery": {
+    "title": "Delivery",
+    "btn_delivery": "New delivery profile",
+    "info": "Complete the shipping cost table below. Enter the number 0 when you want to offer them.<span class='bluetxt'>Increase your sales by 30% by offering free shipping.</span> Leave the values blank in the 'Free shipping from' column if you do not want to apply this option.",
+    "add_delivery": "Your shop has been successfully created",
+    "edit_delivery": "Your shop has been successfully updated",
+    "delete_delivery": "Your delivery has been successfully deleted",
+    "action": "Actions",
+    "day": "d",
+    "region": "Region",
+    "pays": "Pays",
+    "add_region": "Ajouter une region",
+    "add_pays": "Ajouter un pays",
+    "delete_confirmation_content": "Are you sure you want to delete this delivery ?",
+    "free_delivery": "Free Delivery"
+  },
+  "language": {
+    "french": "French",
+    "english": "English"
+  },
+  "message_empty": {
+    "empty_field": "This field cannot be empty."
+  },
+  "newsletter": {
+    "big_text_newsletter": "Receive exclusive offers by subscribing to the Newsletter",
+    "label_button_subscription": "Subscription",
+    "placeholder_subscription": "Enter your email",
+    "already_subscribed_user": "You are subscribed to our Newsletter.",
+    "successful_subscription": "You've been successfully signed up!"
+  },
+  "pagination": {
+    "items_per_page_text": "Items per page"
+  },
+  "delete_confirmation": {
+    "delete_confirmation_title": "Delete conformation",
+    "delete_confirmation_cancel": "Cancel",
+    "delete_confirmation_confirm": "Delete"
+  },
+  "transfer_account": {
+    "delete_confirmation_content": "Are you sure you want to delete this account ?"
+  }
+}

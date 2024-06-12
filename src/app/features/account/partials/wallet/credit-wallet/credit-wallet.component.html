@@ -1,0 +1,70 @@
+<!-- <app-amount-credit (amount)="updateCreditPayment($event)"></app-amount-credit> -->
+<div class="box">
+    <div class="box_title">{{steps[currentStep].title | translate}}</div>
+    <div class="box_content w-100" *ngIf="currentStep === 0 || currentStepFromService===0">
+        <app-amount-credit (amount)="updateCreditPayment($event)" [currencyType]="wallet?.balance_currency"
+            [value]="creditAmout"></app-amount-credit>
+    </div>
+    <div class="box_content w-100" *ngIf="currentStep === 1">
+        <div class="w-100 flex align-items-center justify-content-end mgb30 small-screen-center-align">
+            <button type="button" class="linkMore blue" (click)="changeStep()">{{'wallet.credit.btn_back' |
+                translate}}</button>
+        </div>
+        <!-- <div class="flex">
+            <button  type="button"
+            class="linkMore yellow" (click)="checkPayMode(stripe)" >{{'Pay by Card' | translate}}</button>
+            <button  type="button"
+            class="linkMore yellow" (click)="" ><img
+            [src]="globalPathService.getPath('assets/img/pay-card.png')"
+            alt
+        ></button> -->
+        <div class="selectors mgb20 align-items-center custom-class px-3">
+            <div *ngIf="savedCards">
+                <div *ngFor="let card of savedCards;index as i" class="item mgb10">              
+                    <input type="radio" name="mode-payment" [checked]="card.checkedOption" [value]="card.checkedOption" (change)="checkPayMode(card)"id="card{{i}}" #input>
+                    <label class="txtRadio" for="card{{i}}">
+                        <img *ngIf="card.brand=='visa'" class="h-24 pt-1" src="assets/img/visa.png">
+                        <img *ngIf="card.brand=='mastercard'" class="h-24 pt-1" src="assets/img/mastercard.png">
+                        <img *ngIf="card.brand=='amex'" class="h-24 pt-1" src="assets/img/amex.png">
+                        <img *ngIf="card.brand=='discover'" class="h-24 pt-1" src="assets/img/discover.png">
+                            Carte de débit se terminat par **** {{ card.last4 }} <small *ngIf="card.expired" class="red"><i class="fal fa-info-circle red" style="font-weight: 600;"></i> Expiré le {{card.exp_month<=10?'0'+card.exp_month:card.exp_month}}/{{card.exp_year}}</small> 
+                            <small *ngIf="!card.expired"><i class="fal fa-info-circle" style="font-weight: 600;"></i> Expire le {{card.exp_month<=10?'0'+card.exp_month:card.exp_month}}/{{card.exp_year}}</small> 
+                        </label>  
+                    <small class="delete-icon"  (click)="deleteCard(card)"><i class="fal fa-window-close"></i></small>       
+                </div>
+            </div>           
+            <div class="item mgb10">
+                <input type="radio" id="by-card" name="mode-payment" value="stripe" (change)="checkPayMode(input.value)"
+                    [checked]="showCarte" #input>
+                <label for="by-card" class="txtRadio">
+                    <i class="fab fa-credit-card"></i> Nouvelle carte
+                </label>
+            </div>
+            <div class="item mgb10" *ngIf="paypalSupported">
+                <input type="radio" id="by-paypal" [checked]="showPaypal" name="mode-payment" value="paypal"
+                    (change)="checkPayMode(input.value)"  #input>
+                <label for="by-paypal" class="txtRadio">
+                    <img [src]="'assets/img/pay-paypal.png'" class="h-24" alt>
+                </label>
+            </div>
+        </div>
+
+        <div class="paypal">
+            <div *ngIf="showCarte" class="container mgb20">
+                <app-credit-by-card (resetStep)="resetCurrentStep()" [config]="creditConfig" [amout]="creditAmout" [currencyType]="wallet?.balance_currency"></app-credit-by-card>
+            </div>
+            <div *ngIf="paypalSupported && showPaypal" class="container mgb20">
+                <app-paypal-block [config]="creditConfig" (sent)="paypalEvent($event)"></app-paypal-block>
+            </div>
+            <div *ngIf="checkedOption" class="container mgb20">
+                <app-credit-by-saved-card [amout]="creditAmout" (resetStep)="resetCurrentStep()" [card]="selectedOption" [currencyType]="wallet?.balance_currency"></app-credit-by-saved-card>
+            </div>
+        </div>
+    </div>    
+    <!--
+        <app-credit-by-card [typePayment]='typePayment'></app-credit-by-card>
+        <app-paypal-block *ngIf="showPaypal" [config]="creditConfig"></app-paypal-block>
+        <div> -->
+
+    <!-- wallet deposit api called when amount is entered -->
+</div>

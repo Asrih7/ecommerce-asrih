@@ -1,0 +1,204 @@
+ .wrapperTabsMessages {
+     min-height: 35vh;
+     max-height: 35vh;
+     overflow-y: auto;
+     overflow-x: hidden;
+     display: block !important
+ }
+
+ .wrapperTabsMessages::-webkit-scrollbar {
+     width: 10px
+ }
+
+ .wrapperTabsMessages::-webkit-scrollbar-track {
+     background: #f1f1f1
+ }
+
+ .wrapperTabsMessages::-webkit-scrollbar-thumb,
+ .wrapperTabsMessages::-webkit-scrollbar-thumb:hover {
+     background: #1125ba
+ }
+
+ .wrapperTabsMessages .tabs {
+     display: block !important
+ }
+
+ @media screen and (max-width:48em) {
+     .wrapperTabsMessages {
+         min-height: auto
+     }
+ }
+
+ .tabs .contact {
+     padding-left: 20px
+ }
+
+ .tabs .contact:before {
+     display: none
+ }
+
+ .tabs .contact.current:before {
+     opacity: 1
+ }
+
+ li.contact {
+     display: -webkit-box !important;
+     display: -webkit-flex !important;
+     display: -moz-box !important;
+     display: -ms-flexbox !important;
+     display: flex !important;
+     -webkit-box-align: center;
+     -webkit-align-items: center;
+     -moz-box-align: center;
+     -ms-flex-align: center;
+     align-items: center;
+     padding: .625rem 1.25rem .625rem 0;
+     position: relative;
+     cursor: pointer;
+     -webkit-transition: all .5s ease;
+     -o-transition: all .5s ease;
+     -moz-transition: all .5s ease;
+     transition: all .5s ease;
+     padding-right: 1.25rem;
+     z-index: 0;
+     border: none !important
+ }
+
+ li.contact:after {
+     content: "";
+     position: absolute;
+     left: 50%;
+     -webkit-transform: translateX(-50%);
+     -ms-transform: translateX(-50%);
+     -moz-transform: translate(-50%);
+     -o-transform: translate(-50%);
+     transform: translate(-50%);
+     width: 80%;
+     height: .0625rem;
+     margin: 0 auto;
+     bottom: 0;
+     background: #dedede
+ }
+
+ li.contact:before {
+     content: "";
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     left: -100%;
+     right: 0;
+     width: 200%;
+     background: #efefef;
+     z-index: -1;
+     opacity: 0;
+     -webkit-transition: all .5s ease;
+     -o-transition: all .5s ease;
+     -moz-transition: all .5s ease;
+     transition: all .5s ease
+ }
+
+ li.contact.current:before,
+ li.contact:hover:before {
+     opacity: 1
+ }
+
+ li.contact:nth-child(2n) .user {
+     background: #f8c43d
+ }
+
+ li.contact .detailContact {
+     display: -webkit-box;
+     display: -webkit-flex;
+     display: -moz-box;
+     display: -ms-flexbox;
+     display: flex;
+     width: -webkit-calc(100% - 40px);
+     width: -moz-calc(100% - 40px);
+     width: calc(100% - 40px);
+     -webkit-box-orient: vertical;
+     -webkit-box-direction: normal;
+     -webkit-flex-direction: column;
+     -moz-box-orient: vertical;
+     -moz-box-direction: normal;
+     -ms-flex-direction: column;
+     flex-direction: column;
+     position: relative
+ }
+
+ li.contact .detailContact .wrapperNbr {
+     position: absolute;
+     top: 50%;
+     -webkit-transform: translateY(-50%);
+     -ms-transform: translateY(-50%);
+     -moz-transform: translateY(-50%);
+     -o-transform: translateY(-50%);
+     transform: translateY(-50%);
+     right: 10px
+ }
+
+ li.contact .detailContact .fullName {
+     font-family: HelveticaNeue;
+     font-weight: 400;
+     font-size: .875rem;
+     padding-bottom: .3125rem;
+     color: #4e4e4e
+ }
+
+ li.contact .detailContact .partConversation {
+     font-family: HelveticaNeueLight;
+     font-weight: 300;
+     font-size: .875rem;
+     color: #777;
+     line-height: 1.125rem
+ }
+
+ li.contact .user {
+     float: none;
+     display: -webkit-inline-box;
+     display: -webkit-inline-flex;
+     display: -moz-inline-box;
+     display: -ms-inline-flexbox;
+     display: inline-flex;
+     -webkit-box-pack: center;
+     -webkit-justify-content: center;
+     -moz-box-pack: center;
+     -ms-flex-pack: center;
+     justify-content: center
+ }
+
+ .tabs .close {
+     position: absolute;
+     top: 5px;
+     right: 5px;
+     font-size: 1.125rem;
+     display: none
+ }
+
+ .tabs .close i {
+     color: #1125ba
+ }
+
+ @media screen and (max-width:48em) {
+     .tabs .close {
+         display: block
+     }
+ }
+
+
+
+ .tabs.open {
+     bottom: 0;
+     height: 50rem;
+     width: 100%
+ }
+
+ .tabs.open li {
+     -moz-border-radius: 0 !important;
+     border-radius: 0 !important
+ }
+
+ @media screen and (max-width:640px) {
+     .tabs {
+         max-width: 100%
+     }
+ }

@@ -1,0 +1,162 @@
+.disabled {
+    pointer-events: none; //This makes it not clickable
+}
+
+.creation_account {
+    max-width: 73.125rem;
+    width: 100%;
+    margin: 0 auto
+}
+
+.steps {
+    max-width: 62.5rem;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 1.875rem
+}
+
+.steps_list {
+    border-top: .125rem solid #1125ba;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 1.3rem;
+    position: relative
+}
+
+.steps_list:after,
+.steps_list:before {
+    content: "";
+    position: absolute;
+    height: .625rem;
+    width: 100%;
+    background: #fff;
+    top: -5px;
+    z-index: 2
+}
+
+.steps_list:before {
+    left: -84.4%
+}
+
+.steps_list:after {
+    right: -84.3%
+}
+
+@media screen and (max-width:64em) {
+    .steps_list:after {
+        right: -84.6%
+    }
+}
+
+@media screen and (max-width:48em) {
+    .steps_list:before {
+        left: -85%
+    }
+
+    .steps_list:after {
+        right: -85%
+    }
+}
+
+@media screen and (max-width:640px) {
+    .steps_list:before {
+        left: -86.3%
+    }
+
+    .steps_list:after {
+        right: -86.3%
+    }
+}
+
+@media screen and (max-width:23.4375em) {
+    .steps_list:before {
+        left: -86.8%
+    }
+
+    .steps_list:after {
+        right: -86.8%
+    }
+}
+
+@media screen and (max-width:20em) {
+    .steps_list:before {
+        left: -87.4%
+    }
+
+    .steps_list:after {
+        right: -87.4%
+    }
+}
+
+.steps_list li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-family: HelveticaNeueLight;
+    font-weight: 300;
+    position: relative;
+    color: #4e4e4e;
+    font-size: 1rem;
+    cursor: default;
+    transition: all .3s ease;
+}
+
+@media screen and (max-width:48em) {
+    .steps_list li {
+        font-size: .875rem
+    }
+}
+
+.steps_list li.current,
+.steps_list li.pointer:hover {
+    text-decoration: underline
+}
+
+.steps_list li.current:after {
+    background: #1125ba
+}
+
+.steps_list li:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%);
+    top: -2.0625rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: .125rem solid #1125ba;
+    background: #fff;
+    z-index: 1
+}
+
+.tab-steps-content {
+    display: none
+}
+
+.tab-steps-content.current {
+    display: block
+}
+.box_content {
+    overflow-x: initial;
+}

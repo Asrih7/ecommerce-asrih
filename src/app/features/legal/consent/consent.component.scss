@@ -1,0 +1,27 @@
+.cookies {
+  position: fixed;
+  width: 100%;
+  bottom: -123px;
+  left: 0;
+  //   height: 123px;
+  padding: 1.25rem;
+  background: #f8c43d;
+  font-family: HelveticaNeueMedium;
+  font-weight: 500;
+  font-size: 1.25rem;
+  z-index: 9999;
+  -webkit-box-shadow: 0 0 0.625rem #777;
+  -moz-box-shadow: 0 0 0.625rem #777;
+  box-shadow: 0 0 0.625rem #777;
+  -webkit-transition: all 0.8s ease-in-out;
+  -o-transition: all 0.8s ease-in-out;
+  -moz-transition: all 0.8s ease-in-out;
+  transition: all 0.8s ease-in-out;
+}
+.cookies.animate {
+  bottom: 0px;
+}
+.cookies.fullCookie {
+  height: 60%;
+  overflow: auto;
+}

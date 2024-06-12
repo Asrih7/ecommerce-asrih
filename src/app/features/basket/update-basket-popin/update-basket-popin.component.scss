@@ -1,0 +1,195 @@
+.basket-popin-wrapper {
+    position: fixed;
+    z-index: 1000;
+    top: -100%;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    display: flex !important;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    transition: all 1s ease;
+
+    .basket-popin-container {
+        max-width: 31.25rem;
+        width: 31.25rem;
+        background: #fff;
+        border-radius: .9375rem;
+        overflow-y: auto;
+        position: relative;
+
+        .basket-popin-title {
+            background: rgba(17, 37, 186, .8);
+            font-family: HelveticaNeue;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #fff;
+            padding: .9375rem 1.25rem;
+        }
+
+        .popin-body {
+            padding: 20px;
+
+            .popin-content {
+                .bt-product-title {
+                    font-family: HelveticaNeue;
+                    font-weight: 600;
+                    font-size: 1rem;
+                    line-height: 1.5625rem;
+                    color: #4e4e4e;
+                }
+
+                .bt-wrapper-price-product {
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-wrap: wrap;
+
+                    .bt-price {
+                        color: #1125ba;
+                        padding-right: 0.625rem;
+                        font-size: 25px;
+                        font-family: HelveticaNeueBold;
+                        font-weight: 700;
+                        padding-bottom: 0 !important;
+                        line-height: 27px;
+                        position: relative;
+                        top: 6px;
+                    }
+
+                    .bt-discount {
+                        font-size: .75rem;
+                        text-decoration: line-through;
+                        padding-right: 10px;
+                    }
+
+                    .bt-taux {
+                        font-family: HelveticaNeueLight;
+                        font-weight: 300;
+                        color: #42a084;
+                        font-size: .75rem;
+                        margin-right: 0.625rem;
+                    }
+                }
+
+                .bt-product-attrs {
+                    .bt-product-attrs-select {
+                        margin-bottom: 12px;
+
+                        .bt-attr-label {
+                            font-size: .8rem;
+                            color: #000 !important;
+
+                            .tag {
+                                margin-left: 10px;
+                                font-family: HelveticaNeue;
+                                color: #4e4e4e;
+                                padding: 5px 10px;
+                                border-radius: 3.125rem;
+                                letter-spacing: 1px;
+                                line-height: 12px;
+                                border: 1px solid #42a084;
+                                background: rgba(66, 160, 132, 0.2);
+                                font-weight: 600;
+
+                                &.secondary {
+                                    border-color: #a3a3a3;
+                                    color: #a3a3a3;
+                                    background: unset;
+                                    font-weight: 500;
+                                }
+
+                                &.warning {
+                                    border-color: #f8c43d;
+                                    color: #f8c43d;
+                                    background: unset;
+                                    font-weight: 500;
+                                }
+                            }
+                        }
+
+                        ::ng-deep .mat-mdc-form-field-infix {
+                            padding-top: 0px !important;
+                            padding-bottom: 0px !important;
+
+                            .mat-mdc-select-arrow {
+                                bottom: 6px;
+                            }
+                        }
+
+                        .customisation-content {
+                            display: flex;
+                            margin-bottom: 15px;
+
+                            .delete-customisation {
+                                width: 10%;
+                                text-align: center;
+                                margin-top: 30px;
+                                color: red;
+                                cursor: pointer;
+                            }
+                        }
+
+                        &.customisation {
+                            ::ng-deep .mat-mdc-form-field-infix {
+                                padding-top: 6px !important;
+
+                                input {
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+
+                    .out-of-stock-msg {
+                        margin-bottom: 20px;
+                        background: rgba(255, 64, 129, 0.2);
+                        color: #ff4081;
+                        border: 1px solid #ff4081;
+                        font-family: HelveticaNeue;
+                        padding: 5px 10px;
+                        border-radius: 0.3rem;
+                        font-size: 14px;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .field {
+                display: -webkit-box;
+                display: -webkit-flex;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -webkit-justify-content: space-between;
+                -moz-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+
+                button.linkMore {
+                    line-height: 0;
+                    padding: 0px 28px;
+                }
+            }
+        }
+    }
+
+    &.show {
+        top: 0%;
+        max-height: 100%;
+        overflow-y: auto;
+        transition: all 1s ease;
+    }
+}
+
+@media screen and (max-width:48em) {
+    .basket-popin-wrapper {
+        .basket-popin-container {
+            max-width: 100%;
+            width: 90%;
+        }
+    }
+}

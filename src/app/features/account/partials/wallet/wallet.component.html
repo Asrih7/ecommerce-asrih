@@ -1,0 +1,32 @@
+<h1 class="icon icon-wallet mainTitle">{{"header.wallet" | translate}}</h1>
+<div class="headWallet">
+    <h3 class="title">{{'header.wallet' | translate}}</h3>
+    <div class="price">
+        {{"wallet.balance" | translate}}:
+        <ng-container *ngIf="wallet && wallet.balance !== '' && wallet.balance_currency !=='' else emptyBalance">
+            <strong>{{wallet.balance}} {{wallet.balance_currency}}</strong>
+        </ng-container>
+        <ng-template #emptyBalance>
+            <strong>--.-</strong>
+        </ng-template>
+    </div>
+</div>
+
+<div [ngClass]="!wallet?.messages ? '' : 'hide'">
+    <noo-tabs [mode]="'horizontal'" [class]="'full-width-tabs'">
+        <noo-tab mode="horizontal" id="transaction" tab [active]="true"
+            [title]="'wallet.transaction.title' | translate">
+            <app-transaction [wallet]="wallet"></app-transaction>
+        </noo-tab>
+        <noo-tab mode="horizontal" id="transfer" tab [title]="'wallet.transfer.title' | translate">
+            <app-transfert></app-transfert>
+        </noo-tab>
+        <noo-tab mode="horizontal" id="credit" tab [title]="'wallet.credit.title' | translate">
+            <app-credit-wallet [wallet]="wallet"></app-credit-wallet>
+        </noo-tab>
+    </noo-tabs>
+</div>
+
+<p class="wrapperBox account-desabled" [ngClass]="wallet?.messages ? '' : 'hide'">
+    {{wallet?.messages}}
+</p>

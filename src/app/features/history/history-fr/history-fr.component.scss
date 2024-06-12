@@ -1,0 +1,24 @@
+@media screen and (max-width:640px) {
+  .histoire .small-container {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    -webkit-flex-direction: column !important;
+    -moz-box-orient: vertical !important;
+    -moz-box-direction: normal !important;
+    -ms-flex-direction: column !important;
+    flex-direction: column !important
+  }
+
+  .histoire .small-container .nd-flex-1 {
+    padding-left: 0 !important
+  }
+
+  .histoire .small-container .nd-flex-1:first-child {
+    padding-bottom: 1.875rem
+  }
+}
+
+.histoire p {
+  font-family: 'Dancing Script', cursive !important;
+  font-size: 1.375rem !important
+}

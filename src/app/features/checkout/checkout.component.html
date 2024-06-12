@@ -1,0 +1,219 @@
+<section class="basket-container padt30 pdb30">
+    <div class="container">
+        <div class="space-between mgb30 align-items">
+            <span class="bold text-size-20">
+                {{"basket.shipping_adresses" | translate}}
+            </span>
+            <a [routerLink]="['/products']" class="secondary-link">{{ 'basket.continue_shopping' | translate }}</a>
+        </div>
+    </div>
+
+    <div *ngIf="loadingBasket;" class="basket-loader-container" style="margin-top: 20px;">
+        <div class="box_content">
+            <noo-loader></noo-loader>
+        </div>
+    </div>
+
+    <ng-container *ngIf="!loadingBasket">
+        <div class=" container in-row basket-wrapper" *ngIf="this.currentBasket?.items?.length">
+            <div class="nd-flex-2 column">
+                <li class="filter-title mgb20">
+                    <div style="margin-bottom: 20px;">
+                        <input (change)="sameAddressChange($event)" type="checkbox" id="chekbox_useTheSameAddress"
+                            name="chekbox_useTheSameAddress" [checked]="useTheSameAddress">
+                        <label for="chekbox_useTheSameAddress" class=" txtCheck">
+                            {{"information_account.address_billing_is_address_delivery" | translate}}
+                        </label>
+                    </div>
+
+                    <div class="in-row wrap">
+                        <div class="nd-flex-1 column pdr20 address-delivery">
+                            <div class="box">
+                                <div class="box_title">{{"information_account.title_address_delivery" | translate}}
+                                </div>
+                                <div class="box_content" style="overflow: hidden;">
+                                    <ng-container
+                                        *ngIf="profile && profile.default_shipping_address; else emptyShippingAdress">
+                                        <div class="address-box">
+                                            <div class="selector">
+                                                <i class="fal fa-home check-icon"></i>
+                                            </div>
+                                            <div
+                                                *ngTemplateOutlet="adressItem; context: { adress : profile.default_shipping_address}">
+                                            </div>
+                                        </div>
+
+                                        <button (click)="updateAddresse('Delivery')" type="button"
+                                            class="linkMore blue">
+                                            {{"basket.change_adresse" | translate}}
+                                        </button>
+
+                                    </ng-container>
+                                    <ng-template #emptyShippingAdress>
+                                        <button (click)="updateAddresse('Delivery')" type="button"
+                                            class="linkMore blue">
+                                            {{"basket.add_adresse" | translate}}
+                                        </button>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nd-flex-1 column pdl20">
+                            <div class="box">
+                                <div class="box_title"> {{"information_account.title_address_billing" | translate}}
+                                </div>
+                                <div class="box_content" style="overflow: hidden;">
+                                    <ng-container
+                                        *ngIf="profile && ((useTheSameAddress && profile.default_shipping_address) || (!useTheSameAddress && profile.default_billing_address)); else emptyBillingAdress">
+                                        <div class="address-box">
+                                            <div class="selector">
+                                                <i class="fal fa-dollar-sign check-icon"></i>
+                                            </div>
+                                            <div
+                                                *ngTemplateOutlet="adressItem; context: { adress : useTheSameAddress ? profile.default_shipping_address : profile.default_billing_address}">
+                                            </div>
+                                        </div>
+
+                                        <button [disabled]="useTheSameAddress" (click)="updateAddresse('Billing')"
+                                            type="button" class="linkMore blue">
+                                            {{"basket.change_adresse" | translate}}
+                                        </button>
+                                    </ng-container>
+                                    <ng-template #emptyBillingAdress>
+                                        <button [disabled]="useTheSameAddress" (click)="updateAddresse('Billing')"
+                                            type="button" class="linkMore blue">
+                                            {{"basket.add_adresse" | translate}}
+                                        </button>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="nd-flex-1 pdl40 basket-right-side column">
+                <div class="wrapper-paiment flex column radius10 shadow mgb40">
+                    <div class="bold mgb30"> {{'basket.payment_method' | translate }} </div>
+                    <!--  <ul class="mgb30">
+                        <li>
+                            <input type="radio" id="by-card" name="mode-payment" value="1">
+                            <label for="by-card" class="txtRadio">
+                                <img src="assets/img/pay-card.png" alt="">
+                            </label>
+                        </li>
+                        <li>
+                            <input type="radio" id="by-paypal" name="mode-payment" value="2">
+                            <label for="by-paypal" class="txtRadio">
+                                <img src="assets/img/pay-paypal.jpg" alt="">
+                            </label>
+                        </li>
+                    </ul> -->
+                    <ul class="trait1 pdb10 mgb10">
+                        <li class="space-between mgb20">
+                            <span>{{'basket.total_items' | translate }}</span>
+                            <span>{{totals?.totalUnitPrice | number: '1.2-2' }} {{currentBasket?.currency}}</span>
+                        </li>
+                        <li class="space-between mgb20"
+                            *ngIf="totals?.totalUnitPrice - totals?.totalPriceAfterPromotion">
+                            <span>{{'discount_coupon.title_reduction' | translate }}</span>
+                            <span>-{{totals?.totalUnitPrice - totals.totalPriceAfterPromotion | number: '1.2-2'}}
+                                {{currentBasket?.currency}}</span>
+                        </li>
+                        <ng-container *ngIf="totals?.totalDiscountAmount && currentBasket?.discount">
+                            <li class="space-between mgb10">
+                                <span>
+                                    {{'discount_coupon.title_reduction_promo_code' |
+                                    translate}} ({{currentBasket?.discount}})</span>
+                                <span>{{totals?.totalDiscountAmount | number: '1.2-2'}}
+                                    {{currentBasket?.currency}}</span>
+                            </li>
+                            <li class="space-between mgb20">
+                                <a class="secondary-link" (click)="deleteDiscountCoupon()">
+                                    {{ 'basket.delete_basket_item' | translate }}
+                                    <i class="fal fa-trash-alt"></i></a>
+                            </li>
+                        </ng-container>
+
+                        <li class="mgb10 trait1 pdb20">
+                            <span class="linkSecond mgb20">{{'basket.apply_promo_code' | translate }}</span>
+                            <div class="wrapperBox pdb0">
+                                <div class="info inline" style="margin-right: 0px;">
+                                    <input type="text" id="title-product" placeholder="" [(ngModel)]="discount">
+                                    <button class="btn-send" (click)="applyDiscountCoupon()">
+                                        {{'basket.apply' | translate }}
+                                    </button>
+                                </div>
+                                <span style="color: red; display: block; margin-top: 5px;font-size: 13px;width:100%"
+                                    *ngIf="discountError">
+                                    {{discountError}}
+                                </span>
+                            </div>
+                        </li>
+                        <li class="space-between mgb20">
+                            <span class="bold">{{'basket.sub_total' | translate }}</span>
+                            <span>
+                                {{(totals?.totalPriceAfterPromotion??0) +
+                                (totals?.totalDiscountAmount??0) | number: '1.2-2' }}
+                                {{currentBasket?.currency}}
+                            </span>
+                        </li>
+                        <li class="flex column">
+                            <div class="space-between mgb10">
+                                <span>{{'basket.shipping_cost' | translate }}</span>
+                                <span>
+                                    <span *ngIf="totals?.totalShippingCost">
+                                        {{totals?.totalShippingCost | number: '1.2-2'}}
+                                    </span>
+                                    <span *ngIf="!totals?.totalShippingCost">
+                                        0,00
+                                    </span>
+                                    {{currentBasket?.currency}}
+                                </span>
+                            </div>
+                            <div class="text-size-14 txt-gris">
+                                ({{'basket.to' | translate }} <span class="name-shop show-modal"
+                                    data-modal="modal-delevery">
+                                    {{ totals?.to }}</span>)
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="space-between mgb20">
+                        <span class="bold">{{'basket.total' | translate }} ( {{ this.currentBasket?.items?.length }}
+                            {{'basket.item' | translate }}{{ (this.currentBasket?.items?.length ?? 0) > 1 ? 's':''}})
+                        </span>
+                        <span class="bold">
+                            {{(totals?.totalPriceAfterPromotion??0) +
+                            (totals?.totalDiscountAmount??0) +
+                            (totals?.totalShippingCost??0) | number: '1.2-2' }} {{currentBasket?.currency}}
+                        </span>
+                    </div>
+                    <a class="add-now-btn" (click)="null">{{'basket.checkout' | translate }}</a>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</section>
+
+<ng-template #adressItem let-adress="adress">
+    <div class="adress">
+        <div class="bold adress-item">
+            {{ adress.name }}
+        </div>
+        <div class="adress-item">
+            {{ adress.street }} {{ adress.street2 }}
+        </div>
+        <div class="adress-item">
+            {{ adress.postal_code }} {{ adress.city }}
+            {{ adress.region }} {{ countries | choiceLabel : adress.country }}
+        </div>
+        <div class="adress-item">
+            <span>
+                {{"information_account.phone" | translate}}. {{ adress.phone }}
+            </span>
+        </div>
+    </div>
+</ng-template>
+
+<update-adress-popin *ngIf="adressPopinOpened" [isOpened]="adressPopinOpened" [profile]="profile"
+    [adresseKey]="editedAdresse" (close)="closeUpdateAddress($event)" (updateBasketItem)="null"
+    [adressFields]="adressFields" [countries]="countries">
+</update-adress-popin>

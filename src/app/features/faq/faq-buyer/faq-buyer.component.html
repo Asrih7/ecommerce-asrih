@@ -1,0 +1,9 @@
+<section class="section">
+    <ng-container *ngIf="$language | async as lang">
+        <app-faq-buyer-fr *ngIf="lang==='fr';else en"></app-faq-buyer-fr>
+        <ng-template #en>
+            <app-faq-buyer-en></app-faq-buyer-en>
+        </ng-template>
+    </ng-container>
+   
+</section>

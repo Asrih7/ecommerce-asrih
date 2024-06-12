@@ -1,0 +1,168 @@
+.sellers {
+    color: #1125ba;
+    background: #777 url(../../../../../assets/img/back-vendeur.jpg) repeat scroll;
+    min-height: 31.25rem
+}
+
+.sellers_title {
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    font-size: 1.875rem;
+    line-height: 2.5rem;
+    font-family: HelveticaNeueBold;
+    font-weight: 700;
+    padding-bottom: 1.875rem;
+    max-width: 50rem;
+    width: 100%;
+    margin: 0 auto
+}
+
+@media screen and (max-width:90em) {
+    .sellers_title {
+        font-size: 1.5rem;
+        line-height: 2.125rem;
+        max-width: 37.5rem
+    }
+}
+
+@media screen and (max-width:48em) {
+    .sellers_title {
+        font-size: 1.25rem;
+        line-height: 1.9375rem
+    }
+}
+
+@media screen and (max-width:640px) {
+    .sellers_title {
+        font-size: 1.125rem;
+        line-height: 1.8125rem
+    }
+}
+
+.sellers_steps {
+    max-width: 56.25rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1.25rem 1.25rem
+}
+
+.sellers_steps li {
+    display: block;
+    font-family: HelveticaNeueLight;
+    font-weight: 300;
+    font-size: 1.25rem;
+    line-height: 2.625rem;
+    margin-bottom: 1.25rem;
+    padding-left: 3.75rem;
+    position: relative
+}
+
+.sellers_steps li:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 0;
+    width: 2.5rem;
+    height: 2.5rem
+}
+
+@media screen and (max-width:90em) {
+    .sellers_steps li {
+        font-size: 1.125rem;
+        line-height: 1.6875rem
+    }
+}
+
+.sellers_steps li:first-child:after {
+    background: url(../../../../../assets/img/num-1.svg) no-repeat 0 0;
+    -webkit-background-size: 2.5rem 2.5rem;
+    -moz-background-size: 2.5rem;
+    background-size: 2.5rem
+}
+
+.sellers_steps li:nth-child(2):after {
+    background: url(../../../../../assets/img/num-2.svg) no-repeat 0 0;
+    -webkit-background-size: 2.5rem 2.5rem;
+    -moz-background-size: 2.5rem;
+    background-size: 2.5rem
+}
+
+.sellers_steps li:last-child:after {
+    background: url(../../../../../assets/img/num-3.svg) no-repeat 0 0;
+    -webkit-background-size: 2.5rem 2.5rem;
+    -moz-background-size: 2.5rem;
+    background-size: 2.5rem
+}
+
+@media screen and (max-width:640px) {
+    .sellers_steps {
+        max-width: 100%;
+        padding: 0
+    }
+
+    .sellers_steps li {
+        font-size: 1rem;
+        line-height: 1.5625rem;
+        padding-left: 3.75rem
+    }
+
+    .sellers_steps li:first-child,
+    .sellers_steps li:last-child,
+    .sellers_steps li:nth-child(2) {
+        -webkit-background-size: 1.875rem 1.875rem;
+        -moz-background-size: 1.875rem;
+        background-size: 1.875rem
+    }
+}
+
+.sellers .decouvrir {
+    display: block;
+    text-align: center;
+    text-decoration: underline;
+    font-family: HelveticaNeueLight;
+    font-weight: 300;
+    font-style: italic;
+    max-width: 56.25rem;
+    width: 100%;
+    font-size: 1.875rem;
+    margin: 0 auto;
+    margin-bottom: 1.875rem
+}
+
+@media screen and (max-width:90em) {
+    .sellers .decouvrir {
+        font-size: 1.5rem
+    }
+}
+
+@media screen and (max-width:640px) {
+    .sellers .decouvrir {
+        font-size: 1.1875rem
+    }
+}
+
+.sellers .desc {
+    font-family: HelveticaNeueLight;
+    font-weight: 300;
+    font-size: 1.875rem;
+    margin: 0 auto;
+    text-align: center
+}
+
+@media screen and (max-width:90em) {
+    .sellers .desc {
+        font-size: 1.125rem
+    }
+}
+
+@media screen and (max-width:640px) {
+    .sellers .desc {
+        font-size: 1rem
+    }
+}

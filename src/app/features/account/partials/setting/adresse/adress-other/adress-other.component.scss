@@ -1,0 +1,12 @@
+.address-list {
+    grid-template-columns: auto;
+    display: grid;
+    gap: 10px;
+    width: 100%;
+}
+
+@media screen and (min-width:866px) {
+    .address-list {
+        grid-template-columns: auto auto;
+    }
+}

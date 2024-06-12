@@ -1,0 +1,88 @@
+<div class="box_title">
+    <span>{{"information_account.title_others_address" | translate}}</span>
+</div>
+
+<div class="box_content multiple-address">
+    <div *ngIf="hideAddress" class="flex column">
+        <p class="mgb20">{{"information_account.empty_others_address" | translate}}</p>
+    </div>
+    <button type="button" class="linkMore blue" (click)="addNewAddress()" [disabled]="addOneMore">
+        {{"button.add_address" | translate}}
+    </button>
+
+    <form class="box_content" [formGroup]="form.group" *ngIf="!hideAddress" style="width: 100%;">
+        <div class="wrapperBox">
+            <div formArrayName="addresses" class="address-list">
+                <div class="box mgb20" *ngFor="let control of arrAddress?.controls; index as i">
+                    <div class="box_title">
+                        <ng-container *ngIf="i === 0 && addedInFirst ; else secondAddress">
+                            <span>{{'information_account.new-address' | translate}}</span>
+                        </ng-container>
+                        <ng-template #secondAddress>
+                            <span>{{'information_account.one-address' | translate}} {{i + 1}}</span>
+                        </ng-template>
+
+                        <button type="button" class="linkSecond" (click)="deleteAddress(i)" *ngIf="!hideAddress">
+                            {{"button.delete" | translate}}
+                        </button>
+                    </div>
+                    <div [formGroup]="$any(arrAddress.controls[i])" style="padding: 20px;">
+                        <ng-container *ngIf="addressesFields">
+                            <div class="wrapperBox mgb30 " *ngFor="let field of addressesFields;">
+                                <div class="info row">
+                                    <label [for]="'input_' + field.key + '_' + i" class="bold"
+                                        [ngClass]="field.value.required ? 'required':''">
+                                        {{field.value.label}}
+                                    </label>
+                                    <input type="text" [id]="'input_' + field.key + '_' + i"
+                                        [formControlName]="field.key"
+                                        *ngIf="field.key !== 'country' && field.key !== 'name'&& field.key !== 'phone'">
+                                    <input type="text" [id]="'input_' + field.key + '_' + i"
+                                        [formControlName]="field.key" *ngIf="field.key == 'name'">
+                                    <mat-form-field style="margin-top:4px" class appearance="fill"
+                                        *ngIf="field.key == 'country'">
+                                        <input type="text" [formControlName]="field.key"
+                                            [placeholder]="arrAddress.controls[i].get(field.key)?.value ? '' : ''"
+                                            [id]="'input_' + field.key + '_' + i" matInput
+                                            [matAutocomplete]="autoCountry" (input)="searchCountry($event)">
+                                        <mat-autocomplete #autoCountry="matAutocomplete"
+                                            [displayWith]="displayCountFn.bind(this)">
+                                            <mat-option *ngFor="let option of searchedCountry " [value]="option.value">
+                                                {{option.display_name}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
+                                    <ngx-intl-tel-input [inputId]="'input_' + field.key + '_' + i" autocomplete="off"
+                                        [formControlName]="field.key" [searchCountryFlag]="true"
+                                        [separateDialCode]="false" [selectFirstCountry]="false"
+                                        *ngIf="field.key == 'phone'">
+                                    </ngx-intl-tel-input>
+                                    <span class="helpInfo">{{field.value.help_text}}</span>
+                                    <div class="error" *ngFor="let err of map; index as j">
+                                        <div *ngIf="err?.length>0 && i == j">
+                                            <div *ngFor="let er of err;">
+                                                <span *ngIf="er.key == field.key">{{er.value}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                        <div class="flex space-between align-items mgt10" *ngIf='i === 0 && !addOneMore || i > 0'>
+                            <button type="button" class="linkMore blue" [ngClass]="!showBtnAdd ? 'yellow':'blue'"
+                                [id]="'btn-'+i" (click)="editAdress(i+1)" style="width: 150px;">
+                                {{"button.edit" | translate}}
+                            </button>
+                        </div>
+                        <div class="flex space-between align-items mgt10" *ngIf='i === 0 && addOneMore'>
+                            <button type="button" class="linkMore yellow" (click)="editAdress(i+1)"
+                                style="width: 150px;">
+                                {{"button.add" | translate}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

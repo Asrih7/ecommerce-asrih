@@ -1,0 +1,17 @@
+<div class="box" id="security">
+    <div class="box_title">{{"wallet.transfer.title_password" | translate}}</div>
+    <div class="box_content padt30" [formGroup]="formGroup">
+        <div class="info row mgb20">
+            <label [for]="password?.key" class="bold" [ngClass]="password?.value?.required ? 'required':''"
+                style="padding-bottom: 5px;">{{password?.value?.label}}</label>
+            <input type="password" [id]="password?.key" (keyup)="sendPassword($event)"
+                [formControlName]="password?.key">
+            <span class="helpInfo" *ngIf="password?.value?.help_text">{{password.value.help_text}}</span>
+            <div class="error" *ngFor="let err of errorsPassword">
+                <span>
+                    {{err.value}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

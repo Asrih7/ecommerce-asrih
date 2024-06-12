@@ -1,0 +1,140 @@
+<div class="box mgb30">
+    <div class="box_title">
+        <h2>{{"boutique.boutique" | translate}}</h2>
+    </div>
+    <form class="box_content" [formGroup]="form.group">
+        <div *ngIf="newListFieldsSorting?.length  else loaderIndicator">
+            <ng-container *ngFor="let field of newListFieldsSorting">
+                <div class="wrapperBox"
+                    *ngIf="field.key != 'send_email' || field.key !== 'name' || field.key !== 'ambassador' || field.key !== 'currency' || field.key !== 'logo' || field.key === 'banner' || field.key === 'maintenance_message' || field.key !== 'description' || field.key!=='maintenance_mode'"
+                    style="width: 100%;">
+                    <div class="info row">
+                        <label
+                            *ngIf="field.key != 'send_email' && field.key !== 'shop_address' && field.key !== 'currency' && field.key !== 'description' && field.key !== 'name' && field.key !== 'ambassador'  && field.key !== 'terms' && field.key !== 'logo' && field.key !== 'banner' && field.key !== 'keywords' && field.key!=='maintenance_mode'"
+                            [for]="field.key" class="bold" [ngClass]="field.value.required ? 'required':''">
+                            {{field.value.label}}
+                        </label>
+                        <input
+                            *ngIf="field.key != 'send_email' && field.key !== 'shop_address' && field.key !== 'currency' && field.key !== 'description' && field.key !== 'name' && field.key !== 'ambassador' && field.key !== 'terms' && field.key !== 'logo' && field.key !== 'banner' && field.key !== 'keywords'  && field.key!=='maintenance_mode'"
+                            type="text" [id]="field.key" [formControlName]="field.key" style="height: 30px;">
+                    </div>
+                </div>
+                <div class="wrapperBox" *ngIf="field.key == 'send_email' " style="width: 100%;">
+                </div>
+                <div *ngIf="field.key === 'name'" class="info row name-store" style="height: 37px;">
+                    <label [for]="field.key" class="bold" [ngClass]="field.value.required ? 'required':''">
+                        {{field.value.label}}
+                    </label>
+                    <input type="text" [id]="field.key" [formControlName]="field.key">
+                    <ng-container *ngFor="let err of errs">
+                        <div class="error pl-0" *ngIf="err.key == field.key" style="bottom: -33px;">
+                            <span>{{err.value}}</span>
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="wrapperBox" *ngIf="field.key === 'description'">
+                    <div class="info row">
+                        <label *ngIf="field.key === 'description'" [for]="field.key" class="bold"
+                            [ngClass]="field.value.required ? 'required':''">
+                            {{field.value.label}} (
+                            <ng-container *ngIf="languageProfile === 'fr'">{{"language.french" | translate}}</ng-container>
+                            <ng-container *ngIf="languageProfile === 'en'">{{"language.english" | translate}}</ng-container>
+                            )
+                        </label>
+                        <textarea *ngIf="field.key === 'description'" [formControlName]="field.key" [name]="field.key"
+                            [id]="field.key" rows="3" style="margin-top: 10px;"></textarea>
+                    </div>
+                </div>
+                <div class="wrapperBox" *ngIf="field.key === 'maintenance_mode'">
+                    <div class="info row info-maint">
+                        <mat-slide-toggle [formControlName]="field.key" (change)="changeToggle($event)" color="primary">
+                            {{field.value.label}}
+                        </mat-slide-toggle> <br />
+                    </div>
+                </div>
+                <div *ngIf="field.key === 'logo' && !shopCurrent" class="wrapperBox column">
+                    <div class="info mgb10">
+                        <p class="bold">{{field.value.label}}</p>
+                    </div>
+                    <div class="nd-rows">
+                        <div class="col-sur-4" style="margin-bottom: 0;">
+                            <div class="product addPicture">
+                                <div class="visuel" *ngIf="!logoImg" (click)="newLogo()">
+                                    <!-- <input type="file" name="logofile" id="logofile" accept="image/*" multiple="false"
+                                        (click)="newLogo()"> -->
+                                    <span>{{"button.add_picture" | translate}}</span>
+                                </div>
+                                <div class="visuelImg" *ngIf="logoImg" (click)="newLogo()">
+                                    <div class="wrapperEdit">
+                                        <!-- <input type="file" name="logofile" id="logofile" accept="image/*"
+                                            multiple="false" (click)="newLogo()"> -->
+
+                                        <i class="fal fa-edit" title="Modifier"></i>
+
+                                        <i class="fal fa-trash-alt" title="Supprimer"
+                                            (click)="deletePicture('logo')"></i>
+                                    </div>
+                                    <img [src]="logoImg" alt>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="helpInfo mgb30">
+                        {{field.value.help_text}}
+                    </span>
+                </div>
+                <div *ngIf="field.key === 'banner'" class="wrapperBox column">
+                    <div class="info mgb10">
+                        <p class="bold">{{field.value.label}}</p>
+                    </div>
+                    <div class="product addPicture">
+                        <div class="visuel" *ngIf="!bannerImg" (click)="newBanner()">
+                            <!-- <input type="file" name="addPictureProduct1" id="addPictureProduct1" accept="image/*"
+                                (change)="newBanner($event)"> -->
+                        </div>
+                        <div class="visuelImg" *ngIf="bannerImg" (click)="newBanner()">
+                            <div class="wrapperEdit">
+                                <!-- <input type="file" name="bannerfile" id="bannerfile" accept="image/*" multiple="false"
+                                    (change)="newBanner($event)"> -->
+                                <i class="fal fa-edit" title="Modifier"></i>
+                                <i class="fal fa-trash-alt" title="Supprimer" (click)="deletePicture('banner')"></i>
+                            </div>
+                            <img [src]="bannerImg" alt>
+                        </div>
+                    </div>
+
+                </div>
+                <div *ngIf="field.key === 'keywords'" class="wrapperBox column">
+                    <div class="info row">
+                        <label [for]="field.key" class="bold" [ngClass]="field.value.required ? 'required':''">
+                            {{field.value.label}}
+                            (
+                            <ng-container *ngIf="languageProfile === 'fr'">{{"language.french" | translate}}</ng-container>
+                            <ng-container *ngIf="languageProfile === 'en'">{{"language.english" | translate}}</ng-container>
+                            )
+                        </label>
+                        <input type="text" #keywords [id]="field.key" (keyup.enter)="prepareKeyWords($event)"
+                            style="height: 30px;">
+                    </div>
+                    <div class="wrapperkeywords mgt10 mgb10" *ngIf="itemsKeyWords.length > 0">
+                        <span *ngFor="let keyword of itemsKeyWords; index as i">
+                            {{keyword}}
+                            <i class="fal fa-times" (click)="deleteKeyword(i)"></i>
+                        </span>
+                    </div>
+                </div>
+
+
+
+                <span class="helpInfo mgb30"
+                    *ngIf="(field.key === 'name' || field.key === 'description' || field.key === 'www' || field.key === 'facebook' || field.key != 'send_email' || field.key === 'instagram' || field.key === 'keywords') && field.key != 'currency' && field.key!='logo' ">
+                    {{field.value.help_text}}
+                </span>
+            </ng-container>
+        </div>
+
+        <ng-template #loaderIndicator>
+            <noo-loader></noo-loader>
+        </ng-template>
+    </form>
+</div>

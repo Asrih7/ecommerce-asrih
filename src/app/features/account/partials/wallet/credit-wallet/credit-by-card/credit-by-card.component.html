@@ -1,0 +1,56 @@
+<form (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-12">
+            <label for="cardNumber">{{"wallet.credit.cardNumber" | translate}}</label>
+            <div class="input-with-icon">
+            <img *ngIf="cardImage" [src]="cardImage" alt="Card Image">
+            <div #cardNumberElement class="stripe-element"></div>
+            </div>
+            <div class="error-message" *ngIf="cardNumberError">{{ cardNumberError }}</div>
+        </div>       
+        <div class="col-6">
+            <label for="cardExpiry">{{"wallet.credit.expirationDate" | translate}}</label>
+            <div class="input-with-icon">
+            <div #cardExpiryElement class="stripe-element"></div>
+            </div>
+            <div class="error-message" *ngIf="cardExpiryError">{{ cardExpiryError }}</div>
+        </div>
+        <div class="col-6">
+            <label for="cardCvc">{{"wallet.credit.cvc" | translate}}</label>
+            <div class="input-with-icon">
+            <img src="assets/img/cvc.png" alt="CVC">
+              <div #cardCvcElement class="stripe-element"></div>
+            </div>
+            <div class="error-message" *ngIf="cardCvcError">{{ cardCvcError }}</div>
+          </div>
+      </div>
+      <div class="col-12 ml-2">
+        <input type="checkbox" name="" id="save-card" [ngModelOptions]="{standalone: true}" [(ngModel)]="memorizeBankCard">
+        <label for="save-card" class="txtCheck">Mémoriser cette carte si vous souhaitez simplifier vos achats</label>        
+      </div>
+      <div class="loader--container mt-3 ml-2" *ngIf="showLoader">
+        <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+    </div>
+      <button *ngIf="!showLoader" type="submit" [disabled]="!stripe" class="linkMore blue mt-4 mx-3">{{"wallet.credit.pay" | translate}} {{ amout | number: '1.0-0' }} <b>{{ currencyType }}</b></button>
+</form>
+<!-- <div id="by-card-wrapper" class="mgb30" *ngIf='config'>
+    <div class="info row mgb30">
+        <label for="n-carte" class="required">N° DE CARTE</label>
+        <input type="text" id="n-carte" placeholder=" ">
+    </div>
+    <div class="info row">
+        <div class="half">
+            <div class="item">
+                <label for="date-expiration" class="required">DATE
+                    D'EXPIRATION</label>
+                <input autocomplete="off" type="text" (keyup)="dateMask($event)"
+                    [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }" id="user_birthday" placeholder="yyyy-MM-dd"
+                    bsDatepicker>
+            </div>
+            <div class="item">
+                <label for="code-carte" class="required">CODE</label>
+                <input type="text" id="code-carte" placeholder=" ">
+            </div>
+        </div>
+    </div>
+</div> -->

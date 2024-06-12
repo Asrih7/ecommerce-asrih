@@ -1,0 +1,80 @@
+.modal-message {
+  position: fixed;
+  max-width: 100%;
+  width: 100%;
+  -webkit-box-shadow: 0 0.3125rem 1.875rem hsla(0, 0%, 47%, 0.8);
+  -moz-box-shadow: 0 0.3125rem 1.875rem hsla(0, 0%, 47%, 0.8);
+  box-shadow: 0 0.3125rem 1.875rem hsla(0, 0%, 47%, 0.8);
+  background: #fff;
+  -moz-border-radius: 0.9375rem 0.9375rem 0 0;
+  border-radius: 0.9375rem 0.9375rem 0 0;
+  bottom: -100%;
+  /*right: 0rem; */
+  /* min-height: 18.75rem; */
+  min-height: 22rem !important;
+  z-index: 1000;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+@media screen and (min-width: 449px) {
+  .modal-message {
+    max-width: 21.875rem;
+    right: 5rem;
+  }
+}
+
+.modal-message.show {
+  bottom: 0;
+  min-height: 24rem !important;
+}
+
+.modal-message-title {
+  width: 100%;
+  background: #1125ba;
+  font-family: HelveticaNeue;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #fff;
+  padding: 0.9375rem 0.625rem;
+  margin-bottom: 0.625rem;
+  -moz-border-radius: 0.9375rem 0.9375rem 0 0;
+  border-radius: 0.9375rem 0.9375rem 0 0;
+}
+
+.modal-message input {
+  max-width: 100% !important;
+  padding: 0 10px 10px !important;
+}
+
+.modal-message form {
+  position: absolute;
+  bottom: 0;
+  /* border-top: 1px solid #c1c1c1; */
+  width: 100%;
+  min-height: 4.375rem;
+}
+
+.modal-message .send {
+  font-size: 1.5rem;
+  right: 5px;
+  top: 10px;
+}
+
+.modal-message .addFile {
+  right: 45px;
+  top: 10px;
+}
+
+.modal-message .addFile label i {
+  font-size: 1.5rem;
+}
+
+.modal-message textarea {
+  border: none;
+  width: 100%;
+  min-height: 4.375rem;
+  padding: 0.625rem 5rem 0.625rem 0.625rem;
+}

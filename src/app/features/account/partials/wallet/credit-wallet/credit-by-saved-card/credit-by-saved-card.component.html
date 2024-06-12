@@ -1,0 +1,5 @@
+
+<div class="loader--container" *ngIf="showLoader">
+    <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+</div>
+<button  *ngIf="!showLoader" (click)="onSubmit()" class="linkMore blue mt-4">{{"wallet.credit.pay" | translate}} {{ amout | number: '1.0-0' }} <b>{{ currencyType }}</b></button>

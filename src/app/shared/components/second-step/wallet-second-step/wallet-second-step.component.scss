@@ -1,0 +1,19 @@
+::ng-deep .ui-wallet-second-step {
+    .currenciesList {
+
+        height: 42px;
+
+        input {
+            border-bottom: none !important;
+        }
+
+        .mat-form-field-appearance-fill .mat-form-field-flex {
+            padding: 0em 0.75em 0 0.75em !important;
+        }
+
+        .mat-mdc-form-field-subscript-wrapper {
+            display: none !important;
+        }
+    }
+
+}

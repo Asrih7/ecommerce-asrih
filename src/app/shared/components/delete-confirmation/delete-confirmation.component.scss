@@ -1,0 +1,54 @@
+.confirmaion-dialog-container {
+    padding: 25px;
+
+    .confirmaion-icon {
+        text-align: center;
+
+        i {
+            color: #f8bb86;
+            font-size: 60px;
+        }
+    }
+
+    .confirmaion-title {
+        color: #545454;
+        font-size: 30px;
+        text-align: center;
+        font-weight: 600;
+        padding: 0.4em 1em 0;
+    }
+
+    .confirmaion-content {
+        color: #545454;
+        font-size: 18px;
+        text-align: center;
+        font-weight: 400;
+        margin: 0.8em 1.6em 0.3em;
+    }
+
+    .confirmaion-actions {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 1.25rem;
+
+        button {
+            line-height: 0;
+            padding: 0px 28px;
+            border-radius: 3.125rem;
+            border: 1px solid #fff;
+            height: 2.375rem;
+            transition: all 0.5s ease;
+            color: #fff;
+
+            &.cancel-btn {
+                border-color: #777;
+                background: #777;
+            }
+
+            &.confirm-btn {
+                background: #dc3545;
+                border-color: #dc3545;
+            }
+        }
+    }
+}

@@ -1,0 +1,167 @@
+<nav class="main-menu">
+    <div *ngIf="!topLevelCategories.length" class="categorie-loader">
+        <app-loader-indicator [bg]="screenWidth < 1029 ? 'bg-light':'bg-dark'"></app-loader-indicator>
+    </div>
+    <li class="level-0-li" (click)="getPromotionProducts($event)"><a class="withBorder level-0-a">Promotions</a></li>
+    <li class="level-0-li" *ngFor="let topCategory of topLevelCategories; let idx = index"
+        (mouseenter)="onTopCategoryover(topCategory)" (click)="getAllcategorieMobile($event,topCategory,idx)">
+        <a class="level-0-a">{{
+            topCategory.translations[translate.currentLang]?.name ??
+            topCategory.translations['fr']?.name
+            }}
+        </a>
+        <div #subCategories class="submenu-container">
+            <div class="submenu-header">
+                <span>
+                    {{
+                    topCategory.translations[translate.currentLang]?.name ??
+                    topCategory.translations['fr']?.name
+                    }}
+                </span>
+                <p (click)="getCategeryProducts($event,idx,topCategory)"> {{"products.see_more_in_text" | translate}}
+                    {{
+                    topCategory.translations[translate.currentLang]?.name ??
+                    topCategory.translations['fr']?.name
+                    }}</p>
+            </div>
+            <div class="loader-container" *ngIf="!allCategories">
+                <div>
+                    <app-loader-indicator bg="bg-dark"></app-loader-indicator>
+                </div>
+            </div>
+            <div *ngIf="allCategories" class="submenu-content">
+                <!-- case level = 3+ -->
+                <ng-container *ngIf="allCategories[topCategory.id].depth > 3">
+                    <div class="submenu-level1">
+                        <ul class="level1-categories">
+                            <li class="level-1-li {{ l1Category?.id == level1Category?.id ? 'active' : ''}}"
+                                *ngFor="let l1Category of allCategories[topCategory.id]?.children"
+                                (mouseenter)="onSubCategorHover(l1Category)" (click)="onSubCategorHover(l1Category)">
+                                {{
+                                l1Category.translations[translate.currentLang]?.name ??
+                                l1Category.translations['fr']?.name
+                                }}
+                                <i class="fal fa-chevron-right"></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="submenu-divider"> </div>
+                    <div class="submenu-bottom-levels">
+                        <ng-container *ngIf="(level1Category?.children ?? []).length > 0">
+                            <ul
+                                *ngFor="let l2Category of (level1Category?.children ?? []);let l = count;let index = index">
+                                <li class="level-2 {{l  > 4 && l2Category?.children?.length && l2Category.id == activeBottomLevel ? 'active' : ''}}"
+                                    (mouseenter)="activeBottomLevel = l2Category.id"
+                                    (click)="activeBottomLevel = l2Category.id;getCategeryProducts($event,idx,topCategory,level1Category,l2Category)"
+                                    (mouseleave)="activeBottomLevel = undefined">
+                                    {{
+                                    l2Category.translations[translate.currentLang]?.name ??
+                                    l2Category.translations['fr']?.name
+                                    }}
+
+                                    <ul
+                                        *ngIf="l > 4 && l2Category?.children?.length && l2Category.id == activeBottomLevel">
+                                        <li *ngFor="let l3Category of l2Category?.children"
+                                            (click)="getCategeryProducts($event,idx,topCategory,level1Category,l2Category,l3Category)">
+                                            <a>
+                                                {{
+                                                l3Category.translations[translate.currentLang]?.name ??
+                                                l3Category.translations['fr']?.name
+                                                }}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <ng-container *ngIf="l <= 4">
+                                    <ng-container *ngFor="let c of l2Category?.children">
+                                        <li
+                                            (click)="getCategeryProducts($event,idx,topCategory,level1Category,l2Category,c)">
+                                            <a>
+                                                {{
+                                                c.translations[translate.currentLang]?.name ??
+                                                c.translations['fr']?.name
+                                                }}
+                                            </a>
+                                        </li>
+                                    </ng-container>
+                                </ng-container>
+                            </ul>
+                        </ng-container>
+                        <ng-container *ngIf="level1Category && level1Category.children.length == 0">
+                            <ul>
+                                <li class="level-2"
+                                    (click)="getCategeryProducts($event,idx,topCategory,level1Category)">
+                                    Voir
+                                    {{
+                                    level1Category.translations[translate.currentLang]?.name ??
+                                    level1Category.translations['fr']?.name
+                                    }}
+                                    <i class="fal fa-arrow-right"></i>
+                                </li>
+                            </ul>
+                        </ng-container>
+
+                        <div class="see-all-level1-btn">
+                            <button #seeMoreBtn *ngIf="level1Category" type="button" class="linkMore blue"
+                                (click)="getCategeryProducts($event,idx,topCategory,level1Category)">
+                                {{"products.see_more_in_text" | translate}}
+                                {{
+                                level1Category.translations[translate.currentLang]?.name ??
+                                level1Category.translations['fr']?.name
+                                }}
+                            </button>
+                        </div>
+                    </div>
+                </ng-container>
+
+                <!-- case level = 2 -->
+                <ng-container *ngIf=" allCategories[topCategory.id].depth <=3">
+                    <div class="submenu-bottom-levels full">
+                        <ul
+                            *ngFor="let category of allCategories[topCategory.id]?.children;let l = count;let index = index">
+                            <li class="level-2" (mouseenter)="activeBottomLevel = category.id"
+                                (click)="activeBottomLevel ? activeBottomLevel = undefined :activeBottomLevel = category.id; getCategeryProducts($event,idx,topCategory,category)"
+                                (mouseleave)="activeBottomLevel = undefined">
+                                {{
+                                category.translations[translate.currentLang]?.name ??
+                                category.translations['fr']?.name
+                                }}
+
+                                <ul *ngIf="l > 4 && category?.children?.length && category.id == activeBottomLevel">
+                                    <li *ngFor="let c of category?.children"
+                                        (click)="getCategeryProducts($event,idx,topCategory,category,c)">
+                                        <a>
+                                            {{
+                                            c.translations[translate.currentLang]?.name ??
+                                            c.translations['fr']?.name
+                                            }}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <ng-container *ngIf="l <= 4">
+                                <ng-container *ngFor="let c of category?.children">
+                                    <li (click)="getCategeryProducts($event,idx,topCategory,category,c)">
+                                        <a>
+                                            {{
+                                            c.translations[translate.currentLang]?.name ??
+                                            c.translations['fr']?.name
+                                            }}
+                                        </a>
+                                    </li>
+                                </ng-container>
+                            </ng-container>
+                        </ul>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </li>
+</nav>
+<div #menuBurger class="menuBurger" (click)="getTopLevelCategories()">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>

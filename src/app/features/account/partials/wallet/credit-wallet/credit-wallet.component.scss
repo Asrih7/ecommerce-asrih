@@ -1,0 +1,39 @@
+.custom-class{
+    justify-content: space-around;
+    flex-wrap: wrap;
+    @media (max-width : 500px) {
+        gap : 60px; 
+    }
+
+    @media (max-width : 300px) {
+        gap : 20px; 
+    }
+}
+
+.small-screen-center-align{
+    @media (max-width : 500px) {
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
+.h-24{
+    height: 24px;
+}
+.txtRadio{
+    position: relative;
+    i:before {
+        font-family: Font Awesome\5 Pro;
+        color: #4e4e4e;   
+    }
+}
+i.red:before {
+    color: #d75a4a !important;
+}
+.delete-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.item{
+    position: relative;
+}

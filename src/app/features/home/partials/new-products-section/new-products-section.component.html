@@ -1,0 +1,21 @@
+<section class="section new-products-list">
+    <h2 class="new-products-title">{{"product.new" | translate}}</h2>
+    <div *ngIf="loadingProducts" class="container product-sheet-container" style="justify-content: center">
+        <div class="box_content">
+            <noo-loader></noo-loader>
+        </div>
+    </div>
+
+    <div *ngIf="!loadingProducts" class="container product-sheet-gallery-container new-products">
+        <owl-carousel-o [options]="carouselOptions" #galleryProducts>
+            <ng-template carouselSlide *ngFor="let product of productsList">
+                <div class="item">
+                    <app-single-product-card [product]="product" [parent]="'products'"
+                        [currentLang]="translate.currentLang" (viewProduct)="onViewProduct($event,product)"
+                        (toggleFavorite)="onToggleFavorite($event)">
+                    </app-single-product-card>
+                </div>
+            </ng-template>
+        </owl-carousel-o>
+    </div>
+</section>

@@ -1,0 +1,45 @@
+<p class="wrapperBox account-desabled" *ngIf='enableMsgError || enableMsgPermission'>
+    <ng-container *ngIf='enableMsgError'>
+        {{ errorMessage ? errorMessage : ("wallet.transfer.msg_error_transfer" | translate)}}
+    </ng-container>
+    <ng-container *ngIf='enableMsgPermission'>
+        <div *ngFor="let error of otherErrors">{{error.value}}</div>
+    </ng-container>
+</p>
+<p class="wrapperBox account-success" *ngIf='resetPaymentChoose'>
+    {{"wallet.transfer.msg_success_transfer" | translate}}
+</p>
+
+<form [formGroup]="formGroup" (submit)="submitTransfer()">
+
+    <app-amount-to-transfert *ngIf="transferAmount" (amountTransferValue)="amountTransferValue($event)"
+        [transferAmount]="transferAmount" [errorsTransferAmount]='errorsTransferAmount' [formGroup]='formGroup'>
+    </app-amount-to-transfert>
+
+    <app-method-payment-transfert (methodPayment)="methodPayment($event)" [errorsTransferType]='errorsTransferType'
+        [resetPaymentChoose]='resetPaymentChoose'></app-method-payment-transfert>
+
+    <app-payment-european *ngIf="showPaymentEuropean" [submitGroup]="submitGroup"
+        [fieldsEuropeanbankAccount]='fieldsEuropeanbankAccount' [listCountries]='listCountries'
+        [errorsEuropeanaccount]='errorsEuropeanaccount'></app-payment-european>
+
+    <app-payment-international *ngIf="showPaymentInternational" [submitGroup]="submitGroup"
+        [fieldsInternationalbankAccount]='fieldsInternationalbankAccount' [listCountries]='listCountries'
+        [errorsInternationalaccount]='errorsInternationalaccount'></app-payment-international>
+
+    <!-- <app-paypal-block *ngIf="showPaymentPaypal"></app-paypal-block> -->
+    <app-payment-paypal *ngIf="showPaymentPaypal" [submitGroup]="submitGroup"
+        [fieldsPaypalAccount]="fieldsPaypalAccount" [errorsPaypal]="errorsPaypal">
+    </app-payment-paypal>
+
+    <app-payment-westernunion *ngIf="showPaymentWesternunion" [submitGroup]="submitGroup"
+        [fieldsWesternunionAccount]='fieldsWesternunionAccount' [listCountries]='listCountries'
+        [errorsWesternunion]='errorsWesternunion'></app-payment-westernunion>
+
+    <app-security-payment [password]="password" [errorsPassword]='errorsPassword'
+        (passwordhandler)='passwordhandler($event)' [formGroup]="formGroup"></app-security-payment>
+    <button type="button" class="btnSubmit" type="submit" [ngClass]="isLoader ? 'loader':''">
+        {{"wallet.transfer.btn_send_transfer" |
+        translate}}
+    </button>
+</form>

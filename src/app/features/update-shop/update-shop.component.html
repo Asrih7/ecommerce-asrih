@@ -1,0 +1,37 @@
+<section class="section profil">
+    <div class="container">
+        <noo-tabs>
+            <div navigation-header class="logo-store">
+                <div class="profile-picture">
+                    <div class="update-logo">
+                        <input type="file" id="update-logo" accept="image/*" (change)="editShopLogo($event)">
+                        <label for="update-logo">{{"button.edit" | translate}}</label>
+                    </div>
+                    <div class="visuel">
+                        <i class="fal fa-user" *ngIf="!shop?.logo"></i>
+                        <img [src]="shop.logo" *ngIf="shop?.logo" alt="">
+                    </div>
+                </div>
+                <span class="helpInfo mgb10"> Logo de la boutique. Sera montré au thème. </span>
+                <h5 class="author">{{shopName}}</h5>
+                <a class="linkStore">{{"button.my_store" | translate}}</a>
+            </div>
+
+            <noo-tab tab icon="icon-home" [active]="true" [title]="'boutique.boutique' | translate">
+                <app-edit-shop [shopCurrent]="shop" [newImgChange]="newImgChange"> </app-edit-shop>
+            </noo-tab>
+            <noo-tab tab icon="icon-product" [title]="'products.title' | translate">
+                <app-products-shop [shop]="shop"></app-products-shop>
+            </noo-tab>
+            <noo-tab tab icon="icon-promotion" [title]="'promotion.title' | translate">
+                <app-promotion-shop [shop]="shop"></app-promotion-shop>
+            </noo-tab>
+            <noo-tab tab icon="icon-coupon" [title]="'discount_coupon.title' | translate">
+                <app-discount-shop [shop]="shop"></app-discount-shop>
+            </noo-tab>
+            <noo-tab tab icon="icon-delevery" [title]="'delivery.title' | translate">
+                <app-delivery-shop [shop]="shop"></app-delivery-shop>
+            </noo-tab>
+        </noo-tabs>
+    </div>
+</section>

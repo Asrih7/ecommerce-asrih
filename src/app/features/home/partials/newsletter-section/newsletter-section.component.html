@@ -1,0 +1,35 @@
+<section class="section newsletter">
+  <div class="container">
+    <ng-container *ngIf="!subscriptionSuccessful">
+      <ng-container *ngIf="emailPlaceholder && !isLoggedIn">
+        <h2 class="newsletter_title">
+          {{ "newsletter.big_text_newsletter" | translate }}
+        </h2>
+        <form class="newsletter_form" [formGroup]="newsletterForm" (submit)="submitToNewsLetter()">
+          <input name="newsletter_email" type="text" formControlName="email" [placeholder]="emailPlaceholder | translate" />
+          <button type="submit">{{ "newsletter.label_button_subscription" | translate }}</button>
+        </form>
+        <p class="email-error" *ngIf="newsletterForm.hasError('email')">{{ newsletterForm.errors?.['email']}}</p>
+      </ng-container>
+      <ng-container *ngIf="isLoggedIn">
+        <ng-container *ngIf="!newsletterForm.errors">
+          <h2 class="newsletter_title">
+            {{ "newsletter.big_text_newsletter" | translate }}
+          </h2>
+          <button type="button" class="linkMore" (click)="loadUserAndSubmit()">
+            {{ "newsletter.label_button_subscription" | translate }}
+          </button>
+          <p class="email-error" *ngIf="newsletterForm.hasError('email')">{{ newsletterForm.errors?.['email']}}</p>
+        </ng-container>
+        <ng-container *ngIf="newsletterForm.errors && isLoggedIn">
+          <h4 class="newsletter_title">{{ "newsletter.already_subscribed_user" | translate }}</h4>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="subscriptionSuccessful">
+      <p class="subscription_success">
+        {{ "newsletter.successful_subscription" | translate }}
+      </p>
+    </ng-container>
+  </div>
+</section>

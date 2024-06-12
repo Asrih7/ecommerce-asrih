@@ -1,0 +1,114 @@
+@import "../../../../assets/css/box_content.scss";
+
+::ng-deep .modal2 {
+    input {
+        border-bottom: none !important;
+    }
+
+    .mat-form-field-appearance-fill .mat-form-field-flex {
+        padding: 0em 0.75em 0 0.75em !important;
+    }
+}
+
+.modal2 {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-width: 31.25rem;
+    width: 100%;
+    background: #fff;
+    -webkit-box-shadow: 0 0 3.125rem #777;
+    -moz-box-shadow: 0 0 3.125rem #777;
+    box-shadow: 0 0 3.125rem #777;
+    z-index: 1000;
+    -moz-border-radius: .9375rem;
+    border-radius: .9375rem;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+    padding-bottom: 1.875rem
+}
+
+@media screen and (max-width:48em) {
+    .modal2 {
+        max-width: 100%;
+        width: 90%;
+        top: -200%
+    }
+}
+
+.modal2 .titleMail {
+    width: 100%;
+    background: rgba(17, 37, 186, .8);
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #fff;
+    padding: .9375rem 1.25rem;
+    margin-bottom: 1.875rem;
+    -moz-border-radius: .9375rem .9375rem 0 0;
+    border-radius: .9375rem .9375rem 0 0
+}
+
+.modal2 form {
+    padding: 0 1.25rem 1.875rem
+}
+
+.modal2 .info {
+    width: 100%
+}
+
+.modal2 .info label {
+    display: block
+}
+
+.modal2 .info input[type=text] {
+    width: 100%;
+    max-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.modal2.show {
+    top: 50%
+}
+
+.modal2 hr {
+    margin-bottom: 1.25rem
+}
+
+.modal2 .field {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.modal2 form {
+    padding-bottom: 0
+}
+
+.modal2 form button.linkMore {
+    line-height: 0;
+    padding: 0px 28px;
+}
+
+.modal2 .modal-title {
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: 1.625rem;
+    padding: 1.25rem
+}

@@ -1,0 +1,144 @@
+<div class="wrapper-all-filters" [class.show]="show" id="modal-search" (clickOutside)="closeModal()" #filtersContainer>
+    <div class="filters-container">
+        <div class="close" (click)="closeModal()">
+            <i class="fal fa-times-circle"></i>
+        </div>
+        <h2 class="mainTitle mgl0"> Filtres </h2>
+
+        <ng-container *ngIf="filters">
+            <div class="filter-item-container">
+                <h3>{{ filters['category_hierarchy'].label }}</h3>
+                <div *ngIf="loadinInformations" class="products-loader-conainer">
+                    <div class="box_content">
+                        <noo-loader></noo-loader>
+                    </div>
+                </div>
+
+                <ul class="categories-tree-container"
+                    *ngIf="filters['category_hierarchy']?.choices && !loadinInformations">
+                    <li class="filter-title mgb10" [class.in-path]="aciveCategory?.includes(catL1.slugPaths)"
+                        *ngFor="let catL1 of categories">
+
+                        <a [class.in-path]="aciveCategory?.includes(catL1.slugPaths)"
+                            (click)="categoryClick(1,catL1.slugPaths)" data-modal="noo_filters_modal">{{ catL1.label }}
+                        </a>
+
+                        <ul *ngIf="catL1.children?.length" style="padding-left: 15px;">
+
+                            <li class="filter-title mgb10" [class.in-path]="aciveCategory?.includes(catL2.slugPaths)"
+                                *ngFor="let catL2 of catL1.children">
+
+                                <a [class.in-path]="aciveCategory?.includes(catL2.slugPaths)"
+                                    (click)="categoryClick(2,catL2.slugPaths)" data-modal="noo_filters_modal">{{
+                                    catL2.label }} </a>
+
+                                <ul *ngIf="catL2.children?.length" style="padding-left: 15px;">
+                                    <li class="filter-title mgb10"
+                                        [class.in-path]="aciveCategory?.includes(catL3.slugPaths)"
+                                        *ngFor="let catL3 of catL2.children">
+
+                                        <a [class.in-path]="aciveCategory?.includes(catL3.slugPaths)"
+                                            (click)="categoryClick(3,catL3.slugPaths)" data-modal="noo_filters_modal">{{
+                                            catL3.label }}
+                                        </a>
+
+                                        <ul *ngIf="catL3.children?.length" style="padding-left: 15px;">
+                                            <li class="filter-title mgb10"
+                                                [class.in-path]="aciveCategory?.includes(catL4.slugPaths)"
+                                                *ngFor="let catL4 of catL3.children">
+
+                                                <a [class.in-path]="aciveCategory?.includes(catL4.slugPaths)"
+                                                    (click)="categoryClick(4,catL4.slugPaths)"
+                                                    data-modal="noo_filters_modal">{{
+                                                    catL4.label }} </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <div class="filter-item-container" *ngIf="filters['price']">
+                <h3>{{ filters['price'].label }} </h3>
+                <div class="price-labels">
+                    <label for="filters_price_min">{{filterParams?.price?.min}} ({{currency}})</label>
+                    <label for="filters_price_max">{{filterParams?.price?.max}} ({{currency}})</label>
+                </div>
+                <mat-slider (change)="emitFilterSeach()" min="0" [max]="maxPrice" *ngIf="filterParams?.price">
+                    <input id="filters_price_min" [(ngModel)]="filterParams.price.min" matSliderStartThumb>
+                    <input id="filters_price_max" [(ngModel)]="filterParams.price.max" matSliderEndThumb>
+                </mat-slider>
+            </div>
+
+            <div class="filter-item-container"
+                *ngIf="filters['inspiration_country']?.choices && filterParams?.inspiration_country">
+                <h3>{{ filters['inspiration_country'].label }}</h3>
+                <mat-form-field appearance="outline">
+                    <mat-select (selectionChange)="emitFilterSeach()" [(ngModel)]="filterParams.inspiration_country"
+                        panelClass="noo_filters_modal" multiple>
+                        <mat-option class="noo_filters_modal"
+                            *ngFor="let country of filters['inspiration_country'].choices" [value]="country.value">
+                            {{country.display_name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <ng-container *ngFor="let key of dynamicFiltersKeys??[]">
+                <div class="filter-item-container" *ngIf="filters[key]?.type == 'BooleanFilter'">
+                    <h3>{{ filters[key].label }}</h3>
+                    <ul class="list-filter">
+                        <li class="filter-title mgb20">
+                            <!-- <mat-slide-toggle [checked]="filterParams[key]??false" (change)="RadioChange($event,key)"
+                                color="primary">
+                                &nbsp;&nbsp;{{filters[key].label}}
+                            </mat-slide-toggle> -->
+                            <input type="checkbox" [id]="'chekbox_'+ key + 'Oui'" [name]="'chekbox_'+ key + 'Oui'"
+                                [checked]="filterParams[key]?.includes('true')"
+                                (change)="checkboxChange($event,key,'true')">
+                            <label [for]="'chekbox_'+ key + 'Oui'" class=" txtCheck">
+                                {{ 'Oui' }}
+                            </label>
+                        </li>
+                        <li class="filter-title mgb20">
+                            <input type="checkbox" [id]="'chekbox_'+ key + 'Non'" [name]="'chekbox_'+ key + 'Non'"
+                                [checked]="filterParams[key]?.includes('false')"
+                                (change)="checkboxChange($event,key,'false')">
+                            <label [for]="'chekbox_'+ key + 'Non'" class=" txtCheck">
+                                {{ 'Non' }}
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <div class="filter-item-container"
+                    *ngIf="filters[key]?.type != 'BooleanFilter' && filters[key]?.choices && filterParams[key]">
+                    <h3>{{ filters[key].label }}</h3>
+                    <ul class="list-filter">
+                        <li class="filter-title mgb20"
+                            *ngFor="let choice of filters[key].choices | slice:0:  this.seeMoreKey == key ? -1 : 7">
+                            <input type="checkbox" [id]="'chekbox_'+ key +  $any(choice).value"
+                                [name]="'chekbox_'+ key + $any(choice).value" [value]="$any(choice).value"
+                                [checked]="filterParams[key].includes($any(choice).value)"
+                                (change)="checkboxChange($event,key,$any(choice).value)">
+                            <label [for]="'chekbox_'+ key + $any(choice).value" class=" txtCheck">
+                                {{$any(choice).display_name}}
+                            </label>
+                        </li>
+                        <li (click)="seeMore(key)" *ngIf="filters[key].choices.length > 7" class="see-more mgb20">
+                            @if(seeMoreKey == key) {
+                            - {{"products.see_less" | translate}}
+                            } @else {
+                            + {{"products.see_more" | translate}}
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,128 @@
+.chevron-down i {
+  transition: transform 0.5s ease-in-out;
+}
+
+.chevron-up i {
+  transform: rotate(-180deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.accordian_title:after {
+  text-align: justify;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  margin: 0 auto;
+  background: hsla(0, 0%, 76%, .2);
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease;
+  opacity: 0
+}
+
+.accordian_title:hover:after {
+  opacity: 1;
+  width: 100%
+}
+
+.accordian_title i {
+  -webkit-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  transition: all .5s ease
+}
+
+.accordian_title.selected {
+  background: hsla(0, 0%, 76%, .2)
+}
+
+.accordian_title.selected i {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg)
+}
+
+.accordian {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -moz-box-orient: vertical;
+  -moz-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  border: .0625rem solid #c1c1c1;
+  -moz-border-radius: .3125rem;
+  border-radius: .3125rem;
+  -webkit-box-shadow: 0 0 .625rem rgba(78, 78, 78, .2);
+  -moz-box-shadow: 0 0 .625rem rgba(78, 78, 78, .2);
+  box-shadow: 0 0 .625rem rgba(78, 78, 78, .2);
+  width: 100%
+}
+
+.accordian,
+.accordian_title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.accordian_title {
+  font-family: HelveticaNeue;
+  font-weight: 400;
+  font-size: 1rem;
+  padding: .625rem 1.25rem;
+  cursor: pointer;
+  position: relative;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -moz-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between
+}
+
+.accordian_content {
+  display: none;
+  border-top: .0625rem solid #c1c1c1;
+  padding: .625rem 1.25rem
+}
+
+.accordian_content p {
+  padding-bottom: .9375rem
+}
+
+.accordian_content ul li {
+  display: block;
+  padding-bottom: .9375rem
+}
+
+.accordian_content ul li .bold,
+.price-basket {
+  padding-right: .625rem
+}
+.accordian_content li {
+  margin-bottom: 1rem;
+  line-height: 1rem;
+}
+.accordian_content li::before{
+  content: "●";
+  color: #0620c0;
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+
+@media screen and (max-width:48em) {
+  .product-right .accordian {
+    display: block !important
+  }
+}

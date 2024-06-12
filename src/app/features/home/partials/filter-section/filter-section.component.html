@@ -1,0 +1,15 @@
+<section class="section map-filter">
+    <div class="map-filter-btns">
+        <div class="map-filter-btn country">
+            <button type="button" (click)="typeMap = 'country'" [ngClass]="{active:typeMap == 'country'}">
+                {{"home.filter.country" | translate}}</button>
+        </div>
+        <div class="map-filter-btn region">
+            <button type="button" (click)="typeMap = 'region'" [ngClass]="{active:typeMap == 'region'}">
+                {{"home.filter.region" | translate}}</button>
+        </div>
+    </div>
+    <div class="container box-map">
+        <div class="map" #map></div>
+    </div>
+</section>

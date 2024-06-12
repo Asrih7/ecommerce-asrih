@@ -1,0 +1,34 @@
+<!-- <p>Vous n'avez pas encore de produits dans vos Favoris. Parcourez notre site web pour ajouter des produits.</p> -->
+<div class="box_content">
+    <div class="nd-rows wrap wrapper-category-products padt30">
+        <div *ngIf="loadingWishlist; else listProductsTemp" class="products-loader-conainer">
+            <div class="box_content">
+                <noo-loader></noo-loader>
+            </div>
+        </div>
+
+        <ng-template #listProductsTemp>
+            <ng-container *ngIf="products?.length">
+                <app-single-product-card [product]="product" [parent]="'wishlist'" [currentLang]="translate.currentLang"
+                    (toggleFavorite)="onToggleFavorite($event)" (viewProduct)="onViewProduct($event)" class="col-sur-5"
+                    *ngFor="let product of products??[]  | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+                </app-single-product-card>
+            </ng-container>
+            <div class="empty-search-result" *ngIf="!products?.length">
+                <div class="empty-search-result-conent">
+                    <img class="not-found-img" src="assets/img/articles.svg" alt="">
+                    {{"wishlist.empty_articles_text" | translate}}
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <div class="nd-rows space-betwenn">
+        <div class="paginator-elements-per-page">
+            <label for="items_per_page">{{"pagination.items_per_page_text" | translate}} </label>
+            <select id="items_per_page" [(ngModel)]="itemsPerPage">
+                <option *ngFor="let option of pageSizeOptions" [value]="option">{{option}}</option>
+            </select>
+        </div>
+        <pagination-controls (pageChange)="page = $event" previousLabel="" nextLabel=""></pagination-controls>
+    </div>
+</div>

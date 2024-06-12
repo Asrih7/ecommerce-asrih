@@ -1,0 +1,46 @@
+<div class="cookies" *ngIf="showCookie" [ngClass]="{ animate: showCookie, fullCookie: !showChoice }">
+  <div class="container">
+    <div class="row" *ngIf="showChoice">
+      <div class="col-12">
+        <div class="pdr20">
+          <p class="text-center">
+            {{ "home.cookie.main_text.before" | translate }}
+            <a [routerLink]="['legal', 'privacy']" class="linkSecond">{{
+              "home.cookie.main_text.privacy_policy" | translate
+              }}</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-12 mt-3">
+        <div class="pdl20 d-flex gap-2 flex-wrap justify-content-center align-items-center">
+          <button class="linkMore green mt-2" (click)="hideCookie()">
+            {{ "home.cookie.button_1" | translate }}
+          </button>
+          <button class="linkMore green mt-2" (click)="hideCookie()">
+            {{ "home.cookie.button_2" | translate }}
+          </button>
+          <button class="linkMore green mt-2" (click)="showChoices()">
+            {{ "home.cookie.button_3" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5" *ngIf="!showChoice">
+      <section *ngIf="$language | async as lang">
+        <app-consent-fr *ngIf="lang === 'fr'; else en"></app-consent-fr>
+        <ng-template #en>
+          <app-consent-en></app-consent-en>
+        </ng-template>
+      </section>
+      <hr class="my-5" />
+      <div class="col-12 text-center">
+        <button class="linkMore green me-3" (click)="backStep()">
+          {{ "home.cookie.choices.btn_cancel" | translate }}
+        </button>
+        <button class="linkMore green" (click)="hideCookie()">
+          {{ "home.cookie.choices.btn_save" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

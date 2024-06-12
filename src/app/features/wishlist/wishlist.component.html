@@ -1,0 +1,34 @@
+<section class="section profil" id="wishlist">
+    <div class="container">
+        <h1 class="mainTitle icon-favoris icon">
+            {{"wishlist.favorites" | translate}}
+        </h1>
+        <ul class="tabs">
+            <li class="tab-link space" id="tab-1" [class.current]="activeTab == 'articles'" data-tab="tab-1"
+                (click)="activeTab = 'articles'">
+                <span>
+                    {{"wishlist.favorite_articles" | translate}}
+                </span>
+                <span class="number">{{wishlist?.products?.length ?? 0}}</span>
+            </li>
+            <li class="tab-link space" id="tab-2" data-tab="tab-2" [class.current]="activeTab == 'shops'"
+                (click)="activeTab = 'shops'">
+                <span>
+                    {{"wishlist.favorite_shops" | translate}}
+                </span>
+                <span class="number">0</span>
+            </li>
+        </ul>
+
+        <div id="tab-1" class="tab-content articles" [class.current]="activeTab == 'articles'"
+            *ngIf="activeTab == 'articles'">
+            <app-articles-wishlist (deleteFavorite)="onDeleteFavorite($event)" [loadingWishlist]="loadingWishlist"
+                [products]="wishlist?.products"></app-articles-wishlist>
+        </div>
+        <div id="tab-2" class="tab-content boutiques" [class.current]="activeTab == 'shops'"
+            *ngIf="activeTab == 'shops'">
+            <app-store-wishlist></app-store-wishlist>
+        </div>
+
+    </div>
+</section>

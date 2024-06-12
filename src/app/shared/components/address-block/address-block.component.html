@@ -1,0 +1,42 @@
+<form class="wrapperBox ui-address-second-step" [formGroup]="form.group" style="padding-bottom: 0;">
+    <div class="box_content" style="width: 100%;padding-bottom: 0;">
+        <div class="wrapperBox mgb30 " *ngFor="let child of addressfileds; let i = index">
+            <div class="info row">
+                <label [for]="child.key + '_input_' + i" class="bold" *ngIf="child.key !== 'country'"
+                    [ngClass]="child.value.required ? 'required':''">
+                    {{child.value.label}}
+                </label>
+
+                <label class="bold" *ngIf="child.key == 'country'" [ngClass]="child.value.required ? 'required':''"
+                    style="top: -6px;">
+                    {{child.value.label}}
+                </label>
+
+                <input type="text" [id]="child.key + '_input_' + i" *ngIf="child.key !== 'country' && child.key !== 'phone'"
+                    [formControlName]="child.key" style="height: 30px;">
+
+                <mat-form-field class="selectBox selectBox-dropdown-language countriesList" appearance="fill"
+                    *ngIf="child.key == 'country'">
+                    <input type="text" [formControlName]="child.key" matInput [matAutocomplete]="autoCountry"
+                        (input)="searchCountry($event)">
+                    <mat-autocomplete [id]="'autoCountry_' + i" #autoCountry="matAutocomplete" [displayWith]="displayCountFn.bind(this)">
+                        <mat-option *ngFor="let option of searchedCountry " [value]="option.value">
+                            {{option.display_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <ngx-intl-tel-input autocomplete="off" [formControlName]="child.key" [searchCountryFlag]="true"
+                    [separateDialCode]="false" [selectFirstCountry]="false" *ngIf="child.key == 'phone'">
+                </ngx-intl-tel-input>
+
+                <span class="helpInfo">{{child.value.help_text}}</span>
+                <ng-container *ngFor="let err of errs">
+                    <div class="error" *ngIf="err.key == child.key">
+                        <span>{{err.value}}</span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</form>

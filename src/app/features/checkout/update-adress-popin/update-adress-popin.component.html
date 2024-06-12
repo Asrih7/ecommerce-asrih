@@ -1,0 +1,90 @@
+<div class="basket-popin-wrapper" [ngClass]="[isOpened ? 'show' : '']">
+    <div class="basket-popin-container">
+        <div class="basket-popin-title">
+            <h3 *ngIf="adresseKey == 'Delivery'">{{ 'basket.change_delivery_address' | translate }}</h3>
+            <h3 *ngIf="adresseKey == 'Billing'">{{ 'basket.change_billing_address' | translate }}</h3>
+        </div>
+        <div class="popin-body">
+            <div class="popin-content">
+                <ng-container *ngIf="!addingAdress; else addingAdressBlock">
+                    <ng-container
+                        *ngIf="profile && ((profile.default_billing_address && adresseKey == 'Billing') || (profile.default_shipping_address && adresseKey == 'Delivery'))">
+                        <div
+                            *ngTemplateOutlet="adressItemBox; context: { adress :adresseKey == 'Delivery' ? profile.default_shipping_address : profile.default_billing_address }">
+                        </div>
+                    </ng-container>
+
+                    <ng-container
+                        *ngIf="profile && profile.default_shipping_address?.id != profile.default_billing_address?.id &&
+                    ((profile.default_shipping_address && adresseKey == 'Billing') || (profile.default_billing_address && adresseKey == 'Delivery'))">
+                        <div
+                            *ngTemplateOutlet="adressItemBox; context: { adress :adresseKey == 'Delivery' ? profile.default_billing_address : profile.default_shipping_address }">
+                        </div>
+                    </ng-container>
+
+                    <ng-container *ngFor="let adr of profile?.addresses ?? []">
+                        <div *ngTemplateOutlet="adressItemBox; context: { adress : adr }"> </div>
+                    </ng-container>
+                </ng-container>
+
+                <button *ngIf="!addingAdress" type="button" class="linkMore blue" (click)="addNewAddress()">
+                    {{"button.add_address" | translate}}
+                </button>
+            </div>
+            <div class="field padt30">
+                <ng-container *ngIf="addingAdress">
+                    <button type="button" class="linkMore gris" (click)="cancelAddAdress()">
+                        {{"basket.btn_cancel" | translate}}
+                    </button>
+                    <button type="button" class="linkMore yellow" (click)="editAddress()">
+                        {{"button.add" | translate}}
+                    </button>
+                </ng-container>
+                <ng-container *ngIf="!addingAdress">
+                    <button type="button" class="linkMore gris" (click)="closeModal()">
+                        {{"basket.btn_cancel" | translate}}
+                    </button>
+                    <button (click)="saveAddresses()" type="button" class="linkMore green" (click)="null">
+                        {{"basket.finish_btn" | translate}}
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+        <div class="close" (click)="closeModal()"><i class="fal fa-times-circle"></i></div>
+    </div>
+</div>
+
+<ng-template #adressItemBox let-adress="adress">
+    <div class="box" (click)="setAddress(adress)">
+        <div class="selector">
+            <i class="fal fa-check-circle check-icon" [ngClass]="{active : adress.id == activeAdress?.id}"></i>
+        </div>
+        <div class="adress">
+            <div class="bold adress-item">
+                {{ adress.name }}
+            </div>
+            <div class="adress-item">
+                {{ adress.street }} {{ adress.street2 }}
+            </div>
+            <div class="adress-item">
+                {{ adress.postal_code }} {{ adress.city }}
+                {{ adress.region }} {{ countries | choiceLabel : adress.country }}
+            </div>
+            <div class="adress-item">
+                <span>
+                    {{"information_account.phone" | translate}}. {{ adress.phone }}
+                </span>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #addingAdressBlock>
+    <div *ngIf="adressFields">
+        <app-address-block [addressfileds]="adressFields" [countryList]="countries" [errors]="addingAdressErrors"
+            [form]="form">
+        </app-address-block>
+    </div>
+</ng-template>
+
+<div class="overley" [ngClass]="isOpened ? 'show' : ''"></div>

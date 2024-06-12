@@ -1,0 +1,7 @@
+<ng-container *ngIf="$language | async as lang">
+    <app-history-fr *ngIf="lang==='fr';else en"></app-history-fr>
+    <ng-template #en>
+        <app-history-en></app-history-en>
+    </ng-template>
+</ng-container>
+

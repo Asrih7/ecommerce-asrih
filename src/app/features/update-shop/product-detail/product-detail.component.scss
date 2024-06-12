@@ -1,0 +1,212 @@
+.wrapperkeywords {
+    display: block;
+    width: calc(100% - 11.25rem);
+    margin-left: auto;
+}
+
+.box_content .info.row input {
+    font-size: .9rem;
+}
+
+.textarea {
+    border: 0.0625rem solid #c1c1c1;
+    max-width: 100%;
+    margin-top: .5rem;
+}
+
+p.small {
+    font-size: 0.75rem;
+    padding: 0;
+}
+
+.mdc-text-field {
+    padding: 0 16px 0 0;
+}
+
+input:-webkit-autofill,
+input:focus+label,
+input:not(:placeholder-shown)+label {
+    font-size: .75rem;
+    top: -1rem;
+}
+
+.wrapperEdit {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+    z-index: 1;
+    display: flex;
+}
+
+.box.customization>div {
+    border: 1px solid #777;
+    border-radius: 0.3125rem;
+    padding: 1.625rem 2rem;
+    margin: 1.9375rem;
+    background: #efefef;
+}
+
+div#limit_char input {
+    border: 0.0625rem solid #c1c1c1;
+    height: 1.5625rem;
+    margin-top: 0.5rem;
+}
+
+.box.customization .info label.bold {
+    display: block;
+}
+
+.wrapperEdit i {
+    font-size: 16px;
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #1125ba;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.product:hover .wrapperEdit {
+    top: 50%;
+}
+
+.product {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+    cursor: pointer;
+}
+
+.info label,
+.mat-mdc-form-field {
+    padding-left: 0;
+}
+
+label.txtCheck,
+label.txtRadio {
+    padding-left: 2rem !important;
+}
+
+.box-toggle {
+    margin-left: auto;
+    margin-bottom: 2rem;
+}
+
+.d-flex .wrapperBox {
+    display: block;
+    width: 50%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.info.search-product input {
+    border-bottom: 0;
+}
+
+.position-relative {
+    position: relative;
+    min-height: 200px;
+}
+
+.inp-line span {
+    right: 5px;
+    color: #000 !important;
+    position: absolute;
+    top: 7px;
+    right: 23%;
+    font-size: .7rem;
+}
+
+.inp-line {
+    position: relative;
+}
+
+.w-150 {
+    width: 100px !important;
+}
+
+.info.w-300 {
+    width: 370px;
+}
+
+.wrapperkeywords.left {
+    width: 100%;
+}
+
+.mat-mdc-text-field-wrapper {
+    margin: 0;
+}
+
+.ml-2 {
+    margin-left: 1rem;
+}
+
+.three-state-toggle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.state {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.state.active {
+    background-color: #2196F3;
+    /* Use your desired active state color */
+    color: white;
+}
+
+.font-medium {
+    font-size: .87rem;
+}
+
+tr.disabled {
+    opacity: 0.5;
+}
+
+::ng-deep .mat-mdc-form-field .mat-mdc-select.mat-mdc-select-invalid .mat-mdc-select-arrow {
+    color: rgba(0, 0, 0, .54);
+}
+
+::ng-deep .mdc-text-field--invalid:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+    border-bottom-color: rgba(0, 0, 0, 0.42);
+}
+
+@media(max-width:765px) {
+    .info.w-300 {
+        width: 55% !important;
+    }
+
+    div#choices {
+        margin-top: 1rem;
+    }
+
+    .inline label.txtCheck {
+        padding-bottom: 0;
+    }
+
+    table.price-table tbody tr td,
+    table.price-table thead tr th {
+        white-space: nowrap;
+    }
+
+    .price-table input[type="text"] {
+        min-width: 100px;
+        width: 100%;
+    }
+
+    .inp-line span {
+        right: 6px;
+    }
+}

@@ -1,0 +1,53 @@
+<app-wallet-second-step [currencies]="currencies" [defaultCurrency]="defaultCurrency"
+    [submitFormCheck]="submitFormCheck" [currencyErrors]="currencyErrors"
+    (formWalletShared)="handlerFormWalletShared($event)" *ngIf="createMode">
+</app-wallet-second-step>
+
+<div id="name_shop">
+    <app-store-second-step [newListFieldsSorting]="newListFieldsSorting" [submitFormCheck]="submitFormCheck"
+        [errors]="errors" (formStoreShared)="handlerFormStoreShared($event)" (bannerImgChange)="updateBannerImg($event)"
+        [shopCurrent]="shopCurrent" [languageProfile]="languageProfile">
+    </app-store-second-step>
+</div>
+
+<div class="wrapperBox">
+    <div class="box mgb30" id="shop_address">
+        <app-address-second-step [addressfileds]="addressfileds" [countryList]="countryList"
+            [submitFormCheck]="submitFormCheck" (formAddressShopShared)="handlerFormAddressShopShared($event)"
+            [errors]="errors" [shopCurrent]="shopCurrent">
+        </app-address-second-step>
+    </div>
+    <div class="box mgb30">
+        <app-terms-second-step [termsfileds]="termsfileds" [submitFormCheck]="submitFormCheck"
+            (formTermsShared)="handlerFormTermsShared($event)" [errors]="errors" [shopCurrent]="shopCurrent"
+            [languageProfile]="languageProfile">
+        </app-terms-second-step>
+    </div>
+</div>
+
+<app-ambassador-second-step [ambassadorFileds]="ambassadorFileds" [submitFormCheck]="submitFormCheck" [errors]="errors"
+    (formAmbassadorShared)="handlerformAmbassadorShared($event)" [shopCurrent]="shopCurrent" *ngIf="createMode">
+</app-ambassador-second-step>
+
+
+<div class="btnVendeur" style="justify-content: space-between;" *ngIf="createMode; else editMode">
+    <button type="button" class="linkMore blue" (click)="previousStep()" style="margin-left: 0;">
+        {{"boutique.previous" |
+        translate}}
+    </button>
+    <button type="button" class="linkMore blue" (click)="nextStep()" style="display: flex;align-items: center;">
+        <span>{{"boutique.continuer" | translate}}</span>
+        <span *ngIf="showLoader" style="margin-left: 15px;margin-top: 8px;">
+            <app-loader-indicator bg="bg-white"></app-loader-indicator>
+        </span>
+    </button>
+</div>
+
+<ng-template #editMode>
+    <div class="btnVendeur">
+        <button type="button" class="linkMore blue" style="width: 150px;" (click)="editShopClick()">
+            {{'button.edit'
+            |translate}}
+        </button>
+    </div>
+</ng-template>

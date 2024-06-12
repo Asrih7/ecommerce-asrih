@@ -1,0 +1,77 @@
+.headWallet {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .625rem 1.25rem;
+    background: #efefef;
+    border: .0625rem solid #c1c1c1;
+    color: #4e4e4e;
+    margin-bottom: 1.875rem
+}
+
+.headWallet .title {
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: 1rem
+}
+
+.headWallet .price strong {
+    font-family: HelveticaNeueBold;
+    font-weight: 700
+}
+
+.tabs-wallet li {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1
+}
+
+.tabs-wallet li i {
+    padding-right: 1.25rem;
+    font-size: 1.25rem
+}
+
+.tabs-wallet li:first-child i {
+    color: #1125ba
+}
+
+.tabs-wallet li:nth-child(2) i {
+    color: #f8c43d
+}
+
+.tabs-wallet li:last-child i {
+    color: #42a084
+}
+
+@media screen and (max-width:640px) {
+    .tabs-wallet li {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -moz-box-flex: 0 !important;
+        -ms-flex: none !important;
+        flex: none !important;
+        -webkit-flex-basis: 33.33333% !important;
+        -ms-flex-preferred-size: 33.33333% !important;
+        flex-basis: 33.33333% !important;
+        padding: .625rem 5px !important
+    }
+
+    .tabs-wallet li i {
+        padding-right: .625rem
+    }
+}
+
+@media screen and (max-width:320px) {
+    .tabs-wallet li i {
+        display: none
+    }
+}

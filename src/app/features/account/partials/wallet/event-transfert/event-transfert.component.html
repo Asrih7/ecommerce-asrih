@@ -1,0 +1,39 @@
+<div class="loader--container" *ngIf="showLoader==true">
+    <app-loader-indicator [bg]="'bg-dark'"></app-loader-indicator>
+</div>
+<ng-container *ngIf="transfers.length > 0 && showLoader==false">
+    <table class="main-table transfer-table" style="margin-top: 30px;">
+        <thead>
+            <tr>
+                <th *ngFor="let field of fieldsEventTransfer">{{field.value.label}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of transfers | paginate: { itemsPerPage: 7, currentPage: p2, id: 'transferID' }">
+                <td>{{item?.done_on | date: formatDate}}</td>
+                <td>{{item?.transfer_amount}} {{item?.transfer_amount_currency}}</td>
+                <td>
+                    <ng-container *ngIf="item?.transfer_type === 'EB'">
+                        {{'wallet.transfer.account_europeen' | translate}}
+                    </ng-container>
+                    <ng-container *ngIf="item?.transfer_type === 'IB'">
+                        {{'wallet.transfer.account_international' | translate}}
+                    </ng-container>
+                    <ng-container *ngIf="item?.transfer_type === 'PP'">
+                        {{'Paypal'}}
+                    </ng-container>
+                    <ng-container *ngIf="item?.transfer_type === 'WU'">
+                        {{'Western Union'}}
+                    </ng-container>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-container *ngIf='transfers.length > 7'>
+        <pagination-controls class="my-pagination" [previousLabel]="''" [nextLabel]="''" (pageChange)="p2 = $event"
+            id="transferID"></pagination-controls>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="transfers.length == 0 && showLoader==false">
+    <p class="bold center mgb30 mgt30">{{'wallet.transfer.msg_empty_transfer' | translate}}</p>
+</ng-container>

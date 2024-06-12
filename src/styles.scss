@@ -1,0 +1,466 @@
+@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+@font-face {
+    font-family: HelveticaNeue;
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeue.eot);
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeue.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeue.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeue.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeue.svg#HelveticaNeue) format("svg");
+}
+
+@font-face {
+    font-family: HelveticaNeueLight;
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueLight.eot);
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueLight.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueLight.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueLight.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueLight.svg#HelveticaNeueLight) format("svg");
+}
+
+@font-face {
+    font-family: HelveticaNeueMedium;
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueMedium.eot);
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueMedium.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueMedium.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueMedium.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueMedium.svg#HelveticaNeueMedium) format("svg");
+}
+
+@font-face {
+    font-family: HelveticaNeueBold;
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueBold.eot);
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueBold.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueBold.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueBold.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueBold.svg#HelveticaNeueBold) format("svg");
+}
+
+@font-face {
+    font-family: HelveticaNeueThin;
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueThin.eot);
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeueThin.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueThin.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueThin.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeueThin.svg#HelveticaNeueThin) format("svg");
+}
+
+@font-face {
+    font-family: HelveticaNeue-ThinItalic;
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeue-ThinItalic.eot);
+    src: url(/assets/fonts/HelveticaNeue/HelveticaNeue-ThinItalic.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeue-ThinItalic.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeue-ThinItalic.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/HelveticaNeue-ThinItalic.svg#HelveticaNeue-ThinItalic) format("svg");
+}
+
+@font-face {
+    font-family: PhotographSignature;
+    src: url(/assets/fonts/HelveticaNeue/PhotographSignature.eot);
+    src: url(/assets/fonts/HelveticaNeue/PhotographSignature.eot?#iefix) format("embedded-opentype"),
+        url(/assets/fonts/HelveticaNeue/PhotographSignature.woff) format("woff"),
+        url(/assets/fonts/HelveticaNeue/PhotographSignature.ttf) format("truetype"),
+        url(/assets/fonts/HelveticaNeue/PhotographSignature.svg#PhotographSignature) format("svg");
+}
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:root {
+    scroll-behavior: unset !important;
+}
+
+body,
+html {
+    font-size: 0.875rem;
+}
+
+body {
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    -webkit-transition: all 0.3s ease-in;
+    -o-transition: 0.3s all ease-in;
+    -moz-transition: 0.3s all ease-in;
+    transition: all 0.3s ease-in;
+    outline: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.5625;
+}
+
+strong {
+    font-weight: 700;
+}
+
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+::-moz-selection {
+    background: #0620c0;
+    color: #f8c43d;
+}
+
+::selection {
+    background: #0620c0;
+    color: #f8c43d;
+}
+
+.modal-login .modal-dialog {
+    max-width: 430px;
+}
+
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+mark,
+menu,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+q,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:after,
+blockquote:before,
+q:after,
+q:before {
+    content: "";
+    content: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+button,
+input,
+textarea {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+input,
+select,
+textarea {
+    outline: none;
+}
+
+button,
+input,
+input[type="submit"],
+select,
+textarea {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+a,
+button,
+input {
+    outline: none;
+}
+
+a[href^="tel:"] {
+    color: inherit;
+    text-decoration: none;
+}
+
+.global {
+    max-width: 100vw;
+    overflow: hidden;
+    color: #4e4e4e;
+}
+
+.product-sheet-gallery-container {
+    .owl-theme {
+        .owl-nav {
+            margin-top: 0;
+            line-height: 0.01;
+
+            [class*="owl-"] {
+                background: var(--white-color);
+                transform: translateY(-50%);
+                color: #f8c43d;
+                border-radius: 50%;
+                position: absolute;
+                text-align: center;
+                font-size: 27px;
+                height: 55px;
+                width: 55px;
+                left: 20px;
+                padding: 0;
+                margin: 0;
+                top: 50%;
+
+                i {
+                    left: 0;
+                    right: 0;
+                    top: 50%;
+                    line-height: 1;
+                    margin-top: 1px;
+                    position: absolute;
+                    transform: translateY(-50%);
+                    font-size: 3.75rem;
+                    font-weight: 300;
+                }
+
+                &.owl-next {
+                    left: auto;
+                    right: 20px;
+
+                    i {
+                        padding-left: 5px;
+                    }
+                }
+
+                &.owl-prev {
+                    i {
+                        padding-right: 5px;
+                    }
+                }
+
+                &:hover {
+                    background-color: #ffffff6e;
+                }
+            }
+        }
+
+        .owl-dots {
+            padding-top: 10px;
+            position: absolute;
+            top: 0px;
+            width: 100%;
+
+            .owl-dot.active {
+                span {
+                    background-color: #f8c43d;
+                }
+            }
+        }
+    }
+
+    &.new-products {
+        .owl-nav {
+            margin-top: 0;
+            line-height: 0.01;
+
+            [class*="owl-"] {
+
+                height: 60px;
+                width: 60px;
+
+                i {
+                    font-size: 5rem;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .owl-dots {
+            padding-top: 0px;
+            top: -40px;
+            max-height: 22px;
+            overflow: hidden;
+        }
+    }
+}
+
+.product-sheet-container {
+    ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888888a6;
+        border-radius: 3px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555555ae;
+    }
+}
+
+#googleBtnContainer {
+    iframe {
+        width: calc(100% + 10px) !important;
+        margin: -2px -10px !important;
+    }
+}
+
+#credential_picker_container {
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.ngx-spinner-overlay .loading-text {
+    display: flex;
+}
+
+.map-popup {
+    position: absolute;
+    background-color: #fff;
+    padding: 12px 10px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    z-index: 2000;
+}
+
+.map-dot {
+    color: #1125ba;
+    font-size: 20px;
+}

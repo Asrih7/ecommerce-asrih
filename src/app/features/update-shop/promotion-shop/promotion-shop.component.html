@@ -1,0 +1,34 @@
+<h1 class="icon icon-promotion mainTitle">{{"promotion.title" | translate}}</h1>
+<div class="box">
+    <div class="box_title">
+        <h2>{{"promotion.title" | translate}}</h2>
+        <button type="button" class="linkMore blue add show-modal" data-modal="modal-promotion"
+            (click)="openModal()">{{"promotion.btn_promotion" | translate}}</button>
+    </div>
+    <div class="box_content">
+        <div class="deal heading">
+            <div class="line">
+                <span *ngFor="let field of fieldInTable">{{field.value.label}}</span>
+                <span>{{'promotion.action' | translate}}</span>
+            </div>
+        </div>
+        <div class="deal rows-line" *ngIf="deals?.length">
+            <div class="line" *ngFor="let deal of deals">
+                <span>{{deal.name}}</span>
+                <span>{{ deal.nb_products }}</span>
+                <span>{{deal.deal_percentage | number: '1.0-0'}}%</span>
+                <span>
+                    <span class="btn-update" (click)="editModal(deal)"><i class="fal fa-edit"
+                            title="Modifier"></i></span>
+                    <span class="btn-delete" (click)="deleteConfirmation(deal.id)"><i class="fal fa-trash-alt"
+                            title="Supprimer"></i></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<app-popin *ngIf="isOpen" [id]="'promotion'" [isOpen]="isOpen" [fields]="listField" [shop]="shop" [errors]="errors"
+    [dealItem]="currentDeal" [editMode]="editMode" (values)="handlerPostDeal($event)"
+    (updateValues)="handlerUpdateDeal($event)" (closeModalEvent)="handlercloseModal($event)"
+    [title]="'promotion.btn_promotion' | translate">
+</app-popin>

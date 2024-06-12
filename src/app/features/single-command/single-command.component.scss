@@ -1,0 +1,216 @@
+.contentCommande {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.contentCommande .leftCommande {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -moz-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    padding-right: 1.25rem
+}
+
+.contentCommande .rightCommande {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    border-left: 1px solid #c1c1c1;
+    padding-left: 1.25rem;
+    padding-top: 1.875rem
+}
+
+@media screen and (max-width:48em) {
+    .contentCommande {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+    .contentCommande .leftCommande {
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        padding-right: 0
+    }
+
+    .contentCommande .rightCommande {
+        border-left: none;
+        padding-left: 0
+    }
+}
+
+.listeArticles {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    border: .0625rem solid #c1c1c1;
+    width: 100%;
+    -moz-border-radius: .3125rem .3125rem 0 0;
+    border-radius: .3125rem .3125rem 0 0;
+    padding: .3125rem
+}
+
+.listeArticles,
+.listeArticles .line {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex
+}
+
+.listeArticles .line {
+    border-bottom: .0625rem solid #c1c1c1
+}
+
+.listeArticles .line:last-child {
+    border-bottom: none
+}
+
+.listeArticles .line.header {
+    background: #efefef;
+    padding: .625rem 0;
+    -moz-border-radius: .3125rem .3125rem 0 0;
+    border-radius: .3125rem .3125rem 0 0;
+    border-bottom: none
+}
+
+.listeArticles .line.header,
+.listeArticles .line .item {
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    font-size: .875rem;
+    color: #4e4e4e;
+    text-align: left
+}
+
+.listeArticles .line .item {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    padding: .9375rem .625rem;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.listeArticles .line .item:first-child {
+    -webkit-box-flex: 3;
+    -webkit-flex: 3;
+    -moz-box-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    text-align: left;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -moz-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -moz-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start
+}
+
+@media screen and (max-width:640px) {
+    .listeArticles .line .item.price {
+        font-size: .75rem
+    }
+}
+
+.sendMessaage {
+    position: relative
+}
+
+.sendMessaage textarea {
+    border: .0625rem solid #c1c1c1;
+    padding: 0 .625rem;
+    font-family: HelveticaNeue;
+    font-weight: 400;
+    color: #4e4e4e;
+    font-size: .875rem;
+    width: 80%;
+    background: #fff;
+    resize: none
+}
+
+@media screen and (max-width:48em) {
+    .sendMessaage textarea {
+        width: 97%
+    }
+}
+
+@media screen and (max-width:640px) {
+    .sendMessaage textarea {
+        width: 95%
+    }
+}
+
+.sendMessaage .addFile {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: .9375rem
+}
+
+.sendMessaage .addFile i {
+    font-size: 1.875rem
+}
+
+.stars {
+    display: flex;
+    gap: 10px;
+}
+
+.stars span {
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.stars span::before {
+    content: "\2605"; 
+    color: #e6e6e6; 
+}
+
+.stars span.active::before {
+    color: gold; 
+}
+
+  

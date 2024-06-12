@@ -1,0 +1,125 @@
+<header id="header">
+    <div style="display: flex; justify-content: center;" class="top-banner">
+        <div class="top-header">
+            {{ 'header.big_text_header' | translate }}
+            <ul class="language">
+                <li [class.active]="lang=='fr'" class="fr" title="Français" (click)="showSettings()">FR</li>
+                <li [class.active]="lang=='en'" class="en" title="English" (click)="showSettings()">EN</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container menu-container">
+        <div class="header-content">
+            <div class="left-wrapper">
+                <h1 id="logo">
+                    <a [routerLink]="['/']" title="Noodra">
+                        <img src="assets/img/logo.jpg" alt="Noodra">
+                    </a>
+                </h1>
+            </div>
+            <div class="right-wrapper">
+                <form action="#" id="search">
+                    <input name="search_input" type="text" (keyup.enter)="searchProducts()" [(ngModel)]="searchTerm"
+                        placeholder="{{'header.placeholder-search' | translate}}">
+                    <button (click)="searchProducts()" type="button"><i class="fal fa-search"></i></button>
+                </form>
+                <div class="user-space">
+                    <span style="width: auto !important;" *ngIf="isConnectedUser && userShops?.length else sellLink"
+                        #userShopsContainer class="link shop profile setting-shop show-infobulle"
+                        data-info-bulle="info-bulle-2" (click)="toggleUserShops()">{{'header.store_manager' |
+                        translate}}</span>
+                    <div class="infoBulle show" id="info-bulle-2" *ngIf="userShopsOpened">
+                        <ul>
+                            <li>
+                                <a [routerLink]="['/shop/create-shop']">
+                                    <i class="fal fa-plus"></i>
+                                    {{"boutique.add_new_shop" | translate}}
+                                </a>
+                            </li>
+                            <li *ngFor="let shop of userShops">
+                                <a (click)="navigateToShop(shop.slug,$event)">
+                                    <i class="fal fa-store"></i>
+                                    {{shop.name}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ng-template #sellLink>
+                        <a [routerLink]="['/sell']" class="link shop">{{'header.sell_on_noodra' | translate}}</a>
+                    </ng-template>
+                    <a [routerLink]="['/wishlist']" class="link icon wishlist">
+                        <i class="fal fa-heart"></i>
+                        <span class="dote" *ngIf="nbrWishlistItems" style="right: 3px;">{{nbrWishlistItems}}</span>
+                    </a>
+                    <span *ngIf="!isConnectedUser else connected" (click)="openLogin()"
+                        class="link icon  profile show-infobulle ">
+                        <span class="profile" style="font-size: 1rem !important;">{{'header.login' | translate}}</span>
+                        <i class="fal fa-user-alt"></i>
+                    </span>
+                    <ng-template #connected>
+                        <span (click)="toggleUserMenu()" class="link icon  profile show-infobulle" #userMenuContainer
+                            data-info-bulle="info-bulle-1">
+                            <i class="fal fa-user-alt user-connected"></i>
+                            <span class="dote" *ngIf="unreadMsgs?.length">{{unreadMsgs.length}}</span>
+                        </span>
+                    </ng-template>
+                    <div class="infoBulle show" *ngIf="userCardOpened && isConnectedUser" id="info-bulle-1">
+                        <ul>
+                            <li class="avatar">
+                                <div>
+                                    <img [src]="currentUser.profile_picture" alt="Profile Noodra"
+                                        *ngIf="currentUser && currentUser.profile_picture">
+                                    <i class="fal fa-user-circle" *ngIf="!currentUser?.profile_picture"></i>
+                                </div>
+                                <div class="mgl10" *ngIf="currentUser">
+                                    <strong class="fullName">{{currentUser.first_name}}
+                                        {{currentUser.last_name}}</strong>
+                                </div>
+                            </li>
+                            <li (click)="toggleUserMenu()">
+                                <a [routerLink]="['/account']" fragment="settings">
+                                    <i class="fal fa-sliders-v"></i>
+                                    {{'header.setting_account' | translate}}
+                                </a>
+                            </li>
+                            <li (click)="toggleUserMenu()">
+                                <a [routerLink]="['/account']" fragment="commandes">
+                                    <i class="fal fa-cart-arrow-down"></i>
+                                    {{'header.commande_avis' | translate}}
+                                </a>
+                            </li>
+                            <li (click)="toggleUserMenu()">
+                                <a [routerLink]="['/account']" fragment="wallet">
+                                    <i class="fal fa-wallet"></i>
+                                    {{'header.wallet' | translate}}
+                                    <ng-container *ngIf="wallet?.balance !== '' && wallet?.balance_currency">
+                                        ({{wallet?.balance}} {{wallet?.balance_currency}})
+                                    </ng-container>
+                                </a>
+                            </li>
+                            <li (click)="toggleUserMenu()">
+                                <a [routerLink]="['/messages']">
+                                    <i class="fal fa-comment-alt-dots"></i>
+                                    {{'header.messages' | translate}}
+                                    <span class="wrapperNbr" *ngIf="unreadMsgs?.length ">{{unreadMsgs.length}}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="logout();toggleUserMenu()">
+                                    <i class="fal fa-sign-out"></i>
+                                    {{'header.logout' | translate}}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a [routerLink]="['/basket']" class="link icon basket">
+                        <i class="fal fa-shopping-basket"></i>
+                        <span class="dote" *ngIf="nbrBasketItems" style="right: 1px;">{{nbrBasketItems}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <app-categories></app-categories>
+    </div>
+</header>

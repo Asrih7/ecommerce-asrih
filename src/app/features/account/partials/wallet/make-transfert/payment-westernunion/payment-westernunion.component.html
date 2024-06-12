@@ -1,0 +1,49 @@
+<div class="box" id="westernUnion">
+    <div class="box_title">Western Union</div>
+    <div class="flex align-items mgt30 mgb30 wrap" *ngIf="westernAccountCurrent.length > 0">
+        <div *ngFor="let item of westernAccountCurrent" class="accountSugger mgl20 mgb10"
+            (click)="accountSelected(item)" [ngClass]="item.id === id ? 'selected':''">
+            <div class="lineInfo">
+                <div class="item flex column" style="flex-basis: 50%;">
+                    <span class="bold text-size-12">{{firstName}} & {{lastName}}</span>
+                    <span>{{item.first_name}} {{item.last_name}}</span>
+                </div>
+                <div class="item flex column" style="flex-basis: 50%;">
+                    <span class="bold text-size-12">{{receivingCity}}</span>
+                    <span>{{item.receiving_city}}</span>
+                </div>
+            </div>
+        </div>
+        <i class="fal fa-plus-circle addNewAccount" (click)='newAccount()' [attr.disabled]='hideAddNewAccount'></i>
+    </div>
+    <form class="box_content" [formGroup]="submitGroup"
+        [attr.style]="westernAccountCurrent.length > 0 ? 'padding-top:0px':''"
+        *ngIf="hideAddNewAccount || westernAccountCurrent.length === 0">
+        <p class="icon icon-warning warning">{{"wallet.transfer.msg_account_wu" | translate}}</p>
+        <div class="with2fields2">
+            <div class="info row mgb40" *ngFor="let field of fieldsWesternunionAccount">
+                <label [for]="field.key" class="bold"
+                    [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                <input type="text" [id]="field.key" [formControlName]="field.key" *ngIf="field.key !== 'country'" />
+                <mat-form-field class="" appearance="fill" *ngIf="field.key == 'country'">
+                    <input type="text" id="country" formControlName="country" matInput [matAutocomplete]="autoCountry"
+                        (input)="searchCountry($event)">
+                    <mat-autocomplete #autoCountry="matAutocomplete" [displayWith]="displayCountFn.bind(this)">
+                        <mat-option *ngFor="let option of searchedCountry " [value]="option.value">
+                            {{option.display_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <!-- [placeholder]="form.group.get('bank_country').value ? '' : field.value.label" -->
+                <span class="helpInfo">{{field.value.help_text}}</span>
+                <ng-container *ngFor="let err of errorsWesternunion">
+                    <div class="error" *ngIf="field.key == err.key">
+                        <span>
+                            {{err.value}}
+                        </span>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </form>
+</div>

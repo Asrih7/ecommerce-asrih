@@ -1,0 +1,257 @@
+.basket-container {
+    margin-bottom: 120px !important;
+
+    .basket-wrapper {
+        .basket-shop-flag {
+            margin-left: 10px;
+
+            span {
+                display: inline-block;
+                margin-right: 5px;
+            }
+        }
+
+        .basket-shop-name {
+            font-family: HelveticaNeue;
+            font-weight: 400;
+            font-size: .875rem;
+            color: #777;
+
+            &:hover {
+                cursor: pointer;
+                text-decoration: underline !important;
+            }
+        }
+
+        .basket-right-side {
+            .basket-txtcheck {
+                display: inline-block;
+                position: relative;
+                top: -1rem;
+                padding-left: 30px;
+                font-size: .875rem !important;
+                cursor: pointer;
+            }
+
+            .basket-txtcheck-sub {
+                margin-top: 20px;
+            }
+
+            .basket-textarea {
+                border-radius: 0.3125rem;
+                width: 100%;
+                border: 0.0625rem solid #c1c1c1;
+                padding: 0.625rem;
+                min-height: 6.25rem;
+                resize: vertical;
+                outline: none;
+                box-sizing: border-box;
+                font-family: monospace;
+            }
+
+            .add-now-btn {
+                display: block;
+                width: 100%;
+                height: 2.5rem;
+                line-height: 2.1875rem;
+                // padding: 0 2.5rem;
+                border-radius: 3.125rem;
+                border: 1px solid #fff;
+                color: #fff;
+                font-family: HelveticaNeueLight;
+                font-weight: 300;
+                text-align: center;
+                font-size: 1rem;
+                transition: all .5s ease;
+                background: #42a084;
+                border-color: #42a084;
+                box-shadow: none;
+
+                &:hover {
+                    background: #328c71;
+                    box-shadow: 0 0.3125rem 0.625rem rgba(78, 78, 78, .5);
+                }
+            }
+
+            .promo-code-msg {
+                display: inline-block;
+                font-family: HelveticaNeue;
+                font-size: 1rem;
+                transition: all 0.5s ease;
+                color: #4e4e4e;
+            }
+        }
+    }
+
+
+
+
+}
+
+.basket-item {
+    .basket-item-img {
+        display: block;
+        width: 100%;
+        border: 0.0625rem solid #c1c1c1;
+        background: #f2f2f2;
+        position: relative;
+        border-radius: 0.3125rem;
+
+        .visuel {
+            border-radius: 0.3125rem 0.3125rem 0 0;
+            height: auto !important;
+
+            img {
+                width: 100%;
+                display: block;
+                height: auto;
+                border-radius: 0.3125rem !important;
+            }
+        }
+
+        &:hover {
+            box-shadow: 0 0 0.625rem rgba(17, 37, 186, .5);
+        }
+    }
+
+    .basket-item-title {
+        font-family: HelveticaNeue;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5625rem;
+        color: #4e4e4e;
+
+        &:hover {
+            text-decoration: underline !important;
+        }
+    }
+
+    .customisation-title {
+        margin-top: 8px;
+        margin-bottom: 5px;
+        color: black;
+        text-decoration: underline;
+    }
+
+    .modify-link {
+        a {
+            margin-top: 15px;
+            color: black;
+            font-weight: 500;
+            font-size: 0.875rem;
+
+            &:hover {
+                text-decoration: underline !important;
+            }
+        }
+    }
+
+    .basket-item-price {
+        color: #1125ba;
+        font-size: 1.5rem;
+        font-family: HelveticaNeue;
+        font-weight: 600;
+        padding-top: 15px;
+    }
+
+    .basket-item-delevery {
+        .nationnality {
+            font-size: .875rem !important;
+            font-family: HelveticaNeue !important;
+            font-weight: 600 !important;
+        }
+    }
+}
+
+.basket-item-price-wrapper {
+    .basket-item-qty {}
+
+    .basket-item-delevery {}
+}
+
+.secondary-link {
+    font-weight: 400;
+    font-size: .875rem;
+    text-decoration: underline;
+    transition: all .5s ease;
+    color: black;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    i {
+        font-size: 12px;
+        color: black;
+    }
+}
+
+.empty-search-result {
+    width: 100%;
+
+    .empty-search-result-conent {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .not-found-img {
+            height: 180px;
+            margin-bottom: 20px;
+        }
+
+        .linkMore {
+            margin-top: 15px;
+        }
+    }
+
+}
+
+@media screen and (max-width: 48em) {
+    .basket-container {
+        .basket-wrapper {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            -moz-box-orient: vertical;
+            -moz-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+        }
+
+        .basket-right-side {
+            padding-left: 0 !important;
+        }
+    }
+}
+
+@media screen and (max-width: 64em) {
+
+    .basket-item-name,
+    .basket-item-price-wrapper {
+        -webkit-box-flex: 0 !important;
+        -webkit-flex: none !important;
+        -moz-box-flex: 0 !important;
+        -ms-flex: none !important;
+        flex: none !important;
+        width: 100%;
+        -webkit-box-pack: start !important;
+        -webkit-justify-content: flex-start !important;
+        -moz-box-pack: start !important;
+        -ms-flex-pack: start !important;
+        justify-content: flex-start !important;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -moz-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .basket-item-price-wrapper .basket-item-qty {
+        margin-right: 1.875rem;
+    }
+
+    .basket-item-name .basket-item-title {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+}

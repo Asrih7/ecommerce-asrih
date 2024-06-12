@@ -1,0 +1,82 @@
+.visuelImg {
+    position: relative;
+    overflow: hidden;
+    height: inherit;
+}
+
+.visuelImg:after {
+    content: "";
+    position: absolute;
+    background: rgba(17, 37, 186, .5);
+    transition: all .3s ease;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+}
+
+.visuelImg:hover:after {
+    opacity: 1;
+}
+
+.visuelImg .wrapperEdit {
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all .5s ease;
+    z-index: 1;
+}
+
+.visuelImg .wrapperEdit i {
+    font-size: 16px;
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #1125ba;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.visuelImg:hover .wrapperEdit {
+    top: 50%;
+}
+
+.name-store {
+    position: relative
+}
+
+.name-store:after {
+    content: "http://www.noodra.com/shop/";
+    font-family: HelveticaNeueBold;
+    font-weight: 700;
+    position: absolute;
+    left: 0;
+    top: 18px;
+    color: hsla(0, 0%, 47%, .5);
+    font-size: .875rem
+}
+
+.name-store input {
+    padding-left: 13.75rem
+}
+
+@media screen and (max-width:640px) {
+    .name-store:after {
+        content: ""
+    }
+
+    .name-store input {
+        padding-left: 0
+    }
+}
+.info-maint {
+    margin-bottom: 1rem;
+    mat-slide-toggle{
+        padding: 0;
+    }
+}

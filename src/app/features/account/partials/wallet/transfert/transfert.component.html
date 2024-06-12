@@ -1,0 +1,26 @@
+<div class="transfer-wrapper">
+    <button type="button" class="linkMore gris" (click)="activeBtn = 'EventTransfer'">
+        {{"wallet.transfer.btn_event_transfer" | translate}}
+    </button>
+    <button type="button" class="linkMore green" (click)="activeBtn = 'AccountTransfer'">
+        {{"wallet.transfer.btn_account_transfer" | translate}}
+    </button>
+    <button type="button" class="linkMore blue" (click)="activeBtn = 'MakeTransfer'">
+        {{"wallet.transfer.btn_make_transfer" | translate}}
+    </button>
+</div>
+
+<ng-container [ngSwitch]="activeBtn">
+    <app-event-transfert *ngSwitchCase="'EventTransfer'"
+        [fieldsEventTransfer]='fieldsEventTransfer'></app-event-transfert>
+
+    <app-account-transfert *ngSwitchCase="'AccountTransfer'" [fieldsPaypalAccount]='fieldsPaypalAccount'
+        [fieldsInternationalbankAccount]='fieldsInternationalbankAccount'
+        [fieldsEuropeanbankAccount]='fieldsEuropeanbankAccount' [fieldsWesternunionAccount]='fieldsWesternunionAccount'>
+    </app-account-transfert>
+
+    <app-make-transfert *ngSwitchCase="'MakeTransfer'" [fieldsPaypalAccount]='fieldsPaypalAccount' [password]='password'
+        [transferAmount]='transferAmount' [fieldsInternationalbankAccount]='fieldsInternationalbankAccount'
+        [fieldsEuropeanbankAccount]='fieldsEuropeanbankAccount' [fieldsWesternunionAccount]='fieldsWesternunionAccount'>
+    </app-make-transfert>
+</ng-container>

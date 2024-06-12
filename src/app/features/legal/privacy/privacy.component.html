@@ -1,0 +1,6 @@
+<section class="section" *ngIf="$language | async as lang">
+    <app-privacy-fr *ngIf="lang==='fr';else en"></app-privacy-fr>
+    <ng-template #en>
+        <app-privacy-en></app-privacy-en>
+    </ng-template>
+</section>

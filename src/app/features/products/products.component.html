@@ -1,0 +1,64 @@
+<section class="section profil">
+    <div class="container">
+        <div class="search-category space-between relative">
+            <div class="search-category_left">
+                <button (click)="showSearchModal = true" class="all-filters linkMore blue show-modal"
+                    data-modal="noo_filters_modal">
+                    <i data-modal="noo_filters_modal" class="fal fa-sliders-v"></i>
+                    <span data-modal="noo_filters_modal" class="bold">
+                        {{"products.filters_label" | translate}}
+                    </span>
+                </button>
+            </div>
+            <div class="search-category_right" *ngIf="!loadingProducts">
+                <div class="result-search">{{totalItems}}
+                    {{"products.results_nbr_text" | translate}}
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.activeFilters?.length">
+            <app-active-filters [filters]="filters" [aciveFilters]="activeFilters"
+                (removeFilter)="removefilter($event)"></app-active-filters>
+        </div>
+        <div class="nd-rows wrap wrapper-category-products">
+            <div *ngIf="loadingProducts; else listProductsTemp" class="products-loader-conainer">
+                <div class="box_content">
+                    <noo-loader></noo-loader>
+                </div>
+            </div>
+
+            <ng-template #listProductsTemp>
+                <ng-container>
+                    <app-single-product-card class="col-sur-5" [product]="product" [parent]="'products'"
+                        [currentLang]="translate.currentLang" (viewProduct)="onViewProduct($event)"
+                        (toggleFavorite)="onToggleFavorite($event)"
+                        *ngFor="let product of productsList | paginate: { itemsPerPage, currentPage, totalItems}">
+                    </app-single-product-card>
+                </ng-container>
+
+                <div class="empty-search-result" *ngIf="!productsList?.length">
+                    <div class="empty-search-result-conent">
+                        <img class="not-found-img" src="assets/img/no-results-found.png" alt="">
+                        {{"products.no_results_text" | translate}}
+                        <button [routerLink]="['/']" type="button" class="linkMore blue">
+                            {{"products.back_to_home_btn" | translate}}
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="nd-rows space-betwenn">
+            <div class="paginator-elements-per-page">
+                <label for="items_per_page">{{"pagination.items_per_page_text" | translate}} </label>
+                <select id="items_per_page" [(ngModel)]="itemsPerPage" (change)="getPage(1)">
+                    <option *ngFor="let option of pageSizeOptions" [value]="option">{{option}}</option>
+                </select>
+            </div>
+            <pagination-controls (pageChange)="getPage($event)" previousLabel="" nextLabel=""></pagination-controls>
+        </div>
+    </div>
+</section>
+
+<app-search-modal [currency]="currency" [filters]="filters" [dynamicFiltersKeys]="dynamicFiltersKeys"
+    [filterParams]="filterParams" [show]="showSearchModal" (close)="showSearchModal = false"
+    (filterProducts)="filterProducts($event)" [loadinInformations]="loadingProductsInformations"></app-search-modal>

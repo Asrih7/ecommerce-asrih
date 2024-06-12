@@ -1,0 +1,362 @@
+<div class="modal2" [ngClass]="[isOpen ? 'show' : '', id === 'delivery' ? 'wdt750' : '']" [id]="id">
+    <div class="titleMail">
+        <h3>{{title}}</h3>
+    </div>
+    <form [formGroup]="form.group">
+        <div *ngIf="id === 'promotion'" class="promo">
+            <ng-container *ngFor="let field of fields">
+                <div class="info row mgb10 mgb-small-20" [ngClass]="field.key === 'deal_percentage' ? 'reduction' : ''"
+                    *ngIf="field.key != 'shop' && field.key!='products'">
+                    <label [for]="field.key" class="bold" [ngClass]="field.value.required ? 'required':''"
+                        style="margin-bottom: 7px;">{{field.value.label}}</label>
+                    <input type="text" [id]="field.key" [formControlName]="field.key"
+                        *ngIf="field.key !== 'products' || field.key !== 'shop'" />
+                    <!--
+                            
+                      
+                    <ng-select class="selectBox selectBox-dropdown-language" *ngIf="field.key == 'products'"
+                        id="products" formControlName="products" [multiple]="true" [items]="products" bindLabel="name"
+                        groupBy="shop" bindValue="id" [selectableGroup]="true" [clearable]="false"
+                        [closeOnSelect]="false">
+                        <ng-template ng-optgroup-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" /> Séléctionner tous les produits de
+                            {{item.shop}}
+                        </ng-template>
+                        <ng-template ng-option-tmp let-item="item" let-item$="item$" let-index="index">
+                            <input id="item-{{index}}" type="checkbox" /> {{item.name}}
+                        </ng-template>
+                    </ng-select>  -->
+                    <span class="helpInfo">{{field.value.help_text}}</span>
+                    <div class="error" *ngFor="let err of errors">
+                        <span *ngIf="err.key == field.key">
+                            {{err.value}}
+                        </span>
+                    </div>
+                </div>
+
+                <div *ngIf="field.key=='products' && isProduct && !isShop" class="mat-select-box">
+                    <mat-form-field>
+                        <mat-label>{{field.value.label}}</mat-label>
+                        <mat-select [formControlName]="field.key" multiple
+                            [ngClass]="field.value.required ? 'required':''">
+                            <mat-option *ngFor="let product of listProducts" [value]="product.id">
+                                {{product.translations.en.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span class="helpInfo">{{field.value.help_text}}</span>
+                </div>
+            </ng-container>
+            <div class="info app">
+                <label for="prcheck-product-promotion" class="bold mgb30">
+                    {{"promotion.apply" | translate}}
+                </label>
+                <div class="half">
+                    <div class="item" *ngFor="let field of fieldsShop">
+                        <div *ngIf="field.key == 'products'">
+                            <input type="radio" id="check-product-promotion" (change)="handleChange($event)"
+                                name="add-promotion-choice" value="product" [checked]="isProduct">
+                            <label for="check-product-promotion" class="txtRadio">
+                                {{field.value.label}}
+                            </label>
+                        </div>
+                        <div *ngIf="field.key == 'shop'">
+                            <input [id]="field.key" type="radio" (change)="handleChange($event)" [value]="field.key"
+                                [ngClass]="field.value.required ? 'required':''" name="add-promotion-choice"
+                                [ngClass]="field.value.required ? 'required':''" [checked]="isShop">
+                            <label [for]="field.key" class="txtRadio">{{field.value.label}}</label>
+                            <span class="helpInfo">{{field.value.help_text}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngFor="let err of errors" class="alert-erreur">
+                <span class="alert-danger" *ngIf="err.key == 'shop'">
+                    {{err.value}}
+                </span>
+                <span class="alert-danger"
+                    *ngIf="err.key != 'shop' && err.key != 'products' && err.key!='deal_percentage' && err.key!='name'">
+                    {{err.value}}
+                </span>
+            </div>
+        </div>
+
+        <div id="newDelevery" *ngIf="id === 'delivery'">
+            <p class="small bold" [innerHTML]="'delivery.info' | translate"></p>
+            <table class="price-table table-delevery">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <ng-container *ngFor="let f of fieldsZone">
+                            <th
+                                *ngIf="f.key == 'delay' || f.key == 'alone' || f.key == 'with_another_items' || f.key == 'minimum_order_amount'">
+                                <span [ngClass]="f.value.required ? 'required':''">{{f.value.label}}</span>
+                                <small class="small">{{f.value.help_text}}</small>
+                            </th>
+                        </ng-container>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="zones" formArrayName="zones">
+                        <tr *ngFor="let group of zones.controls; let index = index;">
+                            <ng-container *ngFor="let f of fieldsZone" formGroupName="{{index}}">
+                                <td
+                                    *ngIf="(f.key == 'country' && zones.controls[index].value[f.key]!=null && zones.controls[index].value[f.key]!='' && zones.controls[index].value[f.key]==requiredZone.country && !zones.controls[index].value['isPays'])">
+                                    {{zones.controls[index].value[f.key]}}
+                                </td>
+                                <td *ngIf="f.key == 'country' && (zones.controls[index].value['country']!=null && zones.controls[index].value['country']!='' && zones.controls[index].value['country']!=requiredZone?.country) || (f.key == 'country' && zones.controls[index].value['isPays'])"
+                                    class="field-jour">
+                                    <mat-form-field class="w-100">
+                                        <mat-label>{{"delivery.pays" | translate}}</mat-label>
+                                        <mat-select [formControlName]="f.key">
+                                            <mat-option *ngFor="let country of countryList"
+                                                [value]="country.display_name">
+                                                {{country.display_name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <!-- <span *ngIf="this.zonesErrors && this.zonesErrors[0]?.value && this.zonesErrors[0]?.value[index]?.delay">{{this.zonesErrors[0]?.value[index]?.delay[0]}}</span> -->
+                                </td>
+                                <td
+                                    *ngIf="(f.key == 'region' && zones.controls[index].value[f.key]!=null && zones.controls[index].value[f.key]!='' && zones.controls[index].value[f.key]==requiredZone.region && !zones.controls[index].value['isRegion'])">
+                                    {{zones.controls[index].value[f.key]}}
+                                </td>
+                                <td
+                                    *ngIf="f.key == 'inter' && zones.controls[index].value[f.key]!=null && zones.controls[index].value[f.key]!='' && zones.controls[index].value[f.key]==requiredZone.inter">
+                                    {{zones.controls[index].value[f.key]}}
+                                </td>
+                                <td *ngIf="f.key == 'region' && (zones.controls[index].value['region']!=null && zones.controls[index].value['region']!='' && zones.controls[index].value['region']!=requiredZone?.region) || (f.key == 'region' && zones.controls[index].value['isRegion'])"
+                                    class="field-jour">
+                                    <mat-form-field class="w-100">
+                                        <mat-label>{{"delivery.region" | translate}}</mat-label>
+                                        <mat-select [formControlName]="f.key">
+                                            <mat-option *ngFor="let region of regionList" [value]="region.value">
+                                                {{region.value}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                    <!-- <span *ngIf="this.zonesErrors && this.zonesErrors[0]?.value && this.zonesErrors[0]?.value[index]?.delay">{{this.zonesErrors[0]?.value[index]?.delay[0]}}</span> -->
+                                </td>
+                                <td *ngIf="f.key == 'delay'" class="field-jour">
+                                    <div class="inp-line">
+                                        <input type="text" [formControlName]="f.key">
+                                        <span class="day">{{"delivery.day" | translate}}</span>
+                                    </div>
+                                    <span
+                                        *ngIf="this.zonesErrors && this.zonesErrors[0]?.value && this.zonesErrors[0]?.value[index]?.delay">{{this.zonesErrors[0]?.value[index]?.delay[0]}}</span>
+                                </td>
+                                <td *ngIf="f.key == 'alone'">
+                                    <div class="inp-line">
+                                        <input type="text" [formControlName]="f.key">
+                                        <span>{{userCurrency}}</span>
+                                    </div>
+                                    <span
+                                        *ngIf="this.zonesErrors && this.zonesErrors[0]?.value && this.zonesErrors[0]?.value[index]?.alone">{{this.zonesErrors[0]?.value[index]?.alone[0]}}</span>
+                                </td>
+                                <td *ngIf="f.key == 'with_another_items'">
+                                    <div class="inp-line">
+                                        <input type="text" [formControlName]="f.key">
+                                        <span>{{userCurrency}}</span>
+                                    </div>
+                                    <span
+                                        *ngIf="this.zonesErrors && this.zonesErrors[0]?.value && this.zonesErrors[0]?.value[index]?.with_another_items">{{this.zonesErrors[0]?.value[index]?.with_another_items[0]}}</span>
+                                </td>
+                                <td *ngIf="f.key == 'minimum_order_amount'">
+                                    <div class="inp-line">
+                                        <input type="text" [formControlName]="f.key">
+                                        <span>{{userCurrency}}</span>
+                                    </div>
+                                    <span
+                                        *ngIf="this.zonesErrors && this.zonesErrors[0]?.value && this.zonesErrors[0]?.value[index]?.minimum_order_amount">{{this.zonesErrors[0]?.value[index]?.minimum_order_amount[0]}}</span>
+                                </td>
+                            </ng-container>
+                            <td *ngIf="(zones.controls[index].value['country']!=null && zones.controls[index].value['country']!='' && zones.controls[index].value['country']!=requiredZone?.country) || (zones.controls[index].value['region']!=null && zones.controls[index].value['region']!='' && zones.controls[index].value['region']!=requiredZone?.region) || (zones.controls[index].value['inter']!=null && zones.controls[index].value['inter']!='' && zones.controls[index].value['inter']!=requiredZone?.inter) || (zones.controls[index].value['isRegion'] || zones.controls[index].value['isPays'])"
+                                (click)="removeItem(index)"><span class="remove-line">x</span></td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+            <div class="box mgb30">
+                <div class="box_title">
+                    <button class="linkSecond" (click)="addRegion()">{{"delivery.add_region" | translate}}</button>
+                    <button class="linkSecond" (click)="addPays()">{{"delivery.add_pays" | translate}}</button>
+                </div>
+            </div>
+            <ng-container *ngFor="let field of fields">
+                <div class="info mgb30 mgb-small-20" *ngIf="field.key !== 'shop' && field.key !== 'zones'">
+                    <label [for]="'pif_' + field.key" class="bold"
+                        [ngClass]="field.value.required ? 'required':''">{{field.value.label}}</label>
+                    <input type="text" [id]="'pif_' + field.key" [formControlName]="field.key" />
+                    <p class="small">{{field.value.help_text}}</p>
+                    <div class="error" *ngFor="let err of errors">
+                        <span *ngIf="err.key == field.key">
+                            {{err.value}}
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+            <span *ngIf="errors && errors[0] && errors[0].key=='non_field_errors'"
+                class="text-danger">{{errors[0]?.value[0]}}</span>
+        </div>
+
+        <div *ngIf="id === 'discount_coupon'">
+            <ng-container *ngFor="let field of fields">
+                <div class="info mgb30">
+                    <label [for]="field.key"
+                        *ngIf="field.value.type!='boolean' && field.value.type!='date' && field.value.type!='field' && field.key!='discount_percentage' && field.key!='discount_amount' && field.key!='discount_amount_currency'">
+                        <span class="bold" [ngClass]="field.value.required?'required':''">{{field.value.label}}</span>
+                    </label>
+                    <input type="text" class="medium"
+                        *ngIf="field.value.type!='boolean' && field.value.type!='date' && field.value.type!='field' && field.key!='discount_percentage' && field.key!='discount_amount' && field.key!='discount_amount_currency'"
+                        [formControlName]="field.key" [id]="field.key">
+                    <div class="info" *ngIf="field.value.type=='boolean' ">
+                        <div class="item">
+                            <input type="checkbox" [formControlName]="field.key" [id]="field.key">
+                            <label [for]="field.key" [ngClass]="field.value.required?'required':''" class="txtCheck"
+                                style="font-size: 12px;">
+                                {{field.value.label}}
+                            </label>
+                        </div>
+                    </div>
+                    <p class="small"
+                        *ngIf="field.value.type!='boolean' && field.value.type!='date' && field.value.type!='field' && field.key!='discount_percentage' && field.key!='discount_amount'">
+                        {{field.value.help_text}}</p>
+                    <div *ngFor="let err of errors">
+                        <span class="text-danger"
+                            *ngIf="err.key == field.key && err.key!='start_date' && err.key!='end_date' && err.key!='discount_amount' && err.key!='discount_percentage'">
+                            {{err.value}}
+                        </span>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="info">
+                <label for="reduction_percent" class="bold mgb30">
+                    {{'discount_coupon.title_reduction' | translate}}
+                </label>
+                <div class="half mgb20">
+                    <div class="item">
+                        <input type="radio" id="reduction_percent" name="coupon_reduction_radio"
+                            (change)="changeDiscountType($event)" value="discount_percentage" [checked]="isPercentage">
+                        <label for="reduction_percent" class="txtRadio">
+                            {{'discount_coupon.choice' | translate}} %
+                        </label>
+                    </div>
+                    <div class="item">
+                        <input type="radio" id="reduction_devise" name="coupon_reduction_radio"
+                            (change)="changeDiscountType($event)" value="discount_amount" [checked]="isAmount">
+                        <label for="reduction_devise" class="txtRadio">
+                            {{'discount_coupon.choice' | translate}} {{userCurrency}}
+                        </label>
+                    </div>
+                </div>
+                <div class="info medium mgb30"
+                    [ngClass]="field.key=='discount_percentage' && !isAmount && isPercentage ? 'reduction':''"
+                    *ngFor="let field of fieldReduction">
+                    <div *ngIf="field.key=='discount_percentage' && !isAmount && isPercentage">
+                        <label [for]="field.key" class="bold"
+                            [ngClass]="field.value.required?'required':''">{{field.value.label}}</label>
+                        <input type="text" [formControlName]="field.key" [id]="field.key">
+                        <p class="small">{{field.value.help_text}}</p>
+                        <div *ngFor="let err of errors">
+                            <span class="text-danger"
+                                *ngIf="err.key == field.key && err.key=='discount_percentage' && !isAmount && isPercentage">
+                                {{err.value}}
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="field.key=='discount_amount' && isAmount && !isPercentage">
+                        <label [for]="field.key" [ngClass]="field.value.required?'required':''"
+                            class="bold">{{field.value.label}}</label>
+                        <div class="discount_amount"><input type="text" [formControlName]="field.key"
+                                [id]="field.key"><span>{{userCurrency}}</span></div>
+                        <p class="small">{{field.value.help_text}}</p>
+                        <div *ngFor="let err of errors">
+                            <span class="text-danger"
+                                *ngIf="err.key == field.key && err.key=='discount_amount' && isAmount && !isPercentage">
+                                {{err.value}}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let err of errors">
+                        <span class="text-danger"
+                            *ngIf="err.key == field.key && (err.key=='discount_percentage' || err.key!='discount_amount')">
+                            {{err.value}}
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="wrapperBox padt30">
+                <div class="info" style="margin-right: 10px;" *ngFor="let field of fieldDate">
+                    <label class="bold">
+                        <span [ngClass]="field.value.required?'required':''">{{field.value.label}}</span>
+                    </label>
+                    <input autocomplete="off" type="text" (keyup)="dateMask($event)"
+                        [bsConfig]="{ isAnimated : true ,dateInputFormat: inputFormatDate, returnFocusToInput: true }"
+                        [placeholder]="inputFormatDate" [id]="field.key" [formControlName]="field.key" bsDatepicker>
+                    <div *ngFor="let err of errors">
+                        <span class="text-danger"
+                            *ngIf="err.key == field.key && (err.key=='start_date' || err.key=='end_date')">
+                            {{err.value}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="info app">
+                <label class="bold mgb30">
+                    {{"promotion.apply" | translate}}
+                </label>
+                <div class="half">
+                    <div class="item" *ngFor="let field of fieldsShop">
+                        <div *ngIf="field.key == 'product'">
+                            <input type="radio" [id]="field.key" (change)="handleChange($event)" value="product"
+                                [checked]="isProduct">
+                            <label [for]="field.key" class="txtRadio">
+                                {{field.value.label}}
+                            </label>
+                        </div>
+                        <div *ngIf="field.key == 'shop'">
+                            <input [id]="field.key" type="radio" (change)="handleChange($event)" value="shop"
+                                [checked]="isShop">
+                            <label [for]="field.key" class="txtRadio">{{field.value.label}}</label>
+                            <span class="helpInfo">{{field.value.help_text}}</span>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div *ngIf="fieldProduct && fieldProduct.key=='product' && isProduct && !isShop" class="mat-select-box">
+                <mat-form-field>
+                    <mat-label>{{fieldProduct.value.label}}</mat-label>
+                    <mat-select [formControlName]="fieldProduct.key">
+                        <mat-option *ngFor="let product of listProducts" [value]="product.id">
+                            {{product.translations.en.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <span class="helpInfo">{{fieldProduct.value.help_text}}</span>
+
+            </div>
+            <div *ngFor="let err of errors">
+                <span class="text-danger" *ngIf="err.key =='0'">
+                    {{err.value}}
+                </span>
+            </div>
+
+        </div>
+
+        <div class="field padt30">
+            <button type="button" class="linkMore gris" (click)="closeModal()">{{"promotion.btn_cancel" |
+                translate}}</button>
+            <button *ngIf="!editMode" type="button" class="linkMore green" (click)="add()">{{"promotion.btn_create" |
+                translate}}</button>
+            <button *ngIf="editMode" type="button" class="linkMore green" (click)="update()">{{"promotion.btn_update" |
+                translate}}</button>
+        </div>
+    </form>
+    <div class="close" (click)="closeModal()"><i class="fal fa-times-circle"></i></div>
+</div>
+<div class="overley" [ngClass]="isOpen ? 'show' : ''"></div>

@@ -1,0 +1,160 @@
+.product {
+    display: block;
+    width: 100%;
+    border: .0625rem solid #c1c1c1;
+    background: #f2f2f2;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    -moz-border-radius: .3125rem;
+    border-radius: .3125rem
+}
+
+.product,
+.product:active {
+    color: #4e4e4e
+}
+.product .visuel,.product {
+    height: 12.5rem;
+    max-height: 12.5rem;
+}
+.product .visuel,
+.product .visuel img {
+    -moz-border-radius: .3125rem .3125rem 0 0;
+    border-radius: .3125rem .3125rem 0 0
+}
+
+.product .visuel img,.product img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product:hover {
+    -webkit-box-shadow: 0 0 .625rem rgba(17, 37, 186, .5);
+    -moz-box-shadow: 0 0 .625rem rgba(17, 37, 186, .5);
+    box-shadow: 0 0 .625rem rgba(17, 37, 186, .5)
+}
+
+.product:hover .visuel {
+    opacity: 1
+}
+
+.product .content {
+    text-align: left;
+    position: relative;
+    left: 0;
+    padding: .625rem;
+    background: #f2f2f2;
+    -moz-border-radius: 0 0 .3125rem .3125rem;
+    border-radius: 0 0 .3125rem .3125rem
+}
+
+.product .content .titleProduct {
+    color: #4e4e4e
+}
+
+.product:nth-child(4n) {
+    margin-right: 0
+}
+
+.product.addPicture .visuel {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-top: 3.125rem;
+    background: rgba(17, 37, 186, .7);
+    color: #fff;
+    position: relative;
+    -moz-border-radius: .3125rem;
+    border-radius: .3125rem
+}
+
+.product.addPicture .visuel label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer
+}
+
+.product.addPicture .visuel:after {
+    display: none
+}
+
+.product.addPicture .visuel:before {
+    content: "\f067";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 45%;
+    font-family: Font Awesome\5 Pro;
+    color: #fff;
+    font-size: 1.875rem;
+    -webkit-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease
+}
+
+.product.addPicture .visuel:hover {
+    -webkit-box-shadow: 0 0 .625rem rgba(17, 37, 186, .5);
+    -moz-box-shadow: 0 0 .625rem rgba(17, 37, 186, .5);
+    box-shadow: 0 0 .625rem rgba(17, 37, 186, .5)
+}
+
+.product.addPicture .visuel:hover:before {
+    opacity: .5
+}
+
+.product.addPicture:hover {
+    -webkit-box-shadow: 0 0 .625rem hsla(0, 0%, 76%, .5) inset;
+    -moz-box-shadow: 0 0 .625rem hsla(0, 0%, 76%, .5) inset;
+    box-shadow: inset 0 0 .625rem hsla(0, 0%, 76%, .5)
+}
+
+.product.no-image .visuel {
+    position: relative
+}
+
+.product.no-image .visuel:after {
+    content: "\f03e";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-family: Font Awesome\5 Pro;
+    color: #1125ba;
+    font-size: 1.875rem
+}

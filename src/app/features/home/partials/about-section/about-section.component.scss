@@ -1,0 +1,214 @@
+.about {
+    background: url(../../../../../assets/img/banner1.jpg) no-repeat scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+    padding-bottom: 6.25rem;
+    overflow: hidden;
+    /* mix-blend-mode: hard-light */
+}
+
+.about .title {
+    font-family: HelveticaNeueThin;
+    font-size: 1.875rem;
+    line-height: 2.5rem;
+    padding-bottom: 1.875rem
+}
+
+@media screen and (max-width:640px) {
+    .about .title {
+        font-size: 1.5rem;
+        line-height: 1.5625rem
+    }
+}
+
+.about .subTitleAbout {
+    display: inline-block;
+    font-family: HelveticaNeue-ThinItalic;
+    font-size: 1.25rem;
+    line-height: 1.3125rem;
+    text-align: center;
+    margin-bottom: 3.125rem;
+    color: #fff;
+    position: relative;
+}
+
+.about .subTitleAbout:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;
+    height: 1px;
+    background: #ffffff;
+    bottom: -3px;
+    transition: all .5s ease;
+}
+
+.about .subTitleAbout:hover:after {
+    width: 0;
+    font-family: HelveticaNeue-ThinItalic;
+    text-decoration: underline;
+    font-size: 1.25rem;
+    line-height: 1.3125rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 3.125rem;
+    color: #fff
+}
+
+.about .subTitleAbout:hover {
+    text-decoration: none
+}
+
+@media screen and (max-width:640px) {
+    .about .subTitleAbout {
+        font-size: 1rem;
+        line-height: 1.6875rem;
+        padding-bottom: 1.875rem
+    }
+}
+
+.about_wrapper {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-bottom: 2.5rem
+}
+
+.about_wrapper--item {
+    -webkit-flex-basis: 33.33333%;
+    -ms-flex-preferred-size: 33.33333%;
+    flex-basis: 33.33333%;
+    text-align: center;
+    font-family: HelveticaNeueLight;
+    font-weight: 300
+}
+
+.about_wrapper--item .about-title {
+    font-size: 1rem;
+    line-height: 1.6875rem;
+    text-transform: uppercase;
+    padding-bottom: 1.25rem
+}
+
+@media screen and (max-width:48em) {
+    .about_wrapper--item .about-title {
+        font-size: 1rem;
+        line-height: 1.625rem
+    }
+}
+
+.about_wrapper--item .description {
+    width: 70%;
+    margin: 0 auto;
+    font-size: .875rem
+}
+
+@media screen and (max-width:48em) {
+    .about_wrapper--item .description {
+        width: 90%
+    }
+}
+
+@media screen and (max-width:640px) {
+    .about_wrapper {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -moz-box-orient: vertical;
+        -moz-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding-bottom: 3.125rem
+    }
+
+    .about_wrapper--item {
+        padding-bottom: 2.5rem
+    }
+
+    .about_wrapper--item .about-title {
+        font-size: 1rem;
+        line-height: 2rem
+    }
+
+    .about_wrapper--item .description {
+        width: 100%;
+        font-size: .875rem;
+        line-height: 1.8125rem
+    }
+}
+
+.about_question {
+    text-align: center
+}
+
+.about_question--title {
+    font-family: HelveticaNeueMedium;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2.125rem;
+    padding-bottom: 1.25rem
+}
+
+@media screen and (max-width:640px) {
+    .about_question--title {
+        font-size: 1.25rem;
+        line-height: 1.9375rem
+    }
+}
+
+/*
+.about a {
+    display: flex;
+    justify-content: space-around;
+    text-decoration: none;
+    color: #fff;
+    text-decoration: underline;
+    font-style: italic;
+    font-family: HelveticaNeue-ThinItalic;
+    font-size: 1.25rem;
+    line-height: 1.3125rem;
+    margin-bottom: 3.125rem;
+}
+
+.about a:hover {
+    text-decoration: none;
+}
+
+.aboutSection {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+    padding: 5%;
+}
+
+.aboutSectionLeft {
+    width: 26%;
+}
+.aboutSectionCenter {
+    width: 26%;
+}
+.aboutSectionRight {
+    width: 26%;
+}
+
+.aboutTexth2 {
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2.125rem;
+    padding-bottom: 1.25rem;
+    text-align: center;
+    color: #fff;
+    font-family: HelveticaNeueMedium;
+}
+*/
